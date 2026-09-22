@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-native-ux; internal startup phase diagnostics.
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "MainWindow.h"
 #include "runtime/ProcessInventory.h"
@@ -60,6 +61,14 @@ int main(int argc, char **argv) {
                 QJsonObject record{
                     {"timestamp", QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)},
                     {"firstPaintMs", firstPaint},
+                    {"uiPhasesMs",
+                     QJsonObject{
+                         {"theme", window.property("themeSetupMs").toLongLong()},
+                         {"construction", window.property("uiConstructionMs").toLongLong()},
+                         {"shell", window.property("shellConstructionMs").toLongLong()},
+                         {"inspectors", window.property("inspectorsConstructionMs").toLongLong()},
+                         {"canvas", window.property("canvasConstructionMs").toLongLong()}}},
+                    {"widgetCount", window.findChildren<QWidget *>().size()},
                     {"workspaceReadyMs", ready},
                     {"pid", QCoreApplication::applicationPid()},
                     {"qtVersion", qVersion()},

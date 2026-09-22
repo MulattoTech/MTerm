@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <QMainWindow>
 #include <QTimer>
+#include <functional>
 class QTabWidget;
 class QLineEdit;
 class QPlainTextEdit;
@@ -58,10 +59,16 @@ class MainWindow final : public QMainWindow {
     QHash<quint64, QString> requestScopes_;
     bool painted_ = false, projectMode_ = false, layoutDirty_ = false, closeAfterSave_ = false;
     quint64 pendingLayout_ = 0, pendingFile_ = 0, pendingDirectory_ = 0, pendingCreate_ = 0;
+    int approvedCloseRevision_ = -1;
     QTimer saveTimer_;
     quint64 send(const QString &, QJsonObject args = {});
     void createUi();
     void createInspectorPanels();
+    void ensureInspector(const QString &id);
+    QWidget *createTasksPanel();
+    QWidget *createEditorPanel();
+    QWidget *createNotesPanel();
+    QHash<QString, std::function<QWidget *()>> panelFactories_;
     void selectTool(const QString &);
     void createResource(const QString &);
     void inspectNode(const QJsonObject &);

@@ -29,13 +29,47 @@
     {
       "command": "Build.ps1 -Configuration Release after fixes",
       "result": "6/6 CTest suites passed; all existing native regression suites preserved"
+    },
+    {
+      "command": "UX overlay/Arrange/lazy/close regression red-green",
+      "result": "Ten intended UX failures observed before corresponding implementations/fixes"
+    },
+    {
+      "command": "Native Release and Debug CTest",
+      "result": "6/6 suites each; 109 QtTest outcomes including lifecycle/data rows"
+    },
+    {
+      "command": "Relocated reference typecheck/lint/unit/build/MCP/E2E",
+      "result": "PASS; 59 unit tests and 2 E2E scenarios"
+    },
+    {
+      "command": "Windows visual fixture + standalone 5-run clean-PATH smoke",
+      "result": "Screenshots inspected; hash manifest verified; optimized median internal paint87ms/ready102ms; working set93.8MiB, not external CLI benchmark"
     }
   ],
   "files_created": [
+    "docs/DEVFLEET_INTERFACE_VISION.md",
+    "docs/SOURCE_PROJECT_FEATURE_MATRIX.md",
+    "docs/UI_DESIGN_CONTRACT.md",
     "docs/ai/changes/2026-09-22-native-ux.json",
+    "docs/backlog/README.md",
+    "docs/backlog/requirements-index.json",
+    "docs/history/pre-ux-restoration-20260922/README.md",
+    "docs/history/pre-ux-restoration-20260922/docs--ARCHITECTURE.md",
+    "docs/history/pre-ux-restoration-20260922/docs--HANDOFF.md",
+    "docs/history/pre-ux-restoration-20260922/docs--STATUS.md",
+    "docs/history/pre-ux-restoration-20260922/docs--TESTING.md",
+    "docs/images/native-ux-20260922/README.md",
+    "docs/images/native-ux-20260922/native-canvas-1100.png",
+    "docs/images/native-ux-20260922/native-canvas-1500.png",
+    "docs/images/native-ux-20260922/native-command-palette.png",
+    "docs/images/native-ux-20260922/native-project.png",
     "docs/plans/2026-09-22-native-ux-parity.md",
+    "docs/templates/FEATURE_UI_PARITY_TEMPLATE.md",
+    "docs/validation/2026-09-22-native-ux.md",
     "native/desktop/CommandPalette.cpp",
     "native/desktop/CommandPalette.h",
+    "native/desktop/MainWindow.cpp.tmp0",
     "native/desktop/MainWindowPanels.cpp",
     "native/desktop/ProjectView.cpp",
     "native/desktop/ProjectView.h",
@@ -50,22 +84,64 @@
     "native/tests/UxTests.cpp"
   ],
   "files_modified": [
+    "AGENTS.md",
+    "README.md",
+    "Start-MTerm.ps1",
+    "docs/ARCHITECTURE.md",
+    "docs/HANDOFF.md",
+    "docs/STATUS.md",
+    "docs/TESTING.md",
+    "docs/ai/changes/2026-09-22-native-ux.json",
+    "docs/plans/2026-09-22-native-ux-parity.md",
     "native/CMakeLists.txt",
     "native/desktop/CanvasView.cpp",
     "native/desktop/CanvasView.h",
+    "native/desktop/CommandPalette.cpp",
+    "native/desktop/CommandPalette.h",
     "native/desktop/JobPane.cpp",
     "native/desktop/MainWindow.cpp",
     "native/desktop/MainWindow.h",
+    "native/desktop/MainWindowPanels.cpp",
+    "native/desktop/ProjectView.cpp",
+    "native/desktop/ProjectView.h",
+    "native/desktop/ResourceCard.cpp",
+    "native/desktop/ResourceCard.h",
     "native/desktop/TerminalPane.cpp",
-    "native/desktop/TerminalPane.h"
+    "native/desktop/TerminalPane.h",
+    "native/desktop/WorkspaceShell.cpp",
+    "native/desktop/WorkspaceShell.h",
+    "native/desktop/main.cpp",
+    "native/desktop/ui/Theme.cpp",
+    "native/desktop/ui/Theme.h",
+    "native/desktop/ui/resources.qrc",
+    "native/desktop/ui/theme.qss",
+    "native/tests/DesktopTests.cpp",
+    "native/tests/UxTests.cpp"
   ],
   "limitations": [
     "Not all inherited reference features are already native; track parity explicitly"
   ],
   "next_steps": [
-    "Capture native desktop/compact/project screenshots and terminal-view continuity",
-    "Run both build configurations, reference gates and package benchmarks",
-    "Publish source-project matrix and DevFleet future contract"
+    "Review actual desktop/compact screenshots and user feedback",
+    "Implement per-resource native identity/session graph and remaining source/reference features by REQ ID",
+    "Certify real multi-agent performance, security/recovery and DevFleet adapter separately"
   ],
-  "updated_at_utc": "2026-09-22T23:22:52.617882+00:00"
+  "updated_at_utc": "2026-09-22T23:51:34.505045+00:00",
+  "source_projects": [
+    "wonderwhy-er/DesktopCommanderMCP",
+    "rebel0789/codexpro",
+    "eneskirca/nodeterm",
+    "miuuyy/codex-chatgpt-web",
+    "Kyne0328/rel-ai-chatgpt-web-harness",
+    "lulu-sk/CodexFlow"
+  ],
+  "backlog_items_preserved": 485,
+  "devfleet": "Future proposed adapter contract only; not connected or changed",
+  "template": "Repository-local native design modules and feature/UI review template; no exact Template Creator integration exposed",
+  "local_unpublished_temporary_files": [
+    {
+      "path": "native/desktop/MainWindow.cpp.tmp0",
+      "reason": "untracked formatter temporary file; left untouched and not published"
+    }
+  ]
 }

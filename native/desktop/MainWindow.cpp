@@ -14,6 +14,7 @@
 #include <QCloseEvent>
 #include <QDialog>
 #include <QDialogButtonBox>
+#include <QElapsedTimer>
 #include <QFileDialog>
 #include <QJsonArray>
 #include <QLabel>
@@ -31,11 +32,16 @@
 namespace mterm {
 MainWindow::MainWindow(QString databaseFile, QWidget *parent)
     : QMainWindow(parent), backend_(new Backend(std::move(databaseFile), this)) {
+    QElapsedTimer phase;
+    phase.start();
     ui::applyTheme(*qApp);
+    setProperty("themeSetupMs", phase.elapsed());
     setWindowTitle("MTerm — Your AI workspace");
     resize(1500, 940);
     setMinimumSize(1024, 720);
+    phase.restart();
     createUi();
+    setProperty("uiConstructionMs", phase.elapsed());
     connect(backend_, &Backend::response, this, &MainWindow::onResponse);
     saveTimer_.setSingleShot(true);
     saveTimer_.setInterval(300);
@@ -51,13 +57,19 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     }
 }
 void MainWindow::closeEvent(QCloseEvent *event) {
-    if (editor_->document()->isModified() &&
-        QMessageBox::question(
-            this, "Unsaved editor",
-            "Discard unsaved editor changes and close MTerm? Active owned processes will stop.",
-            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes) {
-        event->ignore();
-        return;
+    const int revision = editor_ ? editor_->document()->revision() : -1;
+    if (editor_ && editor_->document()->isModified() && approvedCloseRevision_ != revision) {
+        if (QMessageBox::question(
+                this, "Unsaved editor",
+                "Discard unsaved editor changes and close MTerm? Active owned processes will stop.",
+                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes) {
+            approvedCloseRevision_ = -1;
+            event->ignore();
+            return;
+        }
+        // Do not clear the dirty flag: a failed layout save must retain the unsaved editor.
+        // Reuse approval only for this exact revision while asynchronous layout save finishes.
+        approvedCloseRevision_ = revision;
     }
     if ((layoutDirty_ || pendingLayout_) && state_["profile"] == "developer") {
         closeAfterSave_ = true;
@@ -67,6 +79,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     }
     QMainWindow::closeEvent(event);
 }
+
 quint64 MainWindow::send(const QString &method, QJsonObject args) {
     args["workspaceId"] = workspaceId();
     const auto id = backend_->request(method, args);
@@ -87,11 +100,15 @@ void MainWindow::openWorkspace(const QString &root) {
     backend_->request("open", {{"root", root}});
 }
 void MainWindow::createUi() {
+    QElapsedTimer phase;
+    phase.start();
     shell_ = new WorkspaceShell(this);
     developer_ = shell_->developerControl();
     tabs_ = new QTabWidget(this);
     tabs_->setObjectName("workspace-tabs");
+    setProperty("shellConstructionMs", phase.restart());
     createInspectorPanels();
+    setProperty("inspectorsConstructionMs", phase.restart());
     auto *canvasPage = new QWidget(this);
     auto *cl = new QVBoxLayout(canvasPage);
     cl->setContentsMargins(0, 0, 0, 0);
@@ -107,6 +124,7 @@ void MainWindow::createUi() {
     project_ = new ProjectView(this);
     shell_->mount(canvasPage, project_, tabs_);
     setCentralWidget(shell_);
+    setProperty("canvasConstructionMs", phase.restart());
     connect(developer_, &QCheckBox::toggled, this, [this](bool value) {
         if (!workspaceId().isEmpty())
             send("profile", {{"developer", value}});
@@ -166,6 +184,7 @@ void MainWindow::createUi() {
 void MainWindow::selectTool(const QString &id) {
     if (!toolPages_.contains(id))
         return;
+    ensureInspector(id);
     tabs_->setCurrentIndex(toolPages_[id]);
     const QHash<QString, QString> titles{
         {"agent", "Agents"},      {"terminal", "Terminal"}, {"editor", "Editor"},
@@ -214,6 +233,7 @@ void MainWindow::createResource(const QString &kind) {
 void MainWindow::inspectNode(const QJsonObject &node) {
     const auto kind = node["kind"].toString();
     if (kind == "note") {
+        ensureInspector("notes");
         selectedNodeId_ = node["id"].toString();
         noteTitle_->setText(node["title"].toString());
         noteBody_->setPlainText(node["content"].toString());
@@ -283,18 +303,25 @@ void MainWindow::applyState(const QJsonObject &state) {
          {"add-note", "save-note", "save-layout", "add-task", "task-done", "save-file", "new-file"})
         if (auto *b = findChild<QPushButton *>(name))
             b->setEnabled(dev);
-    editor_->setReadOnly(!dev);
-    noteBody_->setReadOnly(!dev);
-    noteTitle_->setReadOnly(!dev);
+    if (editor_)
+        editor_->setReadOnly(!dev);
+    if (noteBody_)
+        noteBody_->setReadOnly(!dev);
+    if (noteTitle_)
+        noteTitle_->setReadOnly(!dev);
     if (switched) {
-        editor_->clear();
-        editor_->document()->setModified(false);
+        if (editor_) {
+            editor_->clear();
+            editor_->document()->setModified(false);
+        }
         fileVersion_.clear();
         loadedFile_.clear();
-        filePath_->clear();
+        if (filePath_)
+            filePath_->clear();
         selectedNodeId_.clear();
         directory_ = ".";
-        fileBrowser_->clear();
+        if (fileBrowser_)
+            fileBrowser_->clear();
         layoutDirty_ = false;
         pendingLayout_ = 0;
         projectMode_ = state["canvas"].toObject()["view"] == "project";
@@ -303,22 +330,26 @@ void MainWindow::applyState(const QJsonObject &state) {
     if (layoutChanged && !layoutDirty_)
         canvas_->setCanvas(state["canvas"].toObject(), dev);
     project_->setCanvas(canvas_->canvas());
-    const auto selectedTask =
-        tasks_->currentItem() ? tasks_->currentItem()->data(0, Qt::UserRole).toString() : QString{};
-    tasks_->clear();
-    for (const auto &v : state["tasks"].toArray()) {
-        const auto task = v.toObject();
-        auto *item =
-            new QTreeWidgetItem(tasks_, {task["status"].toString(), task["title"].toString(),
-                                         task["objective"].toString()});
-        item->setData(0, Qt::UserRole, task["id"]);
-        if (task["id"] == selectedTask)
-            tasks_->setCurrentItem(item);
+    if (tasks_) {
+        const auto selectedTask = tasks_->currentItem()
+                                      ? tasks_->currentItem()->data(0, Qt::UserRole).toString()
+                                      : QString{};
+        tasks_->clear();
+        for (const auto &v : state["tasks"].toArray()) {
+            const auto task = v.toObject();
+            auto *item =
+                new QTreeWidgetItem(tasks_, {task["status"].toString(), task["title"].toString(),
+                                             task["objective"].toString()});
+            item->setData(0, Qt::UserRole, task["id"]);
+            if (task["id"] == selectedTask)
+                tasks_->setCurrentItem(item);
+        }
+        tasks_->resizeColumnToContents(0);
     }
-    tasks_->resizeColumnToContents(0);
     for (auto *pane : jobs_)
         pane->setWorkspace(state);
-    terminal_->setWorkspace(state);
+    if (terminal_)
+        terminal_->setWorkspace(state);
 }
 void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject &result,
                             const QString &error) {
@@ -333,6 +364,7 @@ void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject
         if (savedLayout) {
             layoutDirty_ = true;
             closeAfterSave_ = false;
+            approvedCloseRevision_ = -1;
             shell_->setSaveStatus("Save conflict — changes retained");
         }
         if (method == "profile") {
@@ -343,6 +375,11 @@ void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject
     }
     if (result.contains("canvas"))
         applyState(result);
+    if (method == "profile")
+        statusBar()->showMessage(
+            state_["profile"] == "developer"
+                ? "Developer mode · workspace editing enabled · execution still asks first"
+                : "Observe mode · workspace read-only");
     if (savedLayout) {
         shell_->setSaveStatus(layoutDirty_ ? "Unsaved layout" : "All changes saved");
         if (layoutDirty_)
@@ -372,7 +409,8 @@ void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject
                                      ? "Saved · newer editor changes remain unsaved"
                                      : "File saved atomically");
     } else if (method == "list-files" && id == pendingDirectory_) {
-        fileBrowser_->clear();
+        if (fileBrowser_)
+            fileBrowser_->clear();
         for (const auto &v : result["items"].toArray()) {
             const auto entry = v.toObject();
             auto *item = new QTreeWidgetItem(fileBrowser_, {entry["name"].toString()});

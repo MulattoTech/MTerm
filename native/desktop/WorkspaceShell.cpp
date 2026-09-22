@@ -68,6 +68,7 @@ WorkspaceShell::WorkspaceShell(QWidget *parent) : QWidget(parent) {
     topRow->addWidget(path_, 1);
     auto *native = label("NATIVE", "muted", top);
     native->setObjectName("native-badge");
+    native->setFixedHeight(24);
     topRow->addWidget(native);
     auto *command = action("Search commands   Ctrl K", "open-command-palette", "quiet", top);
     command->setIcon(ui::icon("search"));

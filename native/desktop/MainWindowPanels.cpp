@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QPushButton>
+#include <QSignalBlocker>
 #include <QSplitter>
 #include <QStatusBar>
 #include <QTabWidget>
@@ -57,9 +58,62 @@ QVBoxLayout *panelLayout(QWidget *parent) {
 }
 } // namespace
 void MainWindow::createInspectorPanels() {
-    auto add = [this](const QString &id, const QString &name, QWidget *widget) {
-        toolPages_[id] = tabs_->addTab(widget, name);
+    const auto add = [this](const QString &id, const QString &title,
+                            std::function<QWidget *()> factory) {
+        toolPages_[id] = tabs_->addTab(new QWidget(tabs_), title);
+        panelFactories_.insert(id, std::move(factory));
     };
+    add("tasks", "Tasks", [this] { return createTasksPanel(); });
+    add("editor", "Editor", [this] { return createEditorPanel(); });
+    add("notes", "Notes", [this] { return createNotesPanel(); });
+    for (const auto &entry : QList<QPair<QString, QString>>{
+             {"command", "Commands"}, {"git", "Git"}, {"codex", "Agents"}}) {
+        const auto id = entry.first == "command" ? QString("commands")
+                        : entry.first == "codex" ? QString("agent")
+                                                 : entry.first;
+        add(id, entry.second, [this, kind = entry.first] {
+            auto *pane = new JobPane(kind, backend_, tabs_);
+            pane->setObjectName("inspector-" + kind);
+            jobs_.append(pane);
+            return pane;
+        });
+    }
+    add("terminal", "Terminal", [this] {
+        terminal_ = new TerminalPane(backend_, tabs_);
+        terminal_->setObjectName("terminal-panel");
+        return terminal_;
+    });
+    add("processes", "Processes", [this] {
+        processes_ =
+            tree({"PID", "Name", "RAM MiB", "Private MiB", "CPU sec"}, "process-list", tabs_);
+        processes_->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+        return processes_;
+    });
+    add("audit", "Audit", [this] {
+        audit_ = tree({"UTC time", "Operation", "Decision", "Result"}, "audit-list", tabs_);
+        audit_->header()->setSectionResizeMode(3, QHeaderView::Stretch);
+        return audit_;
+    });
+}
+void MainWindow::ensureInspector(const QString &id) {
+    if (!panelFactories_.contains(id))
+        return;
+    const auto factory = panelFactories_.take(id);
+    const int index = toolPages_.value(id);
+    auto *placeholder = tabs_->widget(index);
+    const auto label = tabs_->tabText(index);
+    auto *panel = factory();
+    {
+        // Materialize once; changing visible tools must never recreate a live session or editor.
+        QSignalBlocker blocker(tabs_);
+        tabs_->removeTab(index);
+        tabs_->insertTab(index, panel, label);
+    }
+    placeholder->deleteLater();
+    if (!state_.isEmpty())
+        applyState(state_);
+}
+QWidget *MainWindow::createTasksPanel() {
     auto *taskPage = new QWidget(tabs_);
     taskPage->setObjectName("tasks-panel");
     auto *taskLayout = panelLayout(taskPage);
@@ -83,7 +137,7 @@ void MainWindow::createInspectorPanels() {
     auto *done = button("Mark selected task done", "task-done", taskPage);
     done->setEnabled(false);
     taskLayout->addWidget(done);
-    add("tasks", "Tasks", taskPage);
+
     connect(addTask, &QPushButton::clicked, this, [this] {
         send("create-task",
              {{"title", taskTitle_->text()}, {"objective", taskObjective_->toPlainText()}});
@@ -93,6 +147,9 @@ void MainWindow::createInspectorPanels() {
             send("task-status",
                  {{"id", item->data(0, Qt::UserRole).toString()}, {"status", "DONE"}});
     });
+    return taskPage;
+}
+QWidget *MainWindow::createEditorPanel() {
     auto *filePage = new QWidget(tabs_);
     filePage->setObjectName("editor-panel");
     auto *fl = panelLayout(filePage);
@@ -147,7 +204,7 @@ void MainWindow::createInspectorPanels() {
     split->setSizes({135, 345});
     fl->addWidget(split, 1);
     fl->addWidget(caption("UTF-8 · conflict-safe saves · native editor", filePage));
-    add("editor", "Editor", filePage);
+
     connect(open, &QPushButton::clicked, this, &MainWindow::loadFile);
     connect(filePath_, &QLineEdit::returnPressed, this, &MainWindow::loadFile);
     connect(save, &QPushButton::clicked, this, [this] {
@@ -187,6 +244,9 @@ void MainWindow::createInspectorPanels() {
             loadFile();
         }
     });
+    return filePage;
+}
+QWidget *MainWindow::createNotesPanel() {
     auto *notes = new QWidget(tabs_);
     notes->setObjectName("notes-panel");
     auto *nl = panelLayout(notes);
@@ -202,31 +262,13 @@ void MainWindow::createInspectorPanels() {
          *addNote = button("Add as new note", "add-note", notes);
     nl->addWidget(saveNoteButton);
     nl->addWidget(addNote);
-    add("notes", "Notes", notes);
+
     connect(saveNoteButton, &QPushButton::clicked, this, &MainWindow::saveNote);
     connect(addNote, &QPushButton::clicked, this, [this] {
         pendingCreate_ = send("add-node", {{"kind", "note"},
                                            {"title", noteTitle_->text()},
                                            {"content", noteBody_->toPlainText()}});
     });
-    for (const auto &entry : QList<QPair<QString, QString>>{
-             {"command", "Commands"}, {"git", "Git"}, {"codex", "Agents"}}) {
-        auto *pane = new JobPane(entry.first, backend_, tabs_);
-        pane->setObjectName("inspector-" + entry.first);
-        jobs_.append(pane);
-        add(entry.first == "command" ? "commands"
-            : entry.first == "codex" ? "agent"
-                                     : entry.first,
-            entry.second, pane);
-    }
-    terminal_ = new TerminalPane(backend_, tabs_);
-    terminal_->setObjectName("terminal-panel");
-    add("terminal", "Terminal", terminal_);
-    processes_ = tree({"PID", "Name", "RAM MiB", "Private MiB", "CPU sec"}, "process-list", tabs_);
-    processes_->header()->setSectionResizeMode(1, QHeaderView::Stretch);
-    add("processes", "Processes", processes_);
-    audit_ = tree({"UTC time", "Operation", "Decision", "Result"}, "audit-list", tabs_);
-    audit_->header()->setSectionResizeMode(3, QHeaderView::Stretch);
-    add("audit", "Audit", audit_);
+    return notes;
 }
 } // namespace mterm

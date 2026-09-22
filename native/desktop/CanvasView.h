@@ -17,6 +17,7 @@ class CanvasView final : public QGraphicsView {
     QJsonObject canvas() const;
     void zoomBy(qreal multiplier);
     void fitResources();
+    void arrangeResources();
   signals:
     void layoutEdited();
     void nodeActivated(QJsonObject node);

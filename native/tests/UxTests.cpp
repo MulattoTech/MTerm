@@ -6,6 +6,8 @@
 #include "desktop/MainWindow.h"
 #include <QCheckBox>
 #include <QDialog>
+#include <QDir>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QFrame>
 #include <QGraphicsScene>
@@ -13,8 +15,10 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QPushButton>
+#include <QSignalSpy>
 #include <QTabWidget>
 #include <QTemporaryDir>
 #include <QTreeWidget>
@@ -146,6 +150,198 @@ class UxTests final : public QObject {
         QVERIFY(start);
         QVERIFY2(!start->isEnabled(),
                  "Observe must show disabled execution controls, not let clicks fail later");
+    }
+    void noteChangesAutosaveAndRecover() {
+        QTemporaryDir d;
+        const auto db = d.filePath("data/db");
+        QString identity;
+        {
+            MainWindow w(db);
+            w.show();
+            QSignalSpy ready(&w, &MainWindow::workspaceReady);
+            w.openWorkspace(d.path());
+            QTRY_VERIFY(!ready.isEmpty());
+            w.findChild<QCheckBox *>("developer-profile")->setChecked(true);
+            auto *create = w.findChild<QPushButton *>("create-note");
+            QVERIFY(create);
+            QTRY_VERIFY(create->isEnabled());
+            create->click();
+            auto *canvas = w.findChild<CanvasView *>("native-canvas");
+            QVERIFY(canvas);
+            QTRY_COMPARE(canvas->canvas()["nodes"].toArray().size(), 2);
+            identity = canvas->canvas()["nodes"].toArray().last().toObject()["id"].toString();
+            auto *title = w.findChild<QLineEdit *>("note-title");
+            auto *body = w.findChild<QPlainTextEdit *>("note-content");
+            QVERIFY(title);
+            QVERIFY(body);
+            QTRY_VERIFY(title->isVisible());
+            title->setText("Durable UX decision");
+            body->setPlainText("Native speed must retain the familiar workflow.");
+            w.findChild<QPushButton *>("save-note")->click();
+            QTest::qWait(650);
+            QCOMPARE(canvas->canvas()["nodes"].toArray().last().toObject()["title"].toString(),
+                     QString("Durable UX decision"));
+            w.close();
+            QTRY_VERIFY(!w.isVisible());
+        }
+        {
+            MainWindow w(db);
+            w.show();
+            QSignalSpy ready(&w, &MainWindow::workspaceReady);
+            w.openWorkspace(d.path());
+            QTRY_VERIFY(!ready.isEmpty());
+            auto *canvas = w.findChild<CanvasView *>("native-canvas");
+            const auto n = canvas->canvas()["nodes"].toArray().last().toObject();
+            QCOMPARE(n["id"].toString(), identity);
+            QCOMPARE(n["title"].toString(), QString("Durable UX decision"));
+            QCOMPARE(n["content"].toString(),
+                     QString("Native speed must retain the familiar workflow."));
+        }
+    }
+    void responsiveWorkspaceAndOptionalVisualEvidence() {
+        QTemporaryDir d;
+        MainWindow w(d.filePath("data/db"));
+        w.show();
+        QSignalSpy ready(&w, &MainWindow::workspaceReady);
+        w.openWorkspace(d.path());
+        QTRY_VERIFY(!ready.isEmpty());
+        w.findChild<QCheckBox *>("developer-profile")->setChecked(true);
+        auto *canvas = w.findChild<CanvasView *>("native-canvas");
+        QVERIFY(canvas);
+        int expected = 1;
+        for (const auto *kind : {"agent", "terminal", "editor"}) {
+            auto *create = w.findChild<QPushButton *>("create-" + QString(kind));
+            QVERIFY(create);
+            QTRY_VERIFY(create->isEnabled());
+            create->click();
+            ++expected;
+            QTRY_COMPARE(canvas->canvas()["nodes"].toArray().size(), expected);
+        }
+        w.findChild<QPushButton *>("nav-terminal")->click();
+        auto *path = w.findChild<QLineEdit *>("workspace-path");
+        QVERIFY(path);
+        path->setText("MTerm / isolated UX validation workspace");
+        const auto capture = qEnvironmentVariable("MTERM_UX_CAPTURE_DIR");
+        for (const auto size : {QSize(1500, 940), QSize(1100, 780)}) {
+            w.resize(size);
+            QTest::qWait(80);
+            canvas->arrangeResources();
+            QTest::qWait(400);
+            const auto *inspect = w.findChild<QTabWidget *>("workspace-tabs");
+            QVERIFY(inspect);
+            QVERIFY(w.width() <= size.width() + 20);
+            QVERIFY(canvas->isVisible());
+            QVERIFY(inspect->isVisible());
+            QVERIFY(canvas->width() >= 320);
+            QVERIFY(inspect->width() >= 320);
+            const auto *command = w.findChild<QPushButton *>("open-command-palette");
+            QVERIFY(command);
+            QVERIFY(w.rect().contains(command->mapTo(&w, command->rect().center())));
+            if (!capture.isEmpty()) {
+                QDir().mkpath(capture);
+                path->setText("MTerm / isolated UX validation workspace");
+                QVERIFY(w.grab().save(
+                    QDir(capture).filePath(QString("native-canvas-%1.png").arg(size.width()))));
+            }
+        }
+        w.resize(1500, 940);
+        w.findChild<QPushButton *>("view-project")->click();
+        QTest::qWait(400);
+        if (!capture.isEmpty()) {
+            path->setText("MTerm / isolated UX validation workspace");
+            QVERIFY(w.grab().save(QDir(capture).filePath("native-project.png")));
+        }
+        w.findChild<QPushButton *>("open-command-palette")->click();
+        QTest::qWait(80);
+        auto *search = w.findChild<QLineEdit *>("command-search");
+        QVERIFY(search);
+        QTest::keyClicks(search, "Git");
+        if (!capture.isEmpty()) {
+            auto *dialog = w.findChild<QDialog *>("command-palette");
+            QVERIFY(dialog);
+            QVERIFY(dialog->grab().save(QDir(capture).filePath("native-command-palette.png")));
+        }
+        QTest::keyClick(search, Qt::Key_Escape);
+    }
+    void arrangeKeepsCardsReadableAndPreservesIdentity() {
+        CanvasView view;
+        view.resize(800, 720);
+        view.show();
+        auto state = initialCanvas();
+        QJsonArray nodes;
+        for (int i = 0; i < 4; ++i) {
+            auto n = newNode("note", QString("Arrange %1").arg(i), "Test arrangement");
+            n["x"] = 1000 + i * 400;
+            n["y"] = 1000;
+            nodes.append(n);
+        }
+        state["nodes"] = nodes;
+        view.setCanvas(state, true);
+        auto *arrange = view.findChild<QPushButton *>("canvas-arrange");
+        QVERIFY2(
+            arrange,
+            "Native canvas needs a readable arrange action, not zooming all text to tiny sizes");
+        arrange->click();
+        const auto result = view.canvas()["nodes"].toArray();
+        QCOMPARE(result.size(), nodes.size());
+        QCOMPARE(view.transform().m11(), 1.0);
+        for (int i = 0; i < result.size(); ++i) {
+            QCOMPARE(result[i].toObject()["id"], nodes[i].toObject()["id"]);
+            QVERIFY(result[i].toObject()["x"].toDouble() < 800);
+        }
+    }
+    void unusedInspectorsAreLazyAndRetainedAfterFirstUse() {
+        QTemporaryDir d;
+        MainWindow w(d.filePath("data/db"));
+        w.show();
+        QSignalSpy ready(&w, &MainWindow::workspaceReady);
+        w.openWorkspace(d.path());
+        QTRY_VERIFY(!ready.isEmpty());
+        QVERIFY2(!w.findChild<QPlainTextEdit *>("file-editor"),
+                 "Unused editor must not load at startup");
+        QVERIFY2(!w.findChild<QPlainTextEdit *>("task-objective"),
+                 "Unused task editor must not load at startup");
+        w.findChild<QPushButton *>("nav-editor")->click();
+        auto *editor = w.findChild<QPlainTextEdit *>("file-editor");
+        QVERIFY(editor);
+        editor->setPlainText("retained");
+        editor->document()->setModified(false);
+        w.findChild<QPushButton *>("nav-terminal")->click();
+        w.findChild<QPushButton *>("nav-editor")->click();
+        QCOMPARE(w.findChild<QPlainTextEdit *>("file-editor"), editor);
+        QCOMPARE(editor->toPlainText(), QString("retained"));
+    }
+    void closingDirtyEditorDuringLayoutSaveConfirmsOnce() {
+        QTemporaryDir d;
+        MainWindow w(d.filePath("data/db"));
+        w.show();
+        QSignalSpy ready(&w, &MainWindow::workspaceReady);
+        w.openWorkspace(d.path());
+        QTRY_VERIFY(!ready.isEmpty());
+        w.findChild<QCheckBox *>("developer-profile")->setChecked(true);
+        w.findChild<QPushButton *>("nav-editor")->click();
+        auto *editor = w.findChild<QPlainTextEdit *>("file-editor");
+        QVERIFY(editor);
+        QTRY_VERIFY(!editor->isReadOnly());
+        editor->setPlainText("Unsaved draft");
+        editor->document()->setModified(true);
+        auto *canvas = w.findChild<CanvasView *>("native-canvas");
+        QVERIFY(canvas);
+        canvas->arrangeResources();
+        int confirmations = 0;
+        QTimer responder;
+        responder.setInterval(10);
+        connect(&responder, &QTimer::timeout, this, [&] {
+            if (auto *box = qobject_cast<QMessageBox *>(QApplication::activeModalWidget())) {
+                ++confirmations;
+                box->button(QMessageBox::Yes)->click();
+            }
+        });
+        responder.start();
+        w.close();
+        QTRY_VERIFY_WITH_TIMEOUT(!w.isVisible(), 3000);
+        responder.stop();
+        QCOMPARE(confirmations, 1);
     }
     void canvasUsesBoundedLightweightSceneItems() {
         CanvasView view;

@@ -96,6 +96,11 @@ CanvasView::CanvasView(QWidget *parent) : QGraphicsView(parent), scene_(this) {
     row->addWidget(zoomLabel_);
     row->addWidget(plus);
     row->addWidget(fit);
+    auto *arrange = new QPushButton("Arrange", controls_);
+    arrange->setObjectName("canvas-arrange");
+    arrange->setToolTip("Arrange unpinned resources at readable 100% zoom");
+    row->addWidget(arrange);
+    connect(arrange, &QPushButton::clicked, this, &CanvasView::arrangeResources);
     controls_->adjustSize();
     connect(minus, &QPushButton::clicked, this, [this] { zoomBy(0.85); });
     connect(plus, &QPushButton::clicked, this, [this] { zoomBy(1.18); });
@@ -108,6 +113,8 @@ CanvasView::CanvasView(QWidget *parent) : QGraphicsView(parent), scene_(this) {
 void CanvasView::setCanvas(const QJsonObject &canvas, bool editable) {
     canvas_ = canvas;
     editable_ = editable;
+    if (auto *b = findChild<QPushButton *>("canvas-arrange"))
+        b->setEnabled(editable);
     QSet<QString> present;
     for (const auto &value : canvas["nodes"].toArray()) {
         const auto node = value.toObject();
@@ -159,6 +166,28 @@ void CanvasView::zoomBy(qreal factor) {
     changedViewport();
     if (editable_)
         emit layoutEdited();
+}
+void CanvasView::arrangeResources() {
+    if (!editable_ || cards_.isEmpty())
+        return;
+    double width = 360, height = 260;
+    for (auto *card : cards_) {
+        width = qMax(width, card->boundingRect().width());
+        height = qMax(height, card->boundingRect().height());
+    }
+    const int columns = qMax(1, int((viewport()->width() - 12) / (width + 20)));
+    int index = 0;
+    for (const auto &value : canvas_["nodes"].toArray()) {
+        auto *card = cards_.value(value.toObject()["id"].toString(), nullptr);
+        if (!card || card->node()["pinned"].toBool())
+            continue;
+        card->setPos(16 + (index % columns) * (width + 20), 24 + (index / columns) * (height + 20));
+        ++index;
+    }
+    setTransform(QTransform());
+    centerOn(viewport()->width() / 2.0, viewport()->height() / 2.0);
+    changedViewport();
+    emit layoutEdited();
 }
 void CanvasView::fitResources() {
     if (scene_.items().isEmpty())

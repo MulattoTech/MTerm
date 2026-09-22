@@ -31,3 +31,10 @@ No private chain-of-thought, API keys, auth cookies, or raw chat exports belong 
 ## Resuming after interruption
 Read the latest docs/ai/changes/ record and handoff, inspect git diff, then resume the first unvalidated task.
 Do not repeat completed work or count untested features as done. Local artifacts/ and .tools/ are not published.
+
+## Active UX continuation and full scope
+Active development is C:\Tools\Dev\MTerm. Old Documents checkouts are recovery-only.
+Read docs/UI_DESIGN_CONTRACT.md and docs/SOURCE_PROJECT_FEATURE_MATRIX.md before UI changes.
+The Electron interaction model is the user-approved reference; do not regress to full-window tool tabs.
+Use docs/templates/FEATURE_UI_PARITY_TEMPLATE.md and the full docs/backlog/requirements-index.json.
+DevFleet integration is future opt-in work; read docs/DEVFLEET_INTERFACE_VISION.md and never imply it exists.

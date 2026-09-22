@@ -91,8 +91,8 @@ TerminalPane::TerminalPane(Backend *backend, QWidget *parent) : QWidget(parent),
                     active_ = error.isEmpty();
                     start_->setEnabled(developer_ && approved_ && !active_);
                     stop_->setEnabled(active_);
-                    status_->setText(
-                        active_ ? "Native shell running â€” click the terminal to type." : error);
+                    status_->setText(active_ ? "Native shell running — click the terminal to type."
+                                             : error);
                     if (active_)
                         screen_->setFocus();
                 }
@@ -130,6 +130,8 @@ void TerminalPane::setWorkspace(const QJsonObject &state) {
     if (!developer_)
         approved_ = false;
     approve_->setEnabled(developer_ && !approved_);
+    if (developer_ && !approved_ && !active_)
+        status_->setText("Approve this terminal session, then start your native shell.");
     start_->setEnabled(developer_ && approved_ && !active_ && !pending_);
     if (!developer_)
         status_->setText(

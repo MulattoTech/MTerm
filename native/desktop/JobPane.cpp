@@ -48,7 +48,7 @@ JobPane::JobPane(QString kind, Backend *backend, QWidget *parent)
         resume_->addItem("New Codex session", QString{});
         layout->addWidget(resume_);
         prompt_ = new QPlainTextEdit(this);
-        prompt_->setPlaceholderText("Prompt â€” never sent automatically");
+        prompt_->setPlaceholderText("Prompt — never sent automatically");
         prompt_->setMaximumHeight(160);
         layout->addWidget(prompt_);
     }
@@ -116,7 +116,7 @@ JobPane::JobPane(QString kind, Backend *backend, QWidget *parent)
             [this](const QString &workspace, const QString &id, const QJsonObject &result) {
                 if (workspace != workspaceId_ || id != runId_)
                     return;
-                status_->setText(QString("Exit %1 Â· %2 ms Â· dropped %3 bytes Â· %4")
+                status_->setText(QString("Exit %1 · %2 ms · dropped %3 bytes · %4")
                                      .arg(result["exitCode"].toInt())
                                      .arg(result["durationMs"].toInteger())
                                      .arg(result["droppedBytes"].toInteger())
@@ -147,7 +147,7 @@ void JobPane::setWorkspace(const QJsonObject &state) {
             if (s["providerId"] != "codex-cli" ||
                 s["resumabilityData"].toObject()["threadId"].toString().isEmpty())
                 continue;
-            resume_->addItem(s["status"].toString() + " Â· " + s["id"].toString().left(12),
+            resume_->addItem(s["status"].toString() + " · " + s["id"].toString().left(12),
                              s["id"].toString());
         }
         const auto index = resume_->findData(selected);

@@ -56,3 +56,18 @@ Pre-flight: desktop and MCP share WorkspaceRuntime and Store schemas. Process ow
 - Source-only publishing uses separate feat/native-resume-20260922 worktree; no credentials changed, no authorization bypass.
 - Replaced stale native handoff/status/architecture/testing docs; original versions archived in docs/history/.
 - No paid model calls, original AstraCommander edits, public listener, force push, or removal of user source.
+
+## Relocation and native UX restoration — 2026-09-22
+
+- Canonical development moved to C:\Tools\Dev\MTerm; prior checkouts and all Git refs preserved.
+- Restored Electron-style shell, navigation, persistent inspector, Canvas/Project and keyboard workflow.
+- Implemented native painted resource cards, minimap/Arrange, native file browser and note persistence.
+- Preserved original terminal/file regressions; added real tool/view-switch continuity coverage.
+- Observed and fixed UX regressions, including scrolled overlays, Observe controls, lazy inspector
+  startup and duplicate close confirmation.
+- Profiled eager UI startup then reduced internal median first paint 269ms to87ms using retained lazy
+  panels. Memory tradeoff and non-comparable CLI endpoints remain explicit.
+- Indexed all485 inherited requirements; added six-source matrix, reusable review template and
+  future DevFleet integration contract without modifying/connecting DevFleet.
+- Native Release/Debug 6 suites pass; relocated reference full gate passes; real Windows screenshots
+  reviewed. CI workflow-write permission remains the earlier unresolved publication barrier.

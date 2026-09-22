@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-native-ux; exercise real visible navigation and terminal continuity.
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "desktop/MainWindow.h"
 #include "desktop/TerminalWidget.h"
@@ -63,6 +64,24 @@ class DesktopTests : public QObject {
         QTest::keyClicks(screen, "echo MTERM_%MTERM_UI_TEST%");
         QTest::keyClick(screen, Qt::Key_Return);
         QTRY_VERIFY_WITH_TIMEOUT(screen->screenText().contains("MTERM_UI_OK"), 8000);
+        // The same live terminal is retained across both navigation and view changes.
+        auto *editorNav = w.findChild<QPushButton *>("nav-editor");
+        QVERIFY(editorNav);
+        editorNav->click();
+        auto *project = w.findChild<QPushButton *>("view-project");
+        QVERIFY(project);
+        project->click();
+        auto *back = w.findChild<QPushButton *>("view-canvas");
+        QVERIFY(back);
+        back->click();
+        auto *terminalNav = w.findChild<QPushButton *>("nav-terminal");
+        QVERIFY(terminalNav);
+        terminalNav->click();
+        QCOMPARE(w.findChild<TerminalWidget *>("terminal-screen"), screen);
+        screen->setFocus();
+        QTest::keyClicks(screen, "echo PERSIST_%MTERM_UI_TEST%");
+        QTest::keyClick(screen, Qt::Key_Return);
+        QTRY_VERIFY_WITH_TIMEOUT(screen->screenText().contains("PERSIST_UI_OK"), 8000);
 #endif
     }
     void saveKeepsNewerEditorChanges() {
@@ -78,7 +97,9 @@ class DesktopTests : public QObject {
         QTRY_VERIFY(!ready.isEmpty());
         auto *tabs = w.findChild<QTabWidget *>("workspace-tabs");
         QVERIFY(tabs);
-        tabs->setCurrentIndex(2);
+        auto *editorNav = w.findChild<QPushButton *>("nav-editor");
+        QVERIFY(editorNav);
+        editorNav->click();
         auto *path = w.findChild<QLineEdit *>("file-path");
         path->setText("late.txt");
         w.findChild<QPushButton *>("open-file")->click();
@@ -119,16 +140,22 @@ class DesktopTests : public QObject {
         auto *profile = w.findChild<QCheckBox *>("developer-profile");
         QVERIFY(profile);
         profile->setChecked(true);
+        w.findChild<QPushButton *>("nav-notes")->click();
         auto *note = w.findChild<QPushButton *>("add-note");
         QVERIFY(note);
         QTRY_VERIFY(note->isEnabled());
         auto *title = w.findChild<QLineEdit *>("note-title");
         QVERIFY(title);
+        auto *notesNav = w.findChild<QPushButton *>("nav-notes");
+        QVERIFY(notesNav);
+        notesNav->click();
         title->setText("Native note");
         note->click();
         auto *tabs = w.findChild<QTabWidget *>("workspace-tabs");
         QVERIFY(tabs);
-        tabs->setCurrentIndex(1);
+        auto *taskNav = w.findChild<QPushButton *>("nav-tasks");
+        QVERIFY(taskNav);
+        taskNav->click();
         auto *task = w.findChild<QLineEdit *>("task-title");
         QVERIFY(task);
         task->setText("Native test task");
@@ -153,7 +180,9 @@ class DesktopTests : public QObject {
         QTRY_VERIFY_WITH_TIMEOUT(!ready.isEmpty(), 5000);
         auto *tabs = w.findChild<QTabWidget *>("workspace-tabs");
         QVERIFY(tabs);
-        tabs->setCurrentIndex(2);
+        auto *editorNav = w.findChild<QPushButton *>("nav-editor");
+        QVERIFY(editorNav);
+        editorNav->click();
         auto *path = w.findChild<QLineEdit *>("file-path");
         QVERIFY(path);
         path->setText("hello.txt");

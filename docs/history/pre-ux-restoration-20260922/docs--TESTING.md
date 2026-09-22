@@ -52,17 +52,3 @@ The pinned Windows/Linux Release/Debug workflow is documented at docs/ci/native.
 activation is blocked by workflow-write permission. No hosted pass is claimed. Unix PTY skips
 are explicit, not native Unix parity. macOS, sanitizers/fuzzing, signed installers, real provider
 conformance, long-running burst/backpressure, hostile file races and full crash recovery remain.
-
-## Native UX restoration and relocation
-
-Run from C:\Tools\Dev\MTerm. The current native suite adds `native-ux` to the five original
-suites. Tests cover shell geometry, palette, shared Project/Canvas IDs, real file selection, view
-state preservation, fixed overlays, disabled Observe controls, note autosave/restart, readable
-Arrange, 500-card item bounds, and lazy-but-retained inspectors. The real PTY desktop test now
-switches tools and Canvas/Project, then confirms the same shell variable/output persists.
-
-Optional visual evidence: set MTERM_UX_CAPTURE_DIR to a new artifact directory and explicitly set
-QT_QPA_PLATFORM=windows, then run mterm-ux-tests responsiveWorkspaceAndOptionalVisualEvidence.
-Unset capture env before offscreen CTest to avoid overwriting reviewed images with fontless output.
-Theme diagnostics in --smoke-dir JSON expose construction phases; they are internal, not external
-process launch timings. See validation/2026-09-22-native-ux.md and the feature/UI parity template.

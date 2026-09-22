@@ -54,16 +54,3 @@ Add testable services before views; reuse Backend requests and immutable workspa
 Public APIs must document ownership, error results, bounds, units and thread affinity.
 Preserve golden reference behaviors, but do not port unsafe type coercion or global mutable state.
 Profile before replacing Widgets with Quick, Git with libgit2, or introducing a new dependency.
-
-## Native UX restoration (2026-09-22)
-
-Active root is C:\Tools\Dev\MTerm. Theme/UI resources and original vector icons are reusable
-components. WorkspaceShell owns chrome only, MainWindow routes scoped services, CanvasView owns
-viewport/scene presentation, ResourceCard is a single graphics item reused by ProjectView's delegate,
-and CommandPalette routes named actions. Inspector factories load a panel once on first selection,
-then retain it so navigation does not reconstruct a terminal/editor. No browser engine was added.
-
-The GUI uses a 300ms debounced layout save with expected revisions, preserves newer local changes
-during an outstanding save, and shows conflict status. Late scoped responses are filtered. Per-node
-independent live resources remain separate future work; cards currently route to retained inspectors.
-Source-project matrix, full REQ index and proposed DevFleet contracts define future extensions.

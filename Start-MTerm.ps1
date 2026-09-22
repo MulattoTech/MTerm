@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: MIT
+# Modified: 2026-09-22-native-ux; active checkout launch.
 # AI-Change: 2026-09-22-native-foundation (see docs/ai/changes/)
 [CmdletBinding()]
-param([string]$Workspace, [ValidateSet('Release','Debug')][string]$Configuration = 'Release')
+param([string]$Workspace, [ValidateSet('Release','Debug')][string]$Configuration = 'Release', [switch]$UseLastWorkspace)
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
+# Development launch follows this checkout after relocation; the application data is not moved.
+if (!$Workspace -and !$UseLastWorkspace) { $Workspace = $root }
+if ($Workspace -and !(Test-Path -LiteralPath $Workspace -PathType Container)) { throw 'Workspace directory does not exist.' }
 $exe = Join-Path $root ("out\native-" + $Configuration.ToLowerInvariant() + '\native\mterm.exe')
 if (!(Test-Path $exe)) { throw 'Native executable missing. Run scripts\native\Bootstrap-Windows.ps1 then scripts\native\Build.ps1.' }
 $oldPath = $env:PATH

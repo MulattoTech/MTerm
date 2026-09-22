@@ -1,66 +1,77 @@
 # MTerm
 
-A lean, native-first local workstation for AI-assisted work. Formerly AstraCommander.
+A native-first AI workspace with a familiar spatial workbench: canvas, project view, persistent
+inspectors, keyboard-first commands, and a real native terminal. Formerly AstraCommander.
 
-**Experimental C++20 / Qt 6 desktop, not a complete migration or certified release.**
-The native application uses Qt Widgets/Graphics View, SQLite, native Windows process inventory,
-and a real ConPTY/libvterm terminal. It does not require Electron, Chromium or Node to run.
-The Electron application remains a separately runnable behavioral reference.
+**Active development: `C:\Tools\Dev\MTerm`. C++20 / Qt 6. Experimental, not 100% feature-complete.**
 
-## Build and run on Windows
+![Actual native MTerm interface, isolated test workspace](docs/images/native-ux-20260922/native-canvas-1500.png)
+
+This is the running Qt application, not an Electron screenshot or design mockup. The pictured
+resources are a labeled test fixture. No browser engine or Node runtime is required by the native app.
+
+## Run
+
+```powershell
+cd C:\Tools\Dev\MTerm
+.\Start-MTerm.ps1
+```
+
+The development launcher opens this checkout by default. Use `-Workspace PATH` for another root,
+or `-UseLastWorkspace` to restore the app's saved workspace. Existing user databases are not moved
+or imported automatically. Previous Documents checkouts remain recovery snapshots.
+
+For a fresh development machine:
 
 ```powershell
 .\scripts\native\Bootstrap-Windows.ps1
 .\scripts\native\Build.ps1 -Configuration Release
-.\Start-MTerm.ps1
+.\scripts\native\Build.ps1 -Configuration Debug
 ```
 
-The bootstrap installs development tools inside `.tools/`, not globally. The pinned initial
-baseline is Qt 6.8.3 / MinGW 13.1.0, not an assertion of current release/security approval.
-For an isolated workspace: `Start-MTerm.ps1 -Workspace C:\Projects\Example`.
-The native app defaults to its last saved workspace, in Observe mode on each open.
-Developer editing and separately approved execution are intentional user actions.
+Project-local initial pins: Qt 6.8.3, MinGW 13.1.0. These are reproducibility pins, not security
+approval or a claim to be the latest versions. The native staging script and smoke helper are in
+`scripts/native/`; staging remains unsigned and subject to redistribution/license review.
 
-`Build.ps1 -Configuration Debug` runs the Debug gate.
-`Package-Windows.ps1` in `scripts/native/` creates a new standalone local preview folder under
-`release-local/`, with runtime dependencies and SHA-256 inventory. No old package is deleted.
-The staging output is unsigned and not approved for public redistribution.
+## Native UX restored
 
-## What runs natively
+Left Create/Inspect navigation, top workspace bar, a persistent center canvas, resizable right
+inspector and Canvas/Project switch. Native resource cards and the Project view use the same IDs.
+Inspectors load once on first use and stay alive; navigation does not restart terminals or clear
+editor contents. Notes/layouts save with visible status. File selection, safe editing, command
+palette, pan/zoom/minimap, readable Arrange, pin/collapse and existing-edge rendering are implemented.
 
-- Native spatial notes/canvas, saved layout, tasks, and last-workspace restoration.
-- Bounded UTF-8 file read/write with SHA-256 stale-write checks and dirty-editor protection.
-- Worker-thread SQLite migrations, scoped/paginated records, and audit.
-- Asynchronous captured commands, read-only Git jobs, and OS process inventory.
-- Real Windows PTY with shell selection, VT colors/cursor/keyboard, and bounded transport.
-- Native Codex fresh/resume/cancel supervisor tested with deterministic protocol fixtures.
-  Real-model validation is separate and was not invoked in this continuation.
+The core/native services remain isolated from presentation. Security grants, scoped file/version
+checks, SQLite, captured commands, read-only Git, native inventory and ConPTY/libvterm are preserved.
+Independent per-node live sessions, richer task/evidence, native Git mutation and MCP/provider parity
+remain backlog items. This redesign does not claim every reference interaction is already native.
 
-Full terminal scrollback/IME, native MCP, native Git mutation/worktrees, complete provider
-parity, resource graph, plugins, signing and update safety remain work. See [status](docs/STATUS.md).
+## Contributor entry point — every AI provider and human
 
-## Start here: any AI vendor or human
+Read [AGENTS](AGENTS.md), [CONTRIBUTING](CONTRIBUTING.md), [HANDOFF](docs/HANDOFF.md),
+[STATUS](docs/STATUS.md), [UI contract](docs/UI_DESIGN_CONTRACT.md), and [source-project matrix](docs/SOURCE_PROJECT_FEATURE_MATRIX.md).
+The full unchanged master backlog is also indexed as [485 requirements](docs/backlog/requirements-index.json).
+Use the [feature/UI template](docs/templates/FEATURE_UI_PARITY_TEMPLATE.md) rather than dropping
+requirements between conversations. AI identity, UTC dates, files, tests and limitations belong in
+`docs/ai/changes/`, source headers and commit trailers; historic attribution is retained.
 
-Read [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [handoff](docs/HANDOFF.md),
-[architecture](docs/ARCHITECTURE.md), and [roadmap](docs/ROADMAP.md).
-Issue #1 links the coordinated workstreams. Source headers, JSON change records and Git trailers
-carry self-reported AI provenance; no external conversation is needed.
+## DevFleet direction
 
-## Verification
+MTerm is intended to become a primary DevFleet interface. The proposed versioned, permission-scoped
+adapter contract is [here](docs/DEVFLEET_INTERFACE_VISION.md). **No live DevFleet integration is
+implemented or implied by this UI pass.** MTerm remains usable independently.
 
-Current Windows Release and Debug: five CTest suites pass, with 95 QtTest outcomes per
-configuration including lifecycle/data rows. The preserved reference passes typecheck, lint,
-59 unit tests, build, MCP integration, and both E2E scenarios repeated twice.
-[Evidence and limits](docs/validation/2026-09-22-native-resume.md).
+## Verification and limits
 
-Hosted CI is **not validated**: the saved publishing credential lacks workflow-write permission.
-The complete pinned Windows/Linux recipe is preserved as [non-executable CI source](docs/ci/native.workflow.yml).
-See [CI activation](docs/ci/README.md); ordinary source publication is unaffected.
+Windows native Release/Debug run six CTest suites, including original service/PTY regressions and
+new UI/continuity/500-card/lazy-inspector checks. The Electron reference separately passes its
+relocated typecheck/lint/59-unit/build/MCP/2-E2E gate. [Current evidence](docs/validation/2026-09-22-native-ux.md).
 
-## Reference and privacy
+The redesigned local package is about 32.5 MB. Its five-run inside-main first-paint median was
+87 ms after profiling and lazy inspector construction; this is not an external launch or CLI
+comparison. CPU/frame/memory behavior under real multi-agent soak workloads remains to certify.
+No paid model was invoked. CI activation is still blocked by the previously documented GitHub
+workflow-write permission; the non-executable recipe remains in docs/ci/.
 
-`apps/desktop/` and `packages/core/` contain the rebranded Electron reference.
-Install with the pinned pnpm version, then use `npm run build` / `npm start`.
-Native data lives separately; there is no automatic import of the old app's active database.
-User data, raw chats, credentials, toolchains, binaries and private logs are excluded from GitHub.
-MTerm code is MIT; Qt/libvterm/compiler-runtime obligations remain separate.
+MTerm code is MIT. Source-inspired features are documented, not blindly copied. Third-party code,
+Qt and compiler runtimes retain their own licenses; see [THIRD_PARTY](docs/THIRD_PARTY.md).
