@@ -8,17 +8,20 @@ namespace mterm {
 /// Human-local policy. Workspace/profile changes revoke all execution grants.
 /// Not an OS sandbox. Callers must also enforce file and process ownership.
 class Policy {
-public:
-  explicit Policy(QString workspace = {});
-  void setWorkspace(QString workspace);
-  void setDeveloper(bool enabled);
-  bool developer() const { return developer_; }
-  bool allows(const QString &capability, qint64 nowMs) const;
-  bool grant(const QString &capability, qint64 nowMs, qint64 durationMs);
-  void revoke();
-private:
-  QString workspace_;
-  bool developer_ = false;
-  QHash<QString, qint64> grants_;
+  public:
+    explicit Policy(QString workspace = {});
+    void setWorkspace(QString workspace);
+    void setDeveloper(bool enabled);
+    bool developer() const {
+        return developer_;
+    }
+    bool allows(const QString &capability, qint64 nowMs) const;
+    bool grant(const QString &capability, qint64 nowMs, qint64 durationMs);
+    void revoke();
+
+  private:
+    QString workspace_;
+    bool developer_ = false;
+    QHash<QString, qint64> grants_;
 };
-}
+} // namespace mterm

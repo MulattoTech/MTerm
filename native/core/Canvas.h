@@ -9,4 +9,4 @@ namespace mterm {
 QString validateCanvas(const QJsonObject &canvas);
 QJsonObject initialCanvas();
 QJsonObject newNode(const QString &kind, const QString &title, const QString &content);
-}
+} // namespace mterm

@@ -1,0 +1,17 @@
+{
+  "repository": "https://github.com/neovim/libvterm",
+  "commit": "934bc2fbf21800ac3458a499df8820ca5fb45fd3",
+  "branch": "nvim",
+  "upstream_version": "0.3.3",
+  "license": "MIT",
+  "copyright": "2008 Paul Evans",
+  "imported_at_utc": "2026-09-22T20:24:00.125520+00:00",
+  "imported_paths": [
+    "src",
+    "include",
+    "LICENSE",
+    "README.md",
+    "CODE-MAP"
+  ],
+  "modifications": "none; MTerm build adapter lives outside upstream source"
+}

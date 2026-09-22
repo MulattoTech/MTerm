@@ -10,25 +10,28 @@ namespace mterm {
 /// Thread-confined SQLite connection. Construct/use/destroy on the same thread.
 /// Migrations preserve legacy settings/audit/records. UI uses a worker thread.
 class Store {
-public:
- explicit Store(const QString &file);
- ~Store();
- Store(const Store &) = delete;
- Store &operator=(const Store &) = delete;
- int schemaVersion() const;
- bool integrity() const;
- QJsonObject setting(const QString &key) const;
- void setSetting(const QString &key,const QJsonObject &value);
- void putRecord(const QString &kind,const QString &workspace,QJsonObject value);
- QJsonArray records(const QString &kind,const QString &workspace,int limit=100,int offset=0) const;
- void audit(const QString &workspace,const QString &operation,const QString &decision,const QString &result);
- QJsonArray audits(const QString &workspace,int limit=100) const;
- void transaction(const std::function<void()> &operation);
- static constexpr int SchemaVersion = 3;
-private:
- QString connection_;
- QSqlDatabase db_;
- void exec(const QString &sql) const;
- void migrate();
+  public:
+    explicit Store(const QString &file);
+    ~Store();
+    Store(const Store &) = delete;
+    Store &operator=(const Store &) = delete;
+    int schemaVersion() const;
+    bool integrity() const;
+    QJsonObject setting(const QString &key) const;
+    void setSetting(const QString &key, const QJsonObject &value);
+    void putRecord(const QString &kind, const QString &workspace, QJsonObject value);
+    QJsonArray records(const QString &kind, const QString &workspace, int limit = 100,
+                       int offset = 0) const;
+    void audit(const QString &workspace, const QString &operation, const QString &decision,
+               const QString &result);
+    QJsonArray audits(const QString &workspace, int limit = 100) const;
+    void transaction(const std::function<void()> &operation);
+    static constexpr int SchemaVersion = 3;
+
+  private:
+    QString connection_;
+    QSqlDatabase db_;
+    void exec(const QString &sql) const;
+    void migrate();
 };
-}
+} // namespace mterm

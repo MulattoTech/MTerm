@@ -2,6 +2,8 @@ import { expect, test, _electron as electron, type ElectronApplication } from '@
 import { Client } from '@modelcontextprotocol/client';
 import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -98,7 +100,11 @@ test('first vertical slice is runnable and recoverable', async () => {
 
   await page.getByRole('button', { name: 'Git', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Git / Diff' })).toBeVisible();
-  await expect(page.locator('.git-lower article').first().getByText(/build\/first-vertical-slice/)).toBeVisible();
+  const gitStatus = await promisify(execFile)('git', ['status', '--short', '--branch'], {
+    cwd: root, windowsHide: true, shell: false,
+  });
+  const expectedHeader = gitStatus.stdout.split(/\r?\n/)[0];
+  await expect(page.locator('.git-lower article').first()).toContainText(expectedHeader);
 
   await page.getByRole('button', { name: 'Terminal', exact: true }).click();
   await page.getByRole('button', { name: 'Start terminal' }).click();

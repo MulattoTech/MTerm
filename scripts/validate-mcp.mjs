@@ -52,7 +52,7 @@ async function validateObserve() {
     }
 
     const read = await client.callTool({ name: 'filesystem_read', arguments: { path: 'package.json' } });
-    if (read.isError || !textOf(read).includes('astracommander')) throw new Error('Observe read validation failed');
+    if (read.isError || !textOf(read).includes('"name": "mterm"')) throw new Error('Observe read validation failed');
 
     const deniedWrite = await client.callTool({
       name: 'filesystem_write',

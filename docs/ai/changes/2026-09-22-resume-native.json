@@ -1,0 +1,18 @@
+{
+  "change_id": "2026-09-22-resume-native",
+  "started_at_utc": "2026-09-22T22:11:52Z",
+  "provider": "OpenAI",
+  "model": "GPT-6 Astra Pro",
+  "identity_basis": "session-declared; self-reported, not cryptographic provenance",
+  "human_request": "Resume MTerm C++/Qt migration, preserve prior work, implement and publish incremental checkpoints with complete contributor context",
+  "base_commit": "c8d20513d4c5ab3f267df22defc66a799dcd5db0",
+  "recovered_work": "Uncommitted native desktop, ConPTY/libvterm, hardening and scripts from interrupted native-foundation session; origin headers retained",
+  "local_checkpoint": "artifacts/checkpoints/resume-20260922T221152Z",
+  "checkpoint_exclusion": "Unreadable untracked native/runtime/ProcessInventory.cpp.tmp0 left untouched, not source",
+  "plan": ["Checkpoint recovered source", "Fix and test native boundary defects", "Restore reference gate", "Implement reproducible CI and provenance validation", "Publish current handoff and results"],
+  "tests": [{"command": "scripts/native/Build.ps1 -Configuration Release", "result": "PASS: all 5 native CTest suites; real Windows PTY and desktop included"}],
+  "files_created": [],
+  "files_modified": [],
+  "limitations": ["Native/reference parity remains incomplete; no paid model calls authorized for this pass", "No equivalent CLI speed comparison yet"],
+  "next_steps": ["Inspect native request validation and extend tests", "Complete CI/documentation and publish"]
+}
