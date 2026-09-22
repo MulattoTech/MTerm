@@ -43,3 +43,16 @@ Pre-flight: desktop and MCP share WorkspaceRuntime and Store schemas. Process ow
 - Added `docs/MASTER_TODO_100_PERCENT.md`.
 - Added `docs/NATIVE_PERFORMANCE_REFACTOR_REPORT.md`.
 - Re-ran current routine gates: typecheck PASS, lint PASS, 59/59 unit PASS, build PASS, MCP PASS, 2/2 Electron E2E PASS.
+
+## Native resume — 2026-09-22
+
+- Recovered native checkout and archived uncommitted source, excluding one unreadable temp file.
+- Published recovery commit e82fc49 on feat/native-core-20260922.
+- Added eight failing malformed-request cases, fixed conversion/validation, and passed all native suites.
+- Windows Release/Debug each pass 5 CTest suites / 95 QtTest outcomes including lifecycle/data rows.
+- Repaired preserved reference typecheck and lazy editor race; reference full gate including repeated E2E passes.
+- Added SHA-256 standalone preview staging and repeatable clean-PATH smoke; lean 32.2 MB payload verified.
+- Preserved CI source, but workflow publication was refused by missing workflow permission.
+- Source-only publishing uses separate feat/native-resume-20260922 worktree; no credentials changed, no authorization bypass.
+- Replaced stale native handoff/status/architecture/testing docs; original versions archived in docs/history/.
+- No paid model calls, original AstraCommander edits, public listener, force push, or removal of user source.

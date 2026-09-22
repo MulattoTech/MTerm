@@ -198,9 +198,11 @@ function TerminalPanel({ onChanged }: { onChanged: () => Promise<void> }) {
   );
 }
 
+// Modified: 2026-09-22-resume-native; guard lazy editor readiness before file I/O.
 function EditorPanel({ onChanged }: { onChanged: () => Promise<void> }) {
   const host = useRef<HTMLDivElement>(null);
   const editor = useRef<MonacoEditor.IStandaloneCodeEditor | null>(null);
+  const [editorReady, setEditorReady] = useState(false);
   const [file, setFile] = useState('README.md');
   const [directory, setDirectory] = useState('.');
   const [entries, setEntries] = useState<DirectoryEntry[]>([]);
@@ -223,6 +225,7 @@ function EditorPanel({ onChanged }: { onChanged: () => Promise<void> }) {
         tabSize: 2,
       });
       editor.current = instance;
+      setEditorReady(true);
       setMessage('Browse or enter a workspace-relative file path.');
     }).catch(error => {
       setMessage(`Editor failed to load: ${error instanceof Error ? error.message : String(error)}`);
@@ -250,6 +253,7 @@ function EditorPanel({ onChanged }: { onChanged: () => Promise<void> }) {
 
   const load = async (target = file) => {
     try {
+      if (!editor.current) throw new Error("Editor is not ready yet");
       const result = await window.astra.readFile(target) as { content: string; size: number; version: string };
       setFile(target);
       setVersion(result.version);
@@ -263,7 +267,8 @@ function EditorPanel({ onChanged }: { onChanged: () => Promise<void> }) {
 
   const save = async () => {
     try {
-      const result = await window.astra.writeFile(file, editor.current?.getValue() ?? '', version) as { version: string };
+      if (!editor.current || !version) throw new Error("Load the file before saving");
+      const result = await window.astra.writeFile(file, editor.current.getValue(), version) as { version: string };
       setVersion(result.version);
       setMessage('Saved atomically inside the trusted workspace.');
       await onChanged();
@@ -280,8 +285,8 @@ function EditorPanel({ onChanged }: { onChanged: () => Promise<void> }) {
         <div><h2>Editor</h2><small>{message}</small></div>
         <div className="file-controls">
           <input value={file} onChange={event => setFile(event.target.value)} aria-label="Workspace relative file" />
-          <button onClick={() => void load()}>Load</button>
-          <button className="accent" onClick={() => void save()}>Save</button>
+          <button disabled={!editorReady} onClick={() => void load()}>Load</button>
+          <button className="accent" disabled={!editorReady || !version} onClick={() => void save()}>Save</button>
         </div>
       </div>
       <div className="editor-body">
@@ -294,7 +299,7 @@ function EditorPanel({ onChanged }: { onChanged: () => Promise<void> }) {
           <div className="file-browser__list">
             {entries.map(entry => (
               <button key={entry.path} className={`file-entry file-entry--${entry.kind}`}
-                disabled={entry.kind === 'other'}
+                disabled={entry.kind === 'other' || (entry.kind === 'file' && !editorReady)}
                 onClick={() => entry.kind === 'directory' ? void loadDirectory(entry.path) : void load(entry.path)}>
                 <span>{entry.kind === 'directory' ? '▸' : '·'}</span><span>{entry.name}</span>
               </button>

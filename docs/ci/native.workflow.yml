@@ -1,0 +1,91 @@
+# AI-Change: 2026-09-22-resume-native; no paid providers in CI.
+name: Native validation
+on:
+  push:
+    branches: [main, 'feat/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: native-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Release, Debug]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Validate provenance
+        run: python scripts/native/verify-provenance.py
+      - name: Install project-local Qt and compiler
+        shell: pwsh
+        run: ./scripts/native/Bootstrap-Windows.ps1
+      - name: Build and test
+        shell: pwsh
+        run: ./scripts/native/Build.ps1 -Configuration ${{ matrix.configuration }}
+      - name: Preserve test reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: windows-${{ matrix.configuration }}-tests
+          path: |
+            out/native-*/native/*-tests.txt
+            out/native-*/Testing/Temporary/LastTest.log
+          if-no-files-found: warn
+          retention-days: 14
+  linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Release, Debug]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: System build and Qt runtime libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libgl1-mesa-dev libegl1 libopengl0 libxkbcommon-x11-0 libxcb-cursor0
+      - name: Install pinned development tools and Qt
+        run: |
+          python -m pip install -r scripts/native/toolchain-requirements.txt
+          python -m aqt install-qt linux desktop 6.8.3 linux_gcc_64 --archives qtbase -O .tools/Qt
+      - name: Validate provenance and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/native/verify-provenance.py
+          preset="native-${configuration,,}"
+          qt="$PWD/.tools/Qt/6.8.3/gcc_64"
+          export LD_LIBRARY_PATH="$qt/lib:${LD_LIBRARY_PATH:-}"
+          cmake --preset "$preset" -DCMAKE_PREFIX_PATH="$qt"
+          cmake --build --preset "$preset"
+          ctest --preset "$preset"
+        env:
+          configuration: ${{ matrix.configuration }}
+          QT_QPA_PLATFORM: offscreen
+      - name: Preserve test reports including platform skips
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: linux-${{ matrix.configuration }}-tests
+          path: |
+            out/native-*/native/*-tests.txt
+            out/native-*/Testing/Temporary/LastTest.log
+          if-no-files-found: warn
+          retention-days: 14

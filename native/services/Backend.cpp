@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-resume-native (see docs/ai/changes/)
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "Backend.h"
 #include "JobService.h"
 #include "TerminalService.h"
 #include "WorkspaceSession.h"
 #include <memory>
+#include <stdexcept>
 namespace mterm {
 class Worker final : public QObject {
     Q_OBJECT
@@ -14,6 +16,9 @@ class Worker final : public QObject {
         : session_(std::move(file)), jobs_(session_, this), terminal_(session_, this) {}
     QJsonObject call(const QString &method, const QJsonObject &args) {
         if (method == "open") {
+            // Validate before cancelling anything in the existing workspace.
+            if (args.contains("root") && !args["root"].isString())
+                throw std::runtime_error("Workspace root must be a string");
             jobs_.cancelAll();
             terminal_.stop();
             return session_.open(args["root"].toString());

@@ -9,10 +9,108 @@
   "recovered_work": "Uncommitted native desktop, ConPTY/libvterm, hardening and scripts from interrupted native-foundation session; origin headers retained",
   "local_checkpoint": "artifacts/checkpoints/resume-20260922T221152Z",
   "checkpoint_exclusion": "Unreadable untracked native/runtime/ProcessInventory.cpp.tmp0 left untouched, not source",
-  "plan": ["Checkpoint recovered source", "Fix and test native boundary defects", "Restore reference gate", "Implement reproducible CI and provenance validation", "Publish current handoff and results"],
-  "tests": [{"command": "scripts/native/Build.ps1 -Configuration Release", "result": "PASS: all 5 native CTest suites; real Windows PTY and desktop included"}],
-  "files_created": [],
-  "files_modified": [],
-  "limitations": ["Native/reference parity remains incomplete; no paid model calls authorized for this pass", "No equivalent CLI speed comparison yet"],
-  "next_steps": ["Inspect native request validation and extend tests", "Complete CI/documentation and publish"]
+  "plan": [
+    "Checkpoint recovered source",
+    "Fix and test native boundary defects",
+    "Restore reference gate",
+    "Implement reproducible CI and provenance validation",
+    "Publish current handoff and results"
+  ],
+  "tests": [
+    {
+      "command": "scripts/native/Build.ps1 -Configuration Release",
+      "result": "PASS: all 5 native CTest suites; real Windows PTY and desktop included"
+    },
+    {
+      "command": "mterm-backend-tests (malformed native request regressions, before fix)",
+      "result": "8 intended failures reproduced; non-string writes could empty a file"
+    },
+    {
+      "command": "scripts/native/Build.ps1 -Configuration Release after fix",
+      "result": "PASS: 5/5 suites; 95 QtTest outcomes including lifecycle and data rows (40 core,15 runtime,22 backend,7 desktop,11 terminal)"
+    },
+    {
+      "command": "scripts/native/Build.ps1 -Configuration Debug",
+      "result": "PASS: 5/5 native suites; 95 QtTest outcomes including lifecycle/data rows"
+    },
+    {
+      "command": "Reference typecheck, lint, unit, build, MCP, E2E repeat twice",
+      "result": "PASS: 59 unit tests, 4 repeated E2E executions; content assertion strengthened for final gate"
+    },
+    {
+      "command": "Standalone native package without development Qt/compiler in PATH",
+      "result": "PASS: hashes checked; 5 isolated samples plus 2 smoke-helper samples"
+    },
+    {
+      "command": "Hosted CI installation/push",
+      "result": "BLOCKED: saved Git OAuth credential lacks workflow permission; no bypass attempted"
+    },
+    {
+      "command": "Final native Release/Debug + full reference gate (including actual loaded-content assertion)",
+      "result": "PASS: 5/5 native suites each; typecheck/lint/59 reference units/build/MCP/4 repeated E2E; logs artifacts/resume-final-*"
+    }
+  ],
+  "files_created": [
+    ".github/pull_request_template.md",
+    ".github/workflows/native.yml",
+    "docs/THIRD_PARTY.md",
+    "docs/ci/README.md",
+    "docs/ci/native.workflow.yml",
+    "docs/history/pre-resume-20260922/IMPLEMENTATION_STATUS.md",
+    "docs/history/pre-resume-20260922/README.md",
+    "docs/history/pre-resume-20260922/docs--ARCHITECTURE.md",
+    "docs/history/pre-resume-20260922/docs--HANDOFF.md",
+    "docs/history/pre-resume-20260922/docs--ROADMAP.md",
+    "docs/history/pre-resume-20260922/docs--SECURITY_MODEL.md",
+    "docs/history/pre-resume-20260922/docs--STATUS.md",
+    "docs/history/pre-resume-20260922/docs--TESTING.md",
+    "docs/validation/2026-09-22-native-resume.md",
+    "scripts/native/Package-Windows.ps1",
+    "scripts/native/smoke_package.py"
+  ],
+  "files_modified": [
+    "IMPLEMENTATION_STATUS.md",
+    "README.md",
+    "apps/desktop/src/renderer/main.tsx",
+    "docs/ARCHITECTURE.md",
+    "docs/EXECUTION_LOG.md",
+    "docs/HANDOFF.md",
+    "docs/ROADMAP.md",
+    "docs/SECURITY_MODEL.md",
+    "docs/STATUS.md",
+    "docs/TESTING.md",
+    "docs/ai/changes/2026-09-22-resume-native.json",
+    "docs/plans/2026-09-22-native-foundation.md",
+    "native/services/Backend.cpp",
+    "native/services/WorkspaceSession.cpp",
+    "native/tests/BackendTests.cpp",
+    "tests/e2e/desktop.spec.ts"
+  ],
+  "limitations": [
+    "Native/reference parity incomplete; real native provider tests remain opt-in",
+    "No equivalent CLI speed, hosted CI, Linux/macOS, public packaging/signing, or full sandbox claim",
+    "Known races/continuity limits tracked in issues #2-#9"
+  ],
+  "next_steps": [
+    "Authorize workflow installation and run actual hosted matrix",
+    "Implement bounded issue #2 safety item with failing test before code",
+    "Complete resource/terminal/provider parity without default browser/runtime bloat"
+  ],
+  "checkpoint_commit": "e82fc49f64958700489c6ffb6c9daf56d78da623",
+  "checkpoint_at_utc": "2026-09-22T22:22:33.700045+00:00",
+  "updated_at_utc": "2026-09-22T22:42:44.094773+00:00",
+  "implementation_notes": [
+    "Recovered and published prior native desktop/ConPTY implementation without changing original attribution",
+    "Reject malformed native mutations instead of empty-string coercion",
+    "Fix inherited reference typecheck and lazy Monaco load/save race",
+    "Add bounded standalone deployment recipe, SHA-256 inventory and clean-PATH smoke helper",
+    "Archive stale docs and provide native-specific contributor context"
+  ],
+  "publication": {
+    "source_branch": "feat/native-resume-20260922",
+    "local_development_branch": "feat/native-core-20260922",
+    "workflow_recipe": "docs/ci/native.workflow.yml",
+    "workflow_installed_on_github": false,
+    "reason": "workflow-write scope required; actual .github workflow retained locally"
+  }
 }

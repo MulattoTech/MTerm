@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-resume-native (see docs/ai/changes/)
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "WorkspaceSession.h"
 #include "core/Canvas.h"
@@ -129,6 +130,9 @@ QJsonObject WorkspaceSession::call(const QString &method, const QJsonObject &arg
     }
     if (method == "add-node") {
         authorize("canvas.write", args);
+        for (const auto *key : {"kind", "title", "content"})
+            if (args.contains(key) && !args[key].isString())
+                fail("Node fields must be strings");
         auto canvas = store_->setting("canvas:" + workspaceId_);
         auto nodes = canvas["nodes"].toArray();
         auto node = newNode(args["kind"].toString("note"), args["title"].toString("Note"),
@@ -149,6 +153,8 @@ QJsonObject WorkspaceSession::call(const QString &method, const QJsonObject &arg
     }
     if (method == "create-task") {
         authorize("task.write", args);
+        if (!args["title"].isString() || !args["objective"].isString())
+            fail("Task title and objective must be strings");
         const auto title = args["title"].toString().trimmed(),
                    objective = args["objective"].toString();
         if (title.isEmpty() || title.size() > 200 || objective.size() > 20000)
@@ -188,6 +194,9 @@ QJsonObject WorkspaceSession::call(const QString &method, const QJsonObject &arg
     if (method == "read-file" || method == "write-file") {
         const bool write = method == "write-file";
         authorize(write ? "filesystem.write" : "filesystem.read", args);
+        if (!args["path"].isString() ||
+            (write && (!args["text"].isString() || !args["version"].isString())))
+            fail("File path, text and version must be strings");
         const auto relative = args["path"].toString();
         auto file =
             write ? files_->write(relative, args["text"].toString(), args["version"].toString())

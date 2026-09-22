@@ -27,3 +27,7 @@ Traversal/reparse/hardlink escape; stale writes; broken/forward-version database
 
 ## Execution
 Use inline test-first implementation. Validate each task before marking complete. Record deviations and results in docs/ai/changes/2026-09-22-native-foundation.json. No background agent jobs are required to resume.
+
+## Resume evidence (2026-09-22)
+
+T0-T4 have runnable native slices and published source; see STATUS for limited parity. T5 is a real Windows PTY with incomplete terminal/continuity features. T6 has exploratory internal startup/memory samples, not an equivalent CLI comparison. T7 source/docs/provenance are publishable; hosted workflow installation is permission-blocked. All original unchecked task wording above is historical, not a fresh execution state.

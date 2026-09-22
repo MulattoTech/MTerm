@@ -1,43 +1,34 @@
-# Roadmap — post validated first slice
+# MTerm native roadmap
 
-The first vertical slice is now complete enough to hand off: desktop/canvas/files/PTY/MCP/audit/permissions/restart recovery are validated, and the second slice already includes durable tasks, a real Codex CLI provider, validation evidence, Project Mode, read-only Git, a file browser, optimistic saves, and a command palette.
+The inherited MASTER_TODO_100_PERCENT.md preserves the broad vision. Its reference checkmarks
+are not native parity. This roadmap and STATUS.md govern current native work.
 
-## P0 — harden the working foundation
+| Priority / issue | Workstream | Immediate acceptance gate |
+|---|---|---|
+| P0 #2 | File/process/workspace safety | Handle-anchored path races; pre-execution QProcess ownership; late callbacks; transactional switching |
+| P0 #7 | CI and release foundations | Authorized workflow installation, actual Windows/Linux hosted results, dependency/license review |
+| P1 #3 | Terminal parity and continuity | Scrollback/selection/IME, bounded shutdown, Unicode bursts, multiple IDs, Unix PTY, GUI-independent supervisor |
+| P1 #4 | Resource graph and native UI | Stable shared IDs across Canvas/Project; files, tasks, evidence; groups/edges/undo/search |
+| P1 #5 | Providers and MCP | Native conformance fixtures, scoped tools, actual opt-in provider proofs, cancellation/resume/usage |
+| P1 #6 | File/Git/evidence parity | File tree/ranges/search/patching; native diff/stage/worktree lifecycle with explicit approval |
+| P1 #8 | Performance | Equivalent external readiness/input/frame/dispatch benchmarks; long histories and multi-surface budgets |
+| P2 #9 | Optional integrations | On-demand browser/tunnels/plugins/skills/memory/Docker; no default background bloat |
 
-1. Refactor duplicated desktop/MCP SQLite/audit code into a shared persistence package with explicit migrations.
-2. Lazy-load Monaco and establish cold-start/render performance budgets.
-3. Add a Windows process/PTY supervisor only if terminal survival across app restart is a product requirement.
-4. Expand permission scopes to workspace/path/provider/agent and add grant expiry/revocation UI.
-5. Add database integrity checks, backup/export, and recovery tests.
+## Completed baseline, not complete parity
 
-## P1 — finish the second vertical slice
+Native core, database migrations/scoping, captured job supervision, Windows inventory, Qt desktop,
+real Windows PTY, fixture-tested Codex fresh/resume, and local standalone packaging exist and pass
+the documented Windows checks. Continue from those implementations instead of generating stubs.
 
-- Build a dedicated Diff node with unified/split views and safe stage/unstage workflows.
-- Add policy-gated Git worktree create/remove lifecycle without automatic commit/push.
-- Add a general Process node/inspector with bounded output/resource telemetry.
-- Move live terminal/editor/agent surfaces into spatial nodes while retaining inspector fallbacks.
-- Add task checklist/blocker/acceptance-criteria editing and richer evidence browsing.
-- Add canvas edges, groups, search, snapping, multi-select and keyboard navigation.
-- Add one additional genuinely testable provider adapter behind the existing capability model.
-- Add explicit resume UX for Codex thread IDs and interrupted session metadata.
+## Next implementer contract
 
-## P2 — browser and local agency
+Choose one bounded issue acceptance item, record a change ID/provider/model/date, write and observe
+failing tests, implement, run the full relevant gate, update STATUS/HANDOFF/evidence, then publish a
+reviewable commit. Preserve old author headers and state unknown identity honestly.
+Never infer a feature is complete because a data structure, button or process-exit-zero exists.
 
-- Playwright browser runtime/node with explicit network policy and audit.
-- Package-manager and Docker adapters with risk-specific approvals.
-- System telemetry with bounded event streams.
-- Skill registry and provenance-backed project memory.
-- OS-backed secret vault before API-key provider adapters.
+## Release remains separate
 
-## P3 — remote MCP
-
-Create a transport abstraction first. Add authenticated localhost HTTP only when tested, then one remote tunnel provider with HTTPS, visible connection state, revocation, graceful shutdown, and no router/firewall changes. Tailscale, Cloudflare Tunnel and ngrok remain candidates rather than promises.
-
-## P4 — optional web harness / GUI control
-
-Keep browser-backed ChatGPT and GUI computer control optional providers. Do not bypass authentication, export cookies, evade bot protections, or make either mechanism foundational.
-
-## Release engineering
-
-Before calling AstraCommander production-ready: packaging/signing/update strategy, installer tests, crash recovery, schema migrations, accessibility checks, performance budgets, support-bundle redaction, and a complete transitive third-party notice pass.
-
+No current 0.2.0 preview is a signed production release. Complete dependency notices, update integrity,
+rollback, backup/import safety, installer/uninstaller behavior, accessibility and clean-machine tests.
+Retain the reference until native security and functional parity tests justify dropping its runtime.

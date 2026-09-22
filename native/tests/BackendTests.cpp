@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-resume-native (see docs/ai/changes/)
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "services/Backend.h"
 #include <QDir>
@@ -26,6 +27,66 @@ static Reply call(Backend &b, const QString &method, QJsonObject args = {}) {
 class BackendTests : public QObject {
     Q_OBJECT
   private slots:
+    void malformedWriteIsRejected_data() {
+        QTest::addColumn<QJsonValue>("text");
+        QTest::newRow("number") << QJsonValue(42);
+        QTest::newRow("boolean") << QJsonValue(false);
+        QTest::newRow("null") << QJsonValue(QJsonValue::Null);
+        QTest::newRow("array") << QJsonValue(QJsonArray{"not-text"});
+        QTest::newRow("object") << QJsonValue(QJsonObject{{"value", "not-text"}});
+        QTest::newRow("missing") << QJsonValue(QJsonValue::Undefined);
+    }
+    void malformedWriteIsRejected() {
+        QFETCH(QJsonValue, text);
+        QTemporaryDir d;
+        QFile f(d.filePath("keep.txt"));
+        QVERIFY(f.open(QIODevice::WriteOnly));
+        f.write("preserved");
+        f.close();
+        Backend b(d.filePath("data/db"));
+        const auto opened = call(b, "open", {{"root", d.path()}});
+        QVERIFY(opened.error.isEmpty());
+        const auto id = opened.result["workspaceId"];
+        QVERIFY(call(b, "profile", {{"workspaceId", id}, {"developer", true}}).error.isEmpty());
+        const auto before = call(b, "read-file", {{"workspaceId", id}, {"path", "keep.txt"}});
+        QVERIFY(before.error.isEmpty());
+        const auto result = call(b, "write-file",
+                                 {{"workspaceId", id},
+                                  {"path", "keep.txt"},
+                                  {"version", before.result["version"]},
+                                  {"text", text}});
+        QVERIFY2(!result.error.isEmpty(),
+                 "Malformed text must fail, never become an empty overwrite");
+        QVERIFY(f.open(QIODevice::ReadOnly));
+        QCOMPARE(f.readAll(), QByteArray("preserved"));
+    }
+    void malformedTaskAndNodeRejected() {
+        QTemporaryDir d;
+        Backend b(d.filePath("data/db"));
+        auto state = call(b, "open", {{"root", d.path()}});
+        QVERIFY(state.error.isEmpty());
+        const auto id = state.result["workspaceId"];
+        call(b, "profile", {{"workspaceId", id}, {"developer", true}});
+        QVERIFY(!call(b, "create-task", {{"workspaceId", id}, {"title", "test"}, {"objective", 42}})
+                     .error.isEmpty());
+        QVERIFY(!call(b, "add-node", {{"workspaceId", id}, {"kind", 42}}).error.isEmpty());
+        QVERIFY(
+            !call(b, "add-node", {{"workspaceId", id}, {"content", QJsonArray{}}}).error.isEmpty());
+        state = call(b, "state", {{"workspaceId", id}});
+        QCOMPARE(state.result["tasks"].toArray().size(), 0);
+        QCOMPARE(state.result["canvas"].toObject()["nodes"].toArray().size(), 1);
+    }
+    void malformedWorkspaceOpenRejected() {
+        QTemporaryDir d;
+        Backend b(d.filePath("data/db"));
+        auto state = call(b, "open", {{"root", d.path()}});
+        QVERIFY(state.error.isEmpty());
+        const auto id = state.result["workspaceId"];
+        call(b, "profile", {{"workspaceId", id}, {"developer", true}});
+        QVERIFY(!call(b, "open", {{"root", true}}).error.isEmpty());
+        state = call(b, "state", {{"workspaceId", id}});
+        QCOMPARE(state.result["profile"].toString(), QString("developer"));
+    }
     void ptyRequiresApprovalAndCaptures() {
 #ifndef Q_OS_WIN
         QSKIP("Native PTY adapter is Windows-only");

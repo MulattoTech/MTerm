@@ -1,141 +1,88 @@
-# AstraCommander Pro continuation handoff — 2026-09-22
+# MTerm native handoff — 2026-09-22
 
-## Start here
+## Read first
 
-Repository: `C:\Users\Dylan\Documents\AstraCommander`
+This is the C++20/Qt MTerm checkout, not the original AstraCommander folder.
+Start with AGENTS.md, CONTRIBUTING.md, STATUS.md, ARCHITECTURE.md and ROADMAP.md.
+The original local AstraCommander tree is unchanged. Imported reference documentation is preserved
+under docs/history/pre-resume-20260922/; old checkmarks are not native feature parity.
 
-Branch: `build/first-vertical-slice` (unborn; no commits created).
+## Local and GitHub state
 
-The first vertical slice is genuinely runnable and the repository already contains meaningful second-slice work. Preserve the passing baseline. Do not replace implementation time with a rewrite or speculative architecture pass.
+Development checkout: `C:\Users\Dylan\Documents\MTerm`.
+Recovery commit: `e82fc49f64958700489c6ffb6c9daf56d78da623`.
+Local continuation commit `38012ae` contains the workflow GitHub refused to install.
+The source-only publishing branch is `feat/native-resume-20260922`, with a separate local
+worktree under `artifacts/source-publish`. Do not overwrite or rebase the recovered development
+branch to resolve this difference. The full workflow remains local and mirrored at
+`docs/ci/native.workflow.yml` as non-executable source until workflow-write access is authorized.
 
-## Launch
+Pre-resume source archive: `artifacts/checkpoints/resume-20260922T221152Z`.
+It contains a source ZIP, SHA-256 manifest and Git patches. One unreadable, untracked
+`native/runtime/ProcessInventory.cpp.tmp0` was excluded and left untouched. Do not delete it
+or broadly change permissions to make a clean-status claim.
 
-```powershell
-cd C:\Users\Dylan\Documents\AstraCommander
-npm run build
-npm start
-```
-
-Fresh/default workspaces start in **Observe**. Use the local security card to enable **Developer**, then approve Terminal or Agent separately when needed.
-
-## Routine quality gate
-
-Run in this order:
-
-```powershell
-npm run typecheck
-npm run lint
-npm test
-npm run build
-npm run test:mcp
-npm run test:e2e
-```
-
-Final validated result in this continuation:
-- typecheck — PASS
-- lint — PASS
-- Vitest — PASS, **54/54**
-- production build — PASS
-- MCP v2 stdio integration — PASS
-- real Electron Playwright E2E — PASS
-- final log: `artifacts\final-quality-gate-20260922T174437Z.log`
-
-The only current build warning is the known eager Monaco bundle size; it is non-blocking but should be fixed before release polish.
-
-## What is actually working
-
-- Secure Electron/React desktop shell with sandboxed renderer, context isolation and narrow preload.
-- Persistent XYFlow Canvas plus Project Mode over the same state.
-- Note, Agent, Terminal and Editor spatial resource cards.
-- Keyboard command palette via Ctrl+K / Ctrl+Shift+P.
-- File browser and Monaco editor with canonical workspace rooting and optimistic stale-write rejection.
-- Real `node-pty` PowerShell terminal with explicit session grant.
-- Observe-by-default and explicit Developer elevation.
-- SQLite/WAL persistence for workspace, canvas, audit, tasks, agent sessions and validation evidence.
-- MCP SDK v2 stdio server with rooted filesystem and direct-process tools.
-- Cross-process MCP calls visible in desktop Audit.
-- Read-only Git status/diff-stat/worktree/log inspector.
-- Durable tasks with status transitions and restart recovery.
-- Real Codex CLI provider in read-only sandbox mode with explicit agent grant, streamed output, thread IDs and stop.
-- Codex agent runs can bind to tasks and persist PASS/FAIL validation evidence.
-- Interrupted active agent sessions reconcile to STOPPED on startup.
-
-## Provider validation
-
-Installed provider detected during this run:
-- Codex CLI: `codex-cli 0.157.0-alpha.2`
-- Claude Code: `2.1.234` is installed, but AstraCommander does not yet have a Claude adapter.
-- Gemini CLI was not found.
-
-Two real Codex proofs were executed:
-1. Direct CLI read-only smoke returned `ASTRA_PROVIDER_OK`, exit 0.
-   Evidence: `artifacts\codex-provider-smoke-20260922T1731Z.jsonl`
-2. Full Electron → policy grant → Codex CLI → persisted session → task-linked validation evidence smoke passed.
-   Evidence: `artifacts\agent-provider-app-smoke-1790098800178-37940.json`
-
-The app-level provider smoke is available as:
+## Build, run and verify
 
 ```powershell
-node scripts\validate-agent.mjs
+.\scripts\native\Bootstrap-Windows.ps1
+.\scripts\native\Build.ps1 -Configuration Release
+.\scripts\native\Build.ps1 -Configuration Debug
+python scripts/native/verify-provenance.py
+.\Start-MTerm.ps1
+.\scripts\native\Package-Windows.ps1
+python scripts/native/smoke_package.py release-local/<new-package-folder>
 ```
 
-It intentionally is **not** a routine test because it invokes a real model and consumes provider usage.
+Qt 6.8.3 / MinGW 13.1.0 are project-local initial pins. They need security/license review before
+public release; do not equate reproducibility with current security support.
+Launch `mterm.exe --workspace PATH --data-dir PATH` for explicit isolation.
+`--smoke-dir PATH` writes a screenshot/internal timing sample and exits without invoking models.
 
-## Highest-value Pro continuation
+The normal source tree also retains the Electron reference. Its standard npm test/build scripts
+remain separate; do not launch it when assessing native memory.
 
-1. Extract desktop/MCP SQLite and audit code into a shared persistence package with real schema migrations and integrity checks.
-2. Lazy-load Monaco and establish cold-start/bundle performance budgets.
-3. Add a dedicated Diff node and policy-gated stage/unstage + worktree lifecycle; retain the no-auto-commit/no-auto-push invariant.
-4. Add a general Process node/inspector with bounded output and resource telemetry.
-5. Move live Terminal/Editor/Agent surfaces into spatial nodes while keeping inspector fallback views.
-6. Add richer Task checklist/blockers/acceptance-criteria and evidence browsing.
-7. Add explicit Codex resume UX around persisted thread IDs, then a second provider adapter behind the existing capability model.
-8. Add canvas edges/groups/search/snapping/multi-select/keyboard navigation.
-9. Only then move into browser runtime, Docker/package adapters, authenticated remote MCP/tunnels and optional web/GUI-control providers.
+## Verified this continuation
 
-## Security invariants to preserve
+- Native Windows Release and Debug: 5/5 suites each, 95 QtTest outcomes per configuration
+  including fixture lifecycle/data rows (40 core, 15 runtime, 22 backend, 7 desktop, 11 terminal).
+- Eight intentionally failing malformed-request cases were observed before fixing type coercion.
+  Non-string write payloads now fail without changing file bytes; bad workspace roots do not
+  silently reset the current profile through type coercion.
+- Reference: typecheck, lint, 59 unit tests, build, MCP and two E2E scenarios repeated twice pass.
+  The old branch-specific expectation and a lazy-editor race were repaired without removing tests.
+- Native standalone package launches with development Qt/compiler directories absent from PATH.
+  Five isolated empty-workspace smokes pass; repeatable smoke script also verified.
+- No native live-model, hosted CI, Linux/macOS, signed installer, crash-soak or CLI superiority claim.
 
-- New workspaces default to Observe.
-- Renderer never receives arbitrary Node/IPC/OS access.
-- Every file operation remains canonical-rooted; never regress to string-prefix path checks.
-- Terminal and Agent execution require separate explicit session grants.
-- Codex currently runs with `--sandbox read-only`.
-- Shell/agent execution is still OS-user execution, not a security sandbox.
-- No public listener, tunnel, firewall or router changes without explicit human action.
-- No plaintext project secrets; add OS-backed storage before credential-bearing providers.
-- Never silently commit, push, force-push, delete branches or remove worktrees.
-- Do not persist prompt/model output in audit just for completeness.
+## Architecture to preserve
 
-## Known limitations
+Qt Widgets/Graphics View is the current renderer; Qt Quick is only a benchmark-driven option.
+Core/domain/storage have no Widgets dependency. GUI calls Backend; one service worker owns
+SQLite, file I/O, job lifecycle and terminal transport. ConPTY has separate bounded reader/writer
+threads; the VT screen is drawn natively. No idle Chromium/Node runtime belongs in the native app.
 
-- One current workspace, not a workspace catalog.
-- SQLite records table is useful but lacks migration/version infrastructure.
-- PTYs do not survive application process restart.
-- Live terminal/editor/agent surfaces are inspector-hosted rather than truly embedded inside each canvas node.
-- Canvas grouping/edges/search/snapping/virtualization remain incomplete.
-- Git mutation, dedicated Diff node and general Process node are absent.
-- Only one real model provider adapter exists.
-- No OS-backed secret vault.
-- No browser runtime, Docker/package tools, remote MCP/tunnel, plugin runtime or GUI computer control.
-- No installer/signing/update path; not production-release ready.
+Native data is separate schema-3 SQLite. Existing active legacy databases are never opened/imported
+automatically. Workspace IDs scope records, responses, grants and job outcomes. Revocation/opening
+a workspace stops owned jobs; separate terminal/agent approval remains mandatory.
 
-See `IMPLEMENTATION_STATUS.md`, `docs\ARCHITECTURE.md`, `docs\SECURITY_MODEL.md`, `docs\TESTING.md`, and `docs\ROADMAP.md` for detailed truth state.
+## Next bounded tasks
 
-## Recovery/checkpoint state
+1. Issue #2: handle-anchored file safety and true pre-execution ownership for captured QProcess
+   children; the ConPTY path already assigns its suspended child before resuming.
+2. Issues #2/#5: test late callbacks during workspace switches, all-history reconciliation beyond
+   the latest page, cancellation vs provider errors, and UTF-8 across batched captured output.
+3. Issue #3: terminal scrollback/selection/IME, multiple resource identities, shutdown bounds,
+   Unix PTY transport, and GUI-independent supervised sessions.
+4. Issues #4/#6: shared resource graph, native file tree, task/evidence detail UI, Git mutation
+   and worktree parity. Do not duplicate mutable state per canvas/project view.
+5. Issue #5: native protocol-neutral MCP services and provider conformance. Keep the TypeScript
+   MCP server until wire compatibility/security gates pass; real model tests are opt-in.
+6. Issue #7: obtain authorized workflow installation, execute hosted Windows/Linux matrix,
+   fix genuine portability failures, then certify packaging/dependencies/signing/updates.
+7. Issue #8: external launch-to-command-ready and equivalent-workload benchmarks; the current
+   inside-main paint timings cannot prove that MTerm is faster than a CLI.
 
-Pre-continuation additive checkpoint:
-`artifacts\checkpoints\checkpoint-20260922T172722Z`
-
-A final post-work checkpoint is created at the end of this continuation and should be preferred for recovery.
-
-No files in this repository were deleted to perform this continuation. No Git reset/clean was used. No commit or push was performed. No unrelated repository, DevFleet, firewall, tunnel, WSL/Docker configuration or global package state was changed.
-
-
-## Planning reports added — 2026-09-22
-
-Two live-source reconciliation reports now supersede older assumptions about remaining work:
-
-- `docs/MASTER_TODO_100_PERCENT.md` — complete feature backlog against the original mission, with current confirmed/partial/missing state.
-- `docs/NATIVE_PERFORMANCE_REFACTOR_REPORT.md` — measured Electron/Codex baseline, hard performance budgets, C++/Qt migration matrix, and strangler migration sequence.
-
-The report-time current gate is green: typecheck, lint, 59/59 unit, build, MCP, and 2/2 Electron E2E. See `artifacts/report-baseline-gate-20260922.log`.
+All contribution provenance belongs in `docs/ai/changes/`, headers and commit trailers.
+Use actual model identity or unknown, preserve original attribution, and leave exact tests,
+limitations and first unvalidated next task. Never include credentials or private chat exports.

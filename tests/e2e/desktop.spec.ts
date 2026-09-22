@@ -96,6 +96,7 @@ test('first vertical slice is runnable and recoverable', async () => {
   await expect(page.locator('.file-browser').getByText('package.json', { exact: true })).toBeVisible();
   await page.locator('.file-browser').getByText('package.json', { exact: true }).click();
   await expect(page.getByText(/Loaded \d+ bytes\./)).toBeVisible();
+  await expect(page.locator(".editor-host .view-lines")).toContainText(/mterm/);
   await expect(page.getByLabel('Workspace relative file')).toHaveValue('package.json');
 
   await page.getByRole('button', { name: 'Git', exact: true }).click();
@@ -104,6 +105,7 @@ test('first vertical slice is runnable and recoverable', async () => {
     cwd: root, windowsHide: true, shell: false,
   });
   const expectedHeader = gitStatus.stdout.split(/\r?\n/)[0];
+  if (!expectedHeader) throw new Error("Git status returned no branch header");
   await expect(page.locator('.git-lower article').first()).toContainText(expectedHeader);
 
   await page.getByRole('button', { name: 'Terminal', exact: true }).click();
