@@ -24,7 +24,7 @@ class TerminalPane final : public QWidget {
     QLabel *status_;
     QPushButton *start_, *approve_, *stop_;
     QString workspaceId_;
-    bool active_ = false;
+    bool active_ = false, developer_ = false, approved_ = false;
     quint64 pending_ = 0, grant_ = 0;
     void input(const QByteArray &bytes);
 };

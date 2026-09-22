@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-native-ux; compact native inspector presentation.
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "JobPane.h"
 #include <QComboBox>
@@ -18,8 +19,11 @@ namespace mterm {
 JobPane::JobPane(QString kind, Backend *backend, QWidget *parent)
     : QWidget(parent), kind_(std::move(kind)), backend_(backend) {
     auto *layout = new QVBoxLayout(this);
+    layout->setContentsMargins(16, 16, 16, 16);
+    layout->setSpacing(12);
     status_ = new QLabel(this);
     status_->setWordWrap(true);
+    status_->setProperty("role", "muted");
     layout->addWidget(status_);
     if (kind_ == "command") {
         status_->setText(
@@ -44,7 +48,7 @@ JobPane::JobPane(QString kind, Backend *backend, QWidget *parent)
         resume_->addItem("New Codex session", QString{});
         layout->addWidget(resume_);
         prompt_ = new QPlainTextEdit(this);
-        prompt_->setPlaceholderText("Prompt — never sent automatically");
+        prompt_->setPlaceholderText("Prompt â€” never sent automatically");
         prompt_->setMaximumHeight(160);
         layout->addWidget(prompt_);
     }
@@ -54,10 +58,16 @@ JobPane::JobPane(QString kind, Backend *backend, QWidget *parent)
     stop_ = new QPushButton("Stop owned run", this);
     stop_->setEnabled(false);
     buttons->addWidget(run_);
-    buttons->addWidget(approve_);
+
     buttons->addWidget(stop_);
     buttons->addStretch();
     layout->addLayout(buttons);
+    run_->setText(kind_ == "codex" ? "Run agent" : kind_ == "git" ? "Refresh Git" : "Run command");
+    run_->setProperty("role", "primary");
+    stop_->setText("Stop");
+    stop_->setProperty("role", "danger");
+    approve_->setText("Allow execution for this session");
+    layout->addWidget(approve_);
     if (kind_ == "git")
         approve_->hide();
     output_ = new QPlainTextEdit(this);
@@ -106,7 +116,7 @@ JobPane::JobPane(QString kind, Backend *backend, QWidget *parent)
             [this](const QString &workspace, const QString &id, const QJsonObject &result) {
                 if (workspace != workspaceId_ || id != runId_)
                     return;
-                status_->setText(QString("Exit %1 · %2 ms · dropped %3 bytes · %4")
+                status_->setText(QString("Exit %1 Â· %2 ms Â· dropped %3 bytes Â· %4")
                                      .arg(result["exitCode"].toInt())
                                      .arg(result["durationMs"].toInteger())
                                      .arg(result["droppedBytes"].toInteger())
@@ -137,7 +147,7 @@ void JobPane::setWorkspace(const QJsonObject &state) {
             if (s["providerId"] != "codex-cli" ||
                 s["resumabilityData"].toObject()["threadId"].toString().isEmpty())
                 continue;
-            resume_->addItem(s["status"].toString() + " · " + s["id"].toString().left(12),
+            resume_->addItem(s["status"].toString() + " Â· " + s["id"].toString().left(12),
                              s["id"].toString());
         }
         const auto index = resume_->findData(selected);

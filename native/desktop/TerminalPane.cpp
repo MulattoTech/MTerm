@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
+// Modified: 2026-09-22-native-ux; compact reference-style inspector layout.
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
 #include "TerminalPane.h"
 #include "TerminalWidget.h"
@@ -22,17 +23,27 @@ TerminalPane::TerminalPane(Backend *backend, QWidget *parent) : QWidget(parent),
     start_->setObjectName("start-pty");
     stop_ = new QPushButton("Stop shell", this);
     stop_->setEnabled(false);
+    start_->setEnabled(false);
     row->addWidget(shell_);
-    row->addWidget(approve_);
+
     row->addWidget(start_);
     row->addWidget(stop_);
     row->addStretch();
     layout->addLayout(row);
+    layout->setContentsMargins(16, 16, 16, 16);
+    layout->setSpacing(12);
+    approve_->setText("Allow terminal for this session");
+    start_->setText("Start terminal");
+    start_->setProperty("role", "primary");
+    stop_->setText("Stop");
+    stop_->setProperty("role", "danger");
+    layout->addWidget(approve_);
     status_ = new QLabel("Native ConPTY + libvterm. Requires Developer plus session approval. "
                          "Shell processes end when MTerm closes.",
                          this);
     status_->setObjectName("terminal-status");
     status_->setWordWrap(true);
+    status_->setProperty("role", "muted");
     layout->addWidget(status_);
     screen_ = new TerminalWidget(this);
     layout->addWidget(screen_, 1);
@@ -69,6 +80,8 @@ TerminalPane::TerminalPane(Backend *backend, QWidget *parent) : QWidget(parent),
             [this](quint64 id, const QString &method, const QJsonObject &, const QString &error) {
                 if (id == grant_) {
                     grant_ = 0;
+                    approved_ = error.isEmpty();
+                    start_->setEnabled(developer_ && approved_ && !active_);
                     status_->setText(error.isEmpty()
                                          ? "Terminal approved. Choose Start shell to begin."
                                          : error);
@@ -76,10 +89,10 @@ TerminalPane::TerminalPane(Backend *backend, QWidget *parent) : QWidget(parent),
                 if (id == pending_) {
                     pending_ = 0;
                     active_ = error.isEmpty();
-                    start_->setEnabled(!active_);
+                    start_->setEnabled(developer_ && approved_ && !active_);
                     stop_->setEnabled(active_);
-                    status_->setText(active_ ? "Native shell running — click the terminal to type."
-                                             : error);
+                    status_->setText(
+                        active_ ? "Native shell running â€” click the terminal to type." : error);
                     if (active_)
                         screen_->setFocus();
                 }
@@ -95,7 +108,7 @@ TerminalPane::TerminalPane(Backend *backend, QWidget *parent) : QWidget(parent),
         if (workspace != workspaceId_)
             return;
         active_ = false;
-        start_->setEnabled(true);
+        start_->setEnabled(developer_ && approved_);
         stop_->setEnabled(false);
         status_->setText(
             QString("Shell ended; exit=%1. No detached process is claimed to survive.").arg(code));
@@ -105,14 +118,22 @@ void TerminalPane::setWorkspace(const QJsonObject &state) {
     const auto id = state["workspaceId"].toString();
     if (id != workspaceId_) {
         workspaceId_ = id;
+        approved_ = false;
         active_ = false;
         pending_ = 0;
         grant_ = 0;
         screen_->reset();
-        start_->setEnabled(true);
+        start_->setEnabled(developer_ && approved_);
         stop_->setEnabled(false);
     }
-    approve_->setEnabled(state["profile"] == "developer");
+    developer_ = state["profile"] == "developer";
+    if (!developer_)
+        approved_ = false;
+    approve_->setEnabled(developer_ && !approved_);
+    start_->setEnabled(developer_ && approved_ && !active_ && !pending_);
+    if (!developer_)
+        status_->setText(
+            "Enable Developer, then approve this terminal session. Nothing runs automatically.");
 }
 void TerminalPane::input(const QByteArray &bytes) {
     if (active_)

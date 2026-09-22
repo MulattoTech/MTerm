@@ -1,0 +1,71 @@
+{
+  "change_id": "2026-09-22-native-ux",
+  "started_at_utc": "2026-09-22T23:03:19.780499+00:00",
+  "provider": "OpenAI",
+  "model": "GPT-6 Astra Pro",
+  "identity_basis": "session-declared, self-reported",
+  "human_request": "Relocate all active development to C:\\Tools\\Dev\\MTerm and restore the Electron UI/UX in a fast modular native app; preserve full backlog and six reference sources, future DevFleet interface",
+  "base_commit": "f132bb6f24893b3557a8f727c4b238a6d0589caf",
+  "decisions": [
+    "Restore user-approved existing Electron interaction structure instead of retaining the tabbed preview",
+    "Keep Qt Widgets/Graphics View and existing native services; no Chromium or new heavyweight UI engine",
+    "Preserve prior checkouts and all Git refs; rebuild path-sensitive caches",
+    "Trace reference-project ideas and licenses; do not copy restricted source/assets",
+    "DevFleet interface is a future explicit integration; no DevFleet modifications this pass"
+  ],
+  "tests": [
+    {
+      "command": "Relocation hash verification + Release native baseline",
+      "result": "164 source files verified; fresh CMake build and reference dependency reinstall at C:\\Tools\\Dev\\MTerm"
+    },
+    {
+      "command": "mterm-ux-tests before new UI",
+      "result": "5 intentionally failing parity cases observed"
+    },
+    {
+      "command": "mterm-ux-tests overlay/Observe regression before fix",
+      "result": "2 intentionally failing cases observed: scrolled viewport children and actionable Observe terminal"
+    },
+    {
+      "command": "Build.ps1 -Configuration Release after fixes",
+      "result": "6/6 CTest suites passed; all existing native regression suites preserved"
+    }
+  ],
+  "files_created": [
+    "docs/ai/changes/2026-09-22-native-ux.json",
+    "docs/plans/2026-09-22-native-ux-parity.md",
+    "native/desktop/CommandPalette.cpp",
+    "native/desktop/CommandPalette.h",
+    "native/desktop/MainWindowPanels.cpp",
+    "native/desktop/ProjectView.cpp",
+    "native/desktop/ProjectView.h",
+    "native/desktop/ResourceCard.cpp",
+    "native/desktop/ResourceCard.h",
+    "native/desktop/WorkspaceShell.cpp",
+    "native/desktop/WorkspaceShell.h",
+    "native/desktop/ui/Theme.cpp",
+    "native/desktop/ui/Theme.h",
+    "native/desktop/ui/resources.qrc",
+    "native/desktop/ui/theme.qss",
+    "native/tests/UxTests.cpp"
+  ],
+  "files_modified": [
+    "native/CMakeLists.txt",
+    "native/desktop/CanvasView.cpp",
+    "native/desktop/CanvasView.h",
+    "native/desktop/JobPane.cpp",
+    "native/desktop/MainWindow.cpp",
+    "native/desktop/MainWindow.h",
+    "native/desktop/TerminalPane.cpp",
+    "native/desktop/TerminalPane.h"
+  ],
+  "limitations": [
+    "Not all inherited reference features are already native; track parity explicitly"
+  ],
+  "next_steps": [
+    "Capture native desktop/compact/project screenshots and terminal-view continuity",
+    "Run both build configurations, reference gates and package benchmarks",
+    "Publish source-project matrix and DevFleet future contract"
+  ],
+  "updated_at_utc": "2026-09-22T23:22:52.617882+00:00"
+}

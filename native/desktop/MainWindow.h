@@ -1,22 +1,26 @@
 // SPDX-License-Identifier: MIT
-// AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
-// Provenance: docs/ai/changes/2026-09-22-native-foundation.json
+// AI-Change: 2026-09-22-native-foundation (original implementation)
+// Modified: 2026-09-22-native-ux; docs/ai/changes/2026-09-22-native-ux.json
 #pragma once
 #include "services/Backend.h"
+#include <QHash>
 #include <QJsonObject>
 #include <QMainWindow>
+#include <QTimer>
 class QTabWidget;
 class QLineEdit;
 class QPlainTextEdit;
-class QPushButton;
 class QCheckBox;
 class QTreeWidget;
 class QLabel;
 namespace mterm {
 class CanvasView;
+class ProjectView;
+class WorkspaceShell;
+class CommandPalette;
 class JobPane;
 class TerminalPane;
-/// Native presentation only. Business operations are named Backend requests.
+/// Native presentation coordinator. Business operations remain named scoped Backend requests.
 class MainWindow final : public QMainWindow {
     Q_OBJECT
   public:
@@ -30,29 +34,46 @@ class MainWindow final : public QMainWindow {
     void firstPaint();
 
   protected:
-    void paintEvent(QPaintEvent *event) override;
-    void closeEvent(QCloseEvent *event) override;
+    void paintEvent(QPaintEvent *) override;
+    void closeEvent(QCloseEvent *) override;
 
   private:
     Backend *backend_;
     QJsonObject state_;
+    WorkspaceShell *shell_ = nullptr;
     QTabWidget *tabs_ = nullptr;
     CanvasView *canvas_ = nullptr;
-    QLineEdit *noteTitle_ = nullptr, *noteText_ = nullptr, *taskTitle_ = nullptr,
-              *filePath_ = nullptr;
-    QPlainTextEdit *taskObjective_ = nullptr, *editor_ = nullptr;
-    QTreeWidget *tasks_ = nullptr, *processes_ = nullptr, *audit_ = nullptr;
+    ProjectView *project_ = nullptr;
+    CommandPalette *palette_ = nullptr;
+    QLineEdit *noteTitle_ = nullptr, *taskTitle_ = nullptr, *filePath_ = nullptr;
+    QPlainTextEdit *noteBody_ = nullptr, *taskObjective_ = nullptr, *editor_ = nullptr;
+    QTreeWidget *tasks_ = nullptr, *processes_ = nullptr, *audit_ = nullptr,
+                *fileBrowser_ = nullptr;
     QCheckBox *developer_ = nullptr;
-    QLabel *workspaceLabel_ = nullptr;
-    QString fileVersion_, loadedFile_;
+    QLabel *directoryLabel_ = nullptr;
+    QString fileVersion_, loadedFile_, selectedNodeId_, directory_ = ".";
     QList<JobPane *> jobs_;
     TerminalPane *terminal_ = nullptr;
-    bool painted_ = false, loadingEditor_ = false;
-    quint64 send(const QString &method, QJsonObject args = {});
-    void applyState(const QJsonObject &state);
-    void onResponse(quint64 id, const QString &method, const QJsonObject &result,
-                    const QString &error);
+    QHash<QString, int> toolPages_;
+    QHash<quint64, QString> requestScopes_;
+    bool painted_ = false, projectMode_ = false, layoutDirty_ = false, closeAfterSave_ = false;
+    quint64 pendingLayout_ = 0, pendingFile_ = 0, pendingDirectory_ = 0, pendingCreate_ = 0;
+    QTimer saveTimer_;
+    quint64 send(const QString &, QJsonObject args = {});
     void createUi();
+    void createInspectorPanels();
+    void selectTool(const QString &);
+    void createResource(const QString &);
+    void inspectNode(const QJsonObject &);
+    void applyState(const QJsonObject &);
+    void onResponse(quint64, const QString &, const QJsonObject &, const QString &);
     void refreshCurrentTab();
+    void loadFile();
+    void listDirectory(const QString &);
+    void scheduleLayoutSave();
+    void flushLayout();
+    void setProjectMode(bool);
+    void saveNote();
+    void showSources();
 };
 } // namespace mterm
