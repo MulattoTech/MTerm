@@ -1,0 +1,42 @@
+import {afterEach,beforeEach,describe,expect,it} from 'vitest';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import {safePath,evaluate,redact,classifyCommand} from '../packages/core/src/security';
+let base:string,root:string;
+beforeEach(async()=>{base=await fs.mkdtemp(path.join(os.tmpdir(),'astra-security-'));root=path.join(base,'root');await fs.mkdir(root);await fs.writeFile(path.join(root,'hello.txt'),'hello');await fs.writeFile(path.join(base,'outside.txt'),'secret');});
+afterEach(async()=>{await fs.rm(base,{recursive:true,force:true});});
+describe('canonical workspace paths',()=>{
+ it('resolves an ordinary workspace file',async()=>expect(await safePath(root,'hello.txt')).toBe(await fs.realpath(path.join(root,'hello.txt'))));
+ it('allows a new file below an existing directory',async()=>{await fs.mkdir(path.join(root,'src'));expect(await safePath(root,'src/new.ts','write')).toBe(path.join(root,'src','new.ts'));});
+ it.each(['../outside.txt','..\\outside.txt','/etc/passwd','C:\\Windows\\win.ini','C:relative','\\\\server\\share','hello.txt:stream','hello.txt\0bad','CON','aux.txt','file.','file '])('rejects ambiguous or escaping path %s',async target=>{await expect(safePath(root,target)).rejects.toThrow(/PATH|WORKSPACE|DENIED/);});
+ it('rejects a sibling with the same string prefix',async()=>{await fs.mkdir(path.join(base,'root-evil'));await expect(safePath(root,'../root-evil')).rejects.toThrow(/PATH|WORKSPACE|DENIED/);});
+ it('rejects a Windows junction / Unix directory symlink escape',async()=>{await fs.symlink(base,path.join(root,'escape'),process.platform==='win32'?'junction':'dir');await expect(safePath(root,'escape/outside.txt')).rejects.toThrow(/PATH|WORKSPACE|DENIED/);});
+ it('rejects new files through a junction escape',async()=>{await fs.symlink(base,path.join(root,'escape'),process.platform==='win32'?'junction':'dir');await expect(safePath(root,'escape/new.txt','write')).rejects.toThrow(/PATH|WORKSPACE|DENIED/);});
+ it('rejects hard-linked file aliases',async()=>{await fs.link(path.join(base,'outside.txt'),path.join(root,'hard.txt'));await expect(safePath(root,'hard.txt')).rejects.toThrow(/PATH|WORKSPACE|DENIED/);});
+ it.each(['.env','.env.production','.git/config','.ssh/id_rsa'])('protects secret and metadata paths %s',async target=>await expect(safePath(root,target,'write')).rejects.toThrow(/DENIED/));
+});
+describe('policy',()=>{
+ const req={workspaceId:'w',actor:'human',sessionId:'s',capability:'filesystem.read'};
+ it('allows rooted reads in Observe',()=>expect(evaluate('observe',req).decision).toBe('ALLOW'));
+ it('denies writes in Observe',()=>expect(evaluate('observe',{...req,capability:'filesystem.write'}).decision).toBe('DENY'));
+ it('allows workspace writes in Developer',()=>expect(evaluate('developer',{...req,capability:'filesystem.write'}).decision).toBe('ALLOW'));
+ it('requires separate approval for arbitrary execution',()=>expect(evaluate('developer',{...req,capability:'terminal.execute'}).decision).toBe('ASK'));
+ it('requires separate approval for agent execution',()=>expect(evaluate('developer',{...req,capability:'agent.execute'}).decision).toBe('ASK'));
+ it.each(['git.worktree','process.kill'])('requires separate approval for %s',capability=>expect(evaluate('developer',{...req,capability}).decision).toBe('ASK'));
+ it.each(['filesystem.delete','git.commit','git.push','system.settings','computer.input','made.up'])('fails closed for unimplemented/dangerous capability %s',capability=>expect(evaluate('developer',{...req,capability}).decision).toBe('DENY'));
+ const grant={id:'g',workspaceId:'w',actor:'human',sessionId:'s',capability:'terminal.execute',scope:'session',expiresAt:2000};
+ it('honors a matching unexpired grant',()=>expect(evaluate('developer',{...req,capability:'terminal.execute'},[grant],1000).decision).toBe('ALLOW'));
+ it('does not honor expired grants',()=>expect(evaluate('developer',{...req,capability:'terminal.execute'},[grant],2000).decision).toBe('ASK'));
+ it('cannot reuse another workspace grant',()=>expect(evaluate('developer',{...req,workspaceId:'other',capability:'terminal.execute'},[grant],1000).decision).toBe('ASK'));
+ it('cannot reuse another actor grant',()=>expect(evaluate('developer',{...req,actor:'remote',capability:'terminal.execute'},[grant],1000).decision).toBe('ASK'));
+ it('cannot reuse another session grant',()=>expect(evaluate('developer',{...req,sessionId:'other',capability:'terminal.execute'},[grant],1000).decision).toBe('ASK'));
+ it('Observe overrides old execution grants',()=>expect(evaluate('observe',{...req,capability:'terminal.execute'},[grant],1000).decision).toBe('DENY'));
+});
+describe('redaction and command classification',()=>{
+ it('redacts structured secret fields recursively',()=>expect(redact({token:'abc',nested:{authorization:'Bearer foo',password:'abc',privateKey:'private'},safe:'yes'})).toEqual({token:'[REDACTED]',nested:{authorization:'[REDACTED]',password:'[REDACTED]',privateKey:'[REDACTED]'},safe:'yes'}));
+ it('redacts registered secret values from arbitrary strings',()=>expect(redact({message:'failure MY_PRIVATE_SECRET!'},['MY_PRIVATE_SECRET'])).toEqual({message:'failure [REDACTED]!'}));
+ it('does not treat node -e as read-only merely because node is allowed',()=>expect(classifyCommand('node',['-e','doSomething()']).risk).toBe('EXECUTE'));
+ it('recognizes destructive git arguments',()=>expect(classifyCommand('git',['push','--force']).risk).toBe('DESTRUCTIVE'));
+ it('recognizes a harmless version request',()=>expect(classifyCommand('node',['--version']).risk).toBe('READ'));
+});

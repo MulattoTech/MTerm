@@ -1,0 +1,54 @@
+{
+  "name": "mterm",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@12.5.1",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "electron apps/desktop/dist/main.cjs",
+    "dev": "node scripts/dev.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint apps packages tests scripts *.mjs *.ts --max-warnings 0",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:mcp": "node scripts/validate-mcp.mjs",
+    "mcp": "node apps/desktop/dist/mcp.cjs",
+    "format": "prettier --write \"{apps,packages,tests,scripts}/**/*.{ts,tsx,mjs,css}\""
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "@modelcontextprotocol/client": "2.0.0",
+    "@xyflow/react": "12.11.6",
+    "@xterm/xterm": "6.0.0",
+    "@xterm/addon-fit": "^0.11.0",
+    "monaco-editor": "0.55.1",
+    "node-pty": "1.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "lucide-react": "^0.577.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "electron": "44.4.3",
+    "@playwright/test": "1.63.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "typescript-eslint": "^8.0.0",
+    "esbuild": "^0.27.0",
+    "prettier": "^3.0.0",
+    "typescript": "5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.0"
+  }
+}
