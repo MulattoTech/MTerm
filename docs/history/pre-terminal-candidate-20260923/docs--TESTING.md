@@ -78,13 +78,3 @@ Run `python -X utf8 scripts/roadmap/test_roadmap.py` then perform an explicit me
 and `--check`. Normal Build.ps1 and Package-Windows.ps1 enforce that check. Development-only
 -SkipRoadmapCheck must never be cited as a final publish gate. Dashboard browser validation is
 `scripts/roadmap/validate_dashboard.mjs`, using installed Edge and blocking HTTP requests.
-
-## Native terminal candidate
-
-Two additional native suites exercise resource lifecycle and actual multi-terminal GUI behavior.
-TerminalResourceTests covers real dual shells, stale restarts, cwd/invalid data, all-page recovery,
-invalid root preservation, capacity/revocation, consumer backpressure, natural exit and cross-scope
-protection. TerminalWorkspaceTests covers card-owned screens, no-autostart, unique names, view caps,
-view-switch survival and transient Canvas/Project statuses. All tests use isolated local shells,
-not paid model calls. Set MTERM_TERMINAL_CAPTURE_DIR only for explicit Windows visual fixtures;
-unset it for normal CTest. Expected totals and commands are in the current validation document.

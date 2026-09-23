@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (original implementation)
@@ -26,6 +27,7 @@
 #include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QPushButton>
+#include <QSet>
 #include <QSettings>
 #include <QShortcut>
 #include <QSignalBlocker>
@@ -55,6 +57,24 @@ MainWindow::MainWindow(QString databaseFile, QWidget *parent)
     if (auto *split = findChild<QSplitter *>("workspace-splitter"))
         split->restoreState(preferences.value("window/splitter").toByteArray());
     connect(backend_, &Backend::response, this, &MainWindow::onResponse);
+    connect(backend_, &Backend::terminalSessionChanged, this,
+            [this](const QString &workspace, const QString &id, const QString &run,
+                   const QJsonObject &metadata) {
+                if (workspace != workspaceId() || run.isEmpty())
+                    return;
+                const auto next = metadata["status"].toString();
+                if (next == "STARTING" && terminalRuns_.value(id) != run)
+                    terminalRuns_[id] = run;
+                if (terminalRuns_.value(id) != run)
+                    return;
+                const auto prior = terminalStates_.value(id);
+                if ((prior == "STOPPED" || prior == "EXITED" || prior == "FAILED") &&
+                    next == "RUNNING")
+                    return;
+                terminalStates_[id] = next;
+                canvas_->setRuntimeStatuses(terminalStates_);
+                project_->setRuntimeStatuses(terminalStates_);
+            });
     saveTimer_.setSingleShot(true);
     saveTimer_.setInterval(300);
     connect(&saveTimer_, &QTimer::timeout, this, &MainWindow::flushLayout);
@@ -261,12 +281,26 @@ void MainWindow::createResource(const QString &kind) {
          "A real native terminal in this workspace. Start a shell after session approval."},
         {"editor", "Read and edit workspace files with conflict-safe saves. Open the editor to "
                    "choose a file."}};
-    pendingCreate_ = send("add-node", {{"kind", kind},
-                                       {"title", titles.value(kind, "Resource")},
-                                       {"content", bodies.value(kind)}});
+    auto title = titles.value(kind, "Resource");
+    if (kind == "terminal") {
+        QSet<QString> used;
+        for (const auto &v : canvas_->canvas()["nodes"].toArray())
+            used.insert(v.toObject()["title"].toString());
+        int suffix = 1;
+        while (used.contains(QString("Terminal %1").arg(suffix)))
+            ++suffix;
+        title = QString("Terminal %1").arg(suffix);
+    }
+    pendingCreate_ =
+        send("add-node", {{"kind", kind}, {"title", title}, {"content", bodies.value(kind)}});
 }
 void MainWindow::inspectNode(const QJsonObject &node) {
     const auto kind = node["kind"].toString();
+    if (kind == "terminal") {
+        selectTool("terminal");
+        terminal_->selectResource(node["id"].toString());
+        return;
+    }
     if (kind == "note") {
         ensureInspector("notes");
         selectedNodeId_ = node["id"].toString();
@@ -283,6 +317,8 @@ void MainWindow::inspectNode(const QJsonObject &node) {
 void MainWindow::setProjectMode(bool project) {
     projectMode_ = project;
     project_->setCanvas(canvas_->canvas());
+    canvas_->setRuntimeStatuses(terminalStates_);
+    project_->setRuntimeStatuses(terminalStates_);
     shell_->setProjectMode(project);
     if (state_["profile"] == "developer")
         scheduleLayoutSave();
@@ -329,6 +365,10 @@ void MainWindow::applyState(const QJsonObject &state) {
     const bool switched = workspaceId() != state["workspaceId"].toString();
     const bool layoutChanged = switched || state_["revision"] != state["revision"] ||
                                state_["profile"] != state["profile"];
+    if (switched || state_["sessionEpoch"] != state["sessionEpoch"]) {
+        terminalRuns_.clear();
+        terminalStates_.clear();
+    }
     state_ = state;
     const bool dev = state["profile"] == "developer";
     shell_->setWorkspace(state["root"].toString(), dev,
@@ -354,6 +394,8 @@ void MainWindow::applyState(const QJsonObject &state) {
     if (layoutChanged && !layoutDirty_)
         canvas_->setCanvas(state["canvas"].toObject(), dev);
     project_->setCanvas(canvas_->canvas());
+    canvas_->setRuntimeStatuses(terminalStates_);
+    project_->setRuntimeStatuses(terminalStates_);
     if (tasks_) {
         const auto selectedTask = tasks_->currentItem()
                                       ? tasks_->currentItem()->data(0, Qt::UserRole).toString()

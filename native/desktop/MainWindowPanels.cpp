@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-ux (OpenAI / GPT-6 Astra Pro)
@@ -83,6 +84,8 @@ void MainWindow::createInspectorPanels() {
     add("terminal", "Terminal", [this] {
         terminal_ = new TerminalPane(backend_, tabs_);
         terminal_->setObjectName("terminal-panel");
+        connect(terminal_, &TerminalPane::createTerminalRequested, this,
+                [this] { createResource("terminal"); });
         return terminal_;
     });
     add("processes", "Processes", [this] {

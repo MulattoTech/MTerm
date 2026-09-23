@@ -1,24 +1,3 @@
-# Current native candidate status — 2026-09-23
-
-Active branch:`candidate/native-20260923`. The following supersedes older historical status below.
-
-- Independent native terminal resources: implemented with8-shell/8-view caps, named canvas identities,
-  actual ConPTY, per-terminal cwd/shell metadata, no-autostart selection and run-token stale rejection.
-- Lifecycle badges: current runtime state appears in selector/Canvas/Project without persisting it
-  as task acceptance. Separate shells and screens survive view changes; stopping one preserves another.
-- Restart metadata: scoped all-history active records reconcile STOPPED; no terminal text is saved
-  and no process reattachment is claimed. Latest100-row metadata UI remains an explicit limit.
-- Workspace safety: invalid proposed root is validated before cancellation; same-root reopen resets
-  session epoch/Observe/grants and stops prior executions. Cross-workspace late actions are rejected.
-- Output: UI acknowledgement backpressure bounds pending delivery; not user scrollback or soak proof.
-- Integration: all5 published source heads are proven ancestors of the candidate. Original branches
-  and local-only CI archive are retained. See CANDIDATE/PR for final remote merge state.
-
-Current validation: docs/validation/2026-09-23-terminal-candidate.md. Older counts/measurements below
-are historical. Full roadmap updates are evidence-scoped; no Unix/MCP/DevFleet/release readiness claim.
-
----
-
 # Current native workbench / metrics update — 2026-09-23
 
 The generated [ROADMAP](ROADMAP.md) and [all-feature table](roadmap/FEATURES.md) report current

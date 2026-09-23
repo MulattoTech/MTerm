@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-ux (OpenAI / GPT-6 Astra Pro)
@@ -15,6 +16,9 @@ class ResourceDelegate final : public QStyledItemDelegate {
                const QModelIndex &index) const override {
         auto node = index.data(Qt::UserRole).toJsonObject();
         node["collapsed"] = false;
+        const auto state = index.data(Qt::UserRole + 1).toString();
+        if (!state.isEmpty())
+            node["status"] = state;
         paintResourceCard(*p, option.rect.adjusted(6, 6, -6, -6), node,
                           option.state & QStyle::State_Selected,
                           option.state & QStyle::State_MouseOver);
@@ -51,6 +55,13 @@ void ProjectView::setFilter(const QString &text) {
                  .contains(filter_, Qt::CaseInsensitive));
     }
 }
+void ProjectView::setRuntimeStatuses(const QHash<QString, QString> &statuses) {
+    runtimeStatuses_ = statuses;
+    for (int i = 0; i < count(); ++i)
+        item(i)->setData(
+            Qt::UserRole + 1,
+            statuses.value(item(i)->data(Qt::UserRole).toJsonObject()["id"].toString()));
+}
 void ProjectView::setCanvas(const QJsonObject &canvas) {
     QString selected;
     if (currentItem())
@@ -60,6 +71,7 @@ void ProjectView::setCanvas(const QJsonObject &canvas) {
         auto node = value.toObject();
         auto *item = new QListWidgetItem(node["title"].toString(), this);
         item->setData(Qt::UserRole, node);
+        item->setData(Qt::UserRole + 1, runtimeStatuses_.value(node["id"].toString()));
         item->setSizeHint({308, 248});
         if (node["id"] == selected)
             setCurrentItem(item);

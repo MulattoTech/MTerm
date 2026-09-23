@@ -1,14 +1,14 @@
 {
-  "assessed_at": "2026-09-23T07:49:49.734658+00:00",
+  "assessed_at": "2026-09-23T19:01:56.954182+00:00",
   "overall": {
-    "percent": 17.36,
+    "percent": 17.78,
     "weight": 19220.0,
     "included": 472,
     "excluded": 24,
-    "complete": 20,
+    "complete": 21,
     "remaining_hours": [
-      8987.6,
-      22778.6
+      8943.8,
+      22662.6
     ],
     "blocked": 3
   },
@@ -1390,24 +1390,24 @@
     },
     {
       "id": "REQ-EA99C5129E91",
-      "percent": 40,
-      "stage": "implementation",
+      "percent": 65,
+      "stage": "integrated",
       "blocked": false,
       "weight": 22.0,
       "remaining_hours": [
-        7.2,
-        19.2
+        4.2,
+        11.2
       ]
     },
     {
       "id": "REQ-082EA08D3BDD",
-      "percent": 0,
-      "stage": "not_started",
+      "percent": 85,
+      "stage": "validated",
       "blocked": false,
       "weight": 22.0,
       "remaining_hours": [
-        12.0,
-        32.0
+        1.8,
+        4.8
       ]
     },
     {
@@ -1445,35 +1445,35 @@
     },
     {
       "id": "REQ-1FB0D91323D6",
-      "percent": 0,
-      "stage": "not_started",
+      "percent": 85,
+      "stage": "validated",
       "blocked": false,
       "weight": 22.0,
       "remaining_hours": [
-        12.0,
-        32.0
+        1.8,
+        4.8
       ]
     },
     {
       "id": "REQ-4018B4AD8636",
-      "percent": 40,
-      "stage": "implementation",
+      "percent": 85,
+      "stage": "validated",
       "blocked": false,
       "weight": 22.0,
       "remaining_hours": [
-        7.2,
-        19.2
+        1.8,
+        4.8
       ]
     },
     {
       "id": "REQ-711725CE3B1E",
-      "percent": 0,
-      "stage": "not_started",
+      "percent": 85,
+      "stage": "validated",
       "blocked": false,
       "weight": 22.0,
       "remaining_hours": [
-        12.0,
-        32.0
+        1.8,
+        4.8
       ]
     },
     {
@@ -4437,13 +4437,13 @@
     },
     {
       "id": "REQ-404EC403FE48",
-      "percent": 85,
-      "stage": "validated",
+      "percent": 100,
+      "stage": "complete",
       "blocked": false,
       "weight": 56.0,
       "remaining_hours": [
-        4.8,
-        12.0
+        0.0,
+        0.0
       ]
     },
     {

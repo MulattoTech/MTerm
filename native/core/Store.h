@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
@@ -26,6 +27,8 @@ class Store {
                const QString &result);
     QJsonArray audits(const QString &workspace, int limit = 100) const;
     void transaction(const std::function<void()> &operation);
+    /// Reconcile all interrupted native runs in this scope without a paginated-scan mutation race.
+    int reconcileInterrupted(const QString &kind, const QString &workspace);
     static constexpr int SchemaVersion = 3;
 
   private:

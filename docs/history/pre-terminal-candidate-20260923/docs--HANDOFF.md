@@ -1,34 +1,3 @@
-# Current candidate continuation — 2026-09-23
-
-Active source:`C:\Tools\Dev\MTerm`, branch`candidate/native-20260923`.
-The user authorized consolidation of all published branches and a current GitHub candidate.
-Read CANDIDATE.md for verified ancestry and the actual PR discussion for final remote merge state.
-Do not resume from an older feature branch and overwrite newer candidate work.
-
-The previous failed turn left tested native terminal changes uncommitted. This continuation verified
-real RDC write/rename/read-back, saved a complete working-source checkpoint and refs bundle, recovered
-the code and expanded lifecycle/UI tests. The new terminal contract is NATIVE_TERMINAL_RESOURCES.md.
-Each terminal card owns a bounded independent ConPTY run, cwd/shell metadata and retained screen.
-Immutable run IDs reject old input/resize/stop/ACK. New selection never auto-starts. Live status badges
-are transient across Canvas/Project; saved canvas acceptance/status is untouched.
-
-Native metadata is separate from terminal text; restart reports STOPPED, never falsely reattached.
-Store recovery now updates all pages of the selected workspace in one scoped SQL operation, and an
-invalid new root is rejected before current jobs are stopped. Final release-style validation must
-use default roadmap gates, not the local red/green bypass. Update all affected REQ IDs/evidence.
-
-Remaining high-value tasks: terminal scrollback/IME/selection/Unix/detached supervision, per-resource
-metadata lookup beyond latest100, safe file races and QProcess ownership, richer task/evidence/Git/
-provider/native-MCP parity. DevFleet remains a proposed integration, not connected. Six source-project
-attributions and the496-row/472-scored roadmap scope remain intact; no denominator manipulation.
-
-Write proof:`artifacts/access-check-20260923T184417Z/write-test-verified.txt`.
-Resume checkpoint:`artifacts/checkpoints/terminal-resume-20260923T184521Z` (sourceZIP+Gitbundle).
-Preserved temp exception:`native/desktop/MainWindow.cpp.tmp0`; do not delete or grant broad permissions.
-See validation/2026-09-23-terminal-candidate.md for tested scope and actual limits.
-
----
-
 # Current continuation — workbench and mandatory roadmap (2026-09-23)
 
 Active root `C:\Tools\Dev\MTerm`, branch `feat/native-workbench-roadmap-20260923`, based on6344e94.

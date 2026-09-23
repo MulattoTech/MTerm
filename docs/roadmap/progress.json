@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "assessed_at": "2026-09-23T07:49:49.734658+00:00",
+  "assessed_at": "2026-09-23T19:01:56.954182+00:00",
   "assessment_basis": "Native source/known regression evidence reviewed at base6344e94; native-only delivery credit, not inherited reference checkmarks. Initial coarse effort bands are assumptions.",
   "stage_percentages": {
     "not_started": 0,
@@ -937,16 +937,19 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
-        "native/core/Store.cpp",
-        "native/services/WorkspaceSession.cpp"
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/services/Backend.cpp"
       ],
       "tests": [
-        "native/tests/BackendTests.cpp",
-        "native/tests/CoreTests.cpp"
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp",
+        "native/tests/BackendTests.cpp"
       ],
-      "note": "Scoped identity/database/request regression coverage exists; hostile race and broad multi-workspace soak remain.",
+      "note": "Scoped database/request tests extended with live shells across different roots, same-root epochs, and invalid-root preservation. Broader hostile path races, OS sandboxing and transactional failure recovery are not claimed.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -1025,15 +1028,18 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
-        "native/desktop/MainWindow.cpp",
-        "native/desktop/ResourceCard.cpp"
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/desktop/MainWindow.cpp"
       ],
       "tests": [
-        "native/tests/UxTests.cpp"
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp"
       ],
-      "note": "Resource cards route to retained native inspectors; dedicated per-node live sessions/embedded surfaces and full resource binding remain.",
+      "note": "Terminal cards now select independent native resource screens; surfaces remain inspector-hosted, not fully embedded inside each canvas card. Agent/editor per-card live parity remains open.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -1567,15 +1573,19 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
-        "native/desktop/CanvasView.cpp",
-        "native/desktop/ResourceCard.cpp"
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/desktop/CanvasView.cpp"
       ],
       "tests": [
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp",
         "native/tests/UxTests.cpp"
       ],
-      "note": "One painted scene item/resource with scene indexing and lazy retained inspectors; 500-card item-count check exists, not a multi-agent frame-time soak proof.",
+      "note": "Retained native terminal views are bounded to8 and transport applies consumer backpressure; hidden screens still parse output. Full offscreen surface suspension and multi-agent frame-time performance remain open.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -2632,7 +2642,7 @@
     },
     {
       "id": "REQ-EA99C5129E91",
-      "stage": "implementation",
+      "stage": "integrated",
       "weight": 22.0,
       "size": "M",
       "estimate_hours": [
@@ -2640,22 +2650,24 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
+        "native/services/TerminalService.cpp",
         "native/desktop/TerminalPane.cpp",
-        "native/terminal/PtySession.cpp"
+        "docs/NATIVE_TERMINAL_RESOURCES.md"
       ],
       "tests": [
-        "native/tests/TerminalTests.cpp"
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp"
       ],
-      "note": "Shell selection, bounded transport and single terminal status exist; saved profiles, user scrollback and persistent multi-resource metadata remain.",
+      "note": "Native shell presets and per-resource shell/cwd metadata retained. Custom saved shell profiles and full profile-management UI remain incomplete.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
     },
     {
       "id": "REQ-082EA08D3BDD",
-      "stage": "not_started",
+      "stage": "validated",
       "weight": 22.0,
       "size": "M",
       "estimate_hours": [
@@ -2663,10 +2675,17 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
-      "evidence": [],
-      "tests": [],
-      "note": "No acceptance-complete native implementation is evidenced for this exact requirement; retained in full scope.",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
+      "evidence": [
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md"
+      ],
+      "tests": [
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp"
+      ],
+      "note": "Per-resource native cwd selection is integrated and tested in a real Windows shell; only canonical existing workspace-relative directories are accepted. Starting directory is not an OS sandbox; Unix and complete profile UI remain separate.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -2717,22 +2736,24 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
+        "native/services/TerminalService.cpp",
         "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
         "native/terminal/PtySession.cpp"
       ],
       "tests": [
-        "native/tests/TerminalTests.cpp"
+        "native/tests/TerminalResourceTests.cpp::flowControlledOutputWaitsForTheConsumer"
       ],
-      "note": "Shell selection, bounded transport and single terminal status exist; saved profiles, user scrollback and persistent multi-resource metadata remain.",
+      "note": "UI ACK backpressure and bounded transport/view pools tested, including intentional consumer stall/resume. User scrollback/search and complete retention budgets remain unimplemented; no completion credit added.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
     },
     {
       "id": "REQ-1FB0D91323D6",
-      "stage": "not_started",
+      "stage": "validated",
       "weight": 22.0,
       "size": "M",
       "estimate_hours": [
@@ -2740,17 +2761,24 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
-      "evidence": [],
-      "tests": [],
-      "note": "No acceptance-complete native implementation is evidenced for this exact requirement; retained in full scope.",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
+      "evidence": [
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md"
+      ],
+      "tests": [
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp"
+      ],
+      "note": "Up to8 named resource-owned real shells and8 retained views; unique labels, independent state/stop, stale-run rejection and persisted metadata tested. Full naming/editor UX and ancient metadata lookup beyond latest100 still limited.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
     },
     {
       "id": "REQ-4018B4AD8636",
-      "stage": "implementation",
+      "stage": "validated",
       "weight": 22.0,
       "size": "M",
       "estimate_hours": [
@@ -2758,22 +2786,25 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
+        "native/services/TerminalService.cpp",
         "native/desktop/TerminalPane.cpp",
-        "native/terminal/PtySession.cpp"
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/desktop/ResourceCard.cpp",
+        "native/desktop/ProjectView.cpp"
       ],
       "tests": [
-        "native/tests/TerminalTests.cpp"
+        "native/tests/TerminalWorkspaceTests.cpp::liveBadgesAreSharedButNotWrittenIntoCanvas"
       ],
-      "note": "Shell selection, bounded transport and single terminal status exist; saved profiles, user scrollback and persistent multi-resource metadata remain.",
+      "note": "Selector and native Canvas/Project badges track current run state; tested RUNNING/STOPPED without persisting it as canvas/task status. Historical/unmounted badges and broader session telemetry remain limited.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
     },
     {
       "id": "REQ-711725CE3B1E",
-      "stage": "not_started",
+      "stage": "validated",
       "weight": 22.0,
       "size": "M",
       "estimate_hours": [
@@ -2781,10 +2812,18 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
-      "evidence": [],
-      "tests": [],
-      "note": "No acceptance-complete native implementation is evidenced for this exact requirement; retained in full scope.",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
+      "evidence": [
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/core/Store.cpp"
+      ],
+      "tests": [
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp"
+      ],
+      "note": "Shell/cwd/resource/run/status metadata survives restart; no terminal text/environment persisted. Reopen honestly reports STOPPED. UI currently loads latest100 records; no live reattachment.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -2817,17 +2856,19 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
-        "native/terminal/PtySession.cpp",
-        "native/desktop/TerminalPane.cpp"
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/terminal/PtySession.cpp"
       ],
       "tests": [
-        "native/tests/TerminalTests.cpp",
-        "native/tests/BackendTests.cpp",
-        "native/tests/DesktopTests.cpp"
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp",
+        "native/tests/TerminalTests.cpp"
       ],
-      "note": "Real Windows ConPTY input/output/resize/stop with explicit session grant tested; complete terminal teardown/soak/platform parity remains.",
+      "note": "Real Windows ConPTY now supports independently owned bounded resource slots and per-run supervision; existing native input/output/resize/stop plus new isolation tests pass. Full older-Windows teardown/soak certification remains.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -2860,10 +2901,10 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [],
       "tests": [],
-      "note": "No acceptance-complete native implementation is evidenced for this exact requirement; retained in full scope.",
+      "note": "This pass tests orderly restart, stale run rejection and seeded interrupted metadata, not actual crash-injection/transport reconnection. Exact crash/reconnect acceptance remains open.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -2878,14 +2919,19 @@
         32
       ],
       "estimate_basis": "M coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
         "native/runtime/ProcessRunner.cpp"
       ],
       "tests": [
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp",
         "native/tests/RuntimeTests.cpp"
       ],
-      "note": "Owned process async state/cancel/timeout covered with deterministic fixtures; long-duration and GUI-independent supervision remain.",
+      "note": "Actual live shells remain independent across tool/view changes and output bursts; bounded process fixture timeout/cancel behavior retained. Long-duration soak and detached supervisor tests still pending.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -5894,16 +5940,18 @@
         80
       ],
       "estimate_basis": "L coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
-        "native/core/Policy.cpp",
-        "native/services/WorkspaceSession.cpp"
+        "native/services/TerminalService.cpp",
+        "native/desktop/TerminalPane.cpp",
+        "docs/NATIVE_TERMINAL_RESOURCES.md",
+        "native/core/Policy.cpp"
       ],
       "tests": [
-        "native/tests/CoreTests.cpp",
-        "native/tests/BackendTests.cpp"
+        "native/tests/TerminalResourceTests.cpp",
+        "native/tests/TerminalWorkspaceTests.cpp"
       ],
-      "note": "Current session capabilities and approval dialogs/bounds exist; full granular/persisted grants, command semantics and fuzzing remain.",
+      "note": "Run-token and workspace validation improved; execution grant still workspace-session-wide, not arbitrary per-agent/per-resource persisted permission scopes.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null
@@ -8057,7 +8105,7 @@
     },
     {
       "id": "REQ-404EC403FE48",
-      "stage": "validated",
+      "stage": "complete",
       "weight": 56.0,
       "size": "L",
       "estimate_hours": [
@@ -8065,17 +8113,15 @@
         80
       ],
       "estimate_basis": "L coarse implementation+verification scope band; low confidence, uncalibrated engineering judgment; shared work may overlap",
-      "reviewed_at": "2026-09-23T07:09:07.113926+00:00",
+      "reviewed_at": "2026-09-23T19:01:56.674678+00:00",
       "evidence": [
-        "native/services/JobService.cpp",
-        "native/core/Store.cpp"
+        "native/core/Store.cpp::reconcileInterrupted",
+        "native/services/WorkspaceSession.cpp"
       ],
       "tests": [
-        "native/tests/BackendTests.cpp",
-        "native/tests/RuntimeTests.cpp",
-        "native/tests/UxTests.cpp"
+        "native/tests/TerminalResourceTests.cpp::fullHistoryRecoveryIsScopedNotLimitedToFirstPage"
       ],
-      "note": "Native session/stream/resume/evidence/state persistence tested with fixtures; real-model approval, full-history recovery and production validation gaps remain.",
+      "note": "Exact native requirement satisfied: all active persisted agent records for the opened workspace reconcile STOPPED, including records beyond a200-row page; DONE and other-workspace state are preserved. This is metadata reconciliation, not live process resumption.",
       "blocker": null,
       "eta_date": null,
       "eta_basis": null

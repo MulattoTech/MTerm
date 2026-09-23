@@ -79,12 +79,3 @@ checks the deck's aggregate dirty/pending state. Preferences are isolated beside
 Roadmap Python/HTML is offline development tooling only. Native startup neither executes Python
 nor loads the catalog. Evidence-backed progress.json renders Markdown/SVG/HTML/JSON; source/catalog
 review fingerprints enforce contributor updates through normal build/package scripts.
-
-## Independent terminals in the integrated candidate
-
-TerminalService is a worker-owned bounded resource pool. Each slot owns a PTY, immutable workspace/
-resource/run IDs, lifecycle metadata and acknowledgement accounting. TerminalPane owns at most eight
-retained screen projections. Worker events carry identities; restart tokens prevent stale input or
-stop requests from reaching a replacement run. Runtime card badges are ephemeral and never change
-the persisted canvas schema or status. Store recovery is a scoped bulk SQL update across all pages.
-See NATIVE_TERMINAL_RESOURCES.md for exact commands, bounds, compatibility and limitations.

@@ -85,3 +85,21 @@ Pre-flight: desktop and MCP share WorkspaceRuntime and Store schemas. Process ow
 - Native default Release/Debug7suites pass;23roadmap tests pass;reference59unit/2E2E full gate passes;
   native screenshot fixture and standalone5-run smoke pass. Details in the dated validation report.
 - Current native runtime still has no Electron/Chromium/Node dependency. No live model/DevFleet call.
+
+## Terminal-resource candidate consolidation — 2026-09-23
+
+Verified real RDC write/rename/read-back first. Recovered merge 6ff5418 and uncommitted terminal
+work; archived full working source and Git refs before further editing. All five published source
+heads were verified ancestors of the candidate. No branches or user data were deleted.
+
+Completed independent native terminal resource runs, bounded view/transport capacity, relative cwd
+and metadata persistence, stale-run protection, full-page recovery and no-autostart selection.
+Added actual same-root/cross-workspace/natural-exit tests and red/green transient Canvas/Project badges.
+
+Default Windows Release/Debug passed nine suites each; roadmap passed 25 tests; reference passed
+59 units, two E2E scenarios, typecheck/lint/build/MCP; offline roadmap browser and package checks passed.
+First-paint capture contamination is documented rather than advertised as a speed result.
+
+Updated exact affected roadmap IDs to 17.78% weighted maturity without changing weights/scope.
+Preparing ordinary candidate publication and expected-head main merge as explicitly requested.
+All original feature branches and the local-only CI archive remain preserved.

@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
 // Modified: 2026-09-22-resume-native (see docs/ai/changes/)
@@ -19,9 +20,10 @@ class Worker final : public QObject {
             // Validate before cancelling anything in the existing workspace.
             if (args.contains("root") && !args["root"].isString())
                 throw std::runtime_error("Workspace root must be a string");
+            const auto verifiedRoot = session_.validateOpenRoot(args["root"].toString());
             jobs_.cancelAll();
             terminal_.stop();
-            return session_.open(args["root"].toString());
+            return session_.open(verifiedRoot);
         }
         if (method == "profile" && args["developer"] == false) {
             session_.requireScope(args);
@@ -60,6 +62,10 @@ Backend::Backend(QString databaseFile, QObject *parent)
     connect(worker_->jobs(), &JobService::runFinished, this, &Backend::runFinished);
     connect(worker_->terminal(), &TerminalService::output, this, &Backend::terminalOutput);
     connect(worker_->terminal(), &TerminalService::stopped, this, &Backend::terminalStopped);
+    connect(worker_->terminal(), &TerminalService::sessionOutput, this,
+            &Backend::terminalSessionOutput);
+    connect(worker_->terminal(), &TerminalService::sessionChanged, this,
+            &Backend::terminalSessionChanged);
     workerThread_.setObjectName("MTerm-services");
     workerThread_.start();
 }

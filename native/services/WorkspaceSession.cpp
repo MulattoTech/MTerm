@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
 // Modified: 2026-09-22-resume-native (see docs/ai/changes/)
@@ -37,6 +38,14 @@ void WorkspaceSession::authorize(const QString &capability, const QJsonObject &a
              ". Enable Developer and explicitly approve execution where required.");
     }
 }
+QString WorkspaceSession::validateOpenRoot(const QString &root) {
+    if (!store_)
+        store_ = std::make_unique<Store>(databaseFile_);
+    const auto selected =
+        root.isEmpty() ? store_->setting("workspace-current")["root"].toString(QDir::currentPath())
+                       : root;
+    return FileService(selected).root();
+}
 QJsonObject WorkspaceSession::open(const QString &root) {
     if (!store_)
         store_ = std::make_unique<Store>(databaseFile_);
@@ -47,6 +56,7 @@ QJsonObject WorkspaceSession::open(const QString &root) {
     files_ = std::move(next);
     workspaceId_ = QString::fromLatin1(
         QCryptographicHash::hash(files_->root().toUtf8(), QCryptographicHash::Sha256).toHex());
+    sessionEpoch_ = uuid();
     policy_.setWorkspace(workspaceId_);
     QJsonObject workspace{{"id", workspaceId_},
                           {"root", files_->root()},
@@ -67,15 +77,9 @@ QJsonObject WorkspaceSession::open(const QString &root) {
             store_->setSetting("canvas:" + workspaceId_, initialCanvas());
             store_->setSetting("canvas-revision:" + workspaceId_, {{"value", 0}});
         }
-        // No native child survives this backend. Never restore a false RUNNING badge.
-        for (const auto &v : store_->records("agent-session", workspaceId_, 200)) {
-            auto session = v.toObject();
-            if (QSet<QString>{"STARTING", "RUNNING", "WAITING", "STOPPING"}.contains(
-                    session["status"].toString())) {
-                session["status"] = "STOPPED";
-                store_->putRecord("agent-session", workspaceId_, session);
-            }
-        }
+        // Bulk scoped reconciliation must cover every page without reordering a paged scan.
+        store_->reconcileInterrupted("agent-session", workspaceId_);
+        store_->reconcileInterrupted("terminal-resource", workspaceId_);
         store_->audit(workspaceId_, "workspace.open", "ALLOW",
                       "Native workspace opened in Observe");
     });
@@ -87,6 +91,7 @@ QJsonObject WorkspaceSession::snapshot() const {
     if (!error.isEmpty())
         fail("Stored canvas invalid: " + error);
     return {{"workspaceId", workspaceId_},
+            {"sessionEpoch", sessionEpoch_},
             {"root", files_->root()},
             {"profile", policy_.developer() ? "developer" : "observe"},
             {"canvas", canvas},

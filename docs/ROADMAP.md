@@ -1,16 +1,16 @@
 # MTerm roadmap and delivery dashboard
 
-**Assessed 2026-09-23T07:49:49.734658+00:00 · 17.36% weighted delivery maturity**
+**Assessed 2026-09-23T19:01:56.954182+00:00 · 17.78% weighted delivery maturity**
 
 ![Overall completion](roadmap/bars/overall.svg)
 
-**472 scored entries · 20 complete · 3 blocked · 24 explicitly excluded historical/legend entries.**
+**472 scored entries · 21 complete · 3 blocked · 24 explicitly excluded historical/legend entries.**
 
 This is a reviewed planning model, **not release readiness, code coverage, probability of completion, or the percent of every upstream app implemented**. Native features require native evidence; inherited Electron checkmarks do not confer credit.
 
 Calendar ETA: **Unscheduled** until capacity, dependencies and a maintained schedule exist. Every feature lists an approximate **remaining engineer-hour range**, not elapsed AI runtime. Estimates are low-confidence scope assumptions, not promises.
 
-Naive additive remaining effort: **8,988–22,779 engineer-hours**. Shared implementation/overlap may reduce it; risk/rework may increase it. Do not convert this into a delivery date using invented staffing.
+Naive additive remaining effort: **8,944–22,663 engineer-hours**. Shared implementation/overlap may reduce it; risk/rework may increase it. Do not convert this into a delivery date using invented staffing.
 
 [Every feature, percentage, evidence and effort](roadmap/FEATURES.md) · [Offline searchable dashboard](roadmap/index.html) · [Metric rules](roadmap/METRICS.md) · [Source projects](SOURCE_PROJECT_FEATURE_MATRIX.md)
 
@@ -29,7 +29,7 @@ Naive additive remaining effort: **8,988–22,779 engineer-hours**. Shared imple
 | [3. Infinite canvas — domain and interaction completeness](roadmap/FEATURES.md#area-04) | ![35.21%](roadmap/bars/area-04.svg) | 2 / 31 | 231–616.4 h | Unscheduled |
 | [4. Project Mode completeness](roadmap/FEATURES.md#area-05) | ![28.5%](roadmap/bars/area-05.svg) | 1 / 20 | 171.6–457.6 h | Unscheduled |
 | [5. Filesystem and editor surface](roadmap/FEATURES.md#area-06) | ![20.75%](roadmap/bars/area-06.svg) | 5 / 25 | 219.6–585.6 h | Unscheduled |
-| [6. Terminal/runtime sessions](roadmap/FEATURES.md#area-07) | ![19.64%](roadmap/bars/area-07.svg) | 0 / 16 | 265–680 h | Unscheduled |
+| [6. Terminal/runtime sessions](roadmap/FEATURES.md#area-07) | ![31.8%](roadmap/bars/area-07.svg) | 0 / 16 | 226–576 h | Unscheduled |
 | [7. Git and worktree orchestration](roadmap/FEATURES.md#area-08) | ![9.29%](roadmap/bars/area-08.svg) | 0 / 25 | 244.2–652 h | Unscheduled |
 | [8. Process and system runtime](roadmap/FEATURES.md#area-09) | ![35.18%](roadmap/bars/area-09.svg) | 0 / 18 | 135–360.2 h | Unscheduled |
 | [9. Tasks, agency, evidence, and local memory](roadmap/FEATURES.md#area-10) | ![16.72%](roadmap/bars/area-10.svg) | 2 / 22 | 264–692 h | Unscheduled |
@@ -44,7 +44,7 @@ Naive additive remaining effort: **8,988–22,779 engineer-hours**. Shared imple
 | [18. Optional computer-use / GUI automation](roadmap/FEATURES.md#area-19) | ![0%](roadmap/bars/area-19.svg) | 0 / 10 | 320–800 h | Unscheduled |
 | [19. Package managers and Docker](roadmap/FEATURES.md#area-20) | ![0%](roadmap/bars/area-20.svg) | 0 / 10 | 320–800 h | Unscheduled |
 | [20. Plugin architecture](roadmap/FEATURES.md#area-21) | ![7.58%](roadmap/bars/area-21.svg) | 0 / 15 | 488–1220 h | Unscheduled |
-| [21. Session continuity and recovery](roadmap/FEATURES.md#area-22) | ![32.69%](roadmap/bars/area-22.svg) | 0 / 13 | 280–700 h | Unscheduled |
+| [21. Session continuity and recovery](roadmap/FEATURES.md#area-22) | ![33.85%](roadmap/bars/area-22.svg) | 1 / 13 | 275.2–688 h | Unscheduled |
 | [22. Persistence/data model](roadmap/FEATURES.md#area-23) | ![46.43%](roadmap/bars/area-23.svg) | 4 / 13 | 67.2–179.2 h | Unscheduled |
 | [23. Performance and lean-runtime definition](roadmap/FEATURES.md#area-24) | ![28.48%](roadmap/bars/area-24.svg) | 0 / 12 | 151.2–395.2 h | Unscheduled |
 | [24. Cross-platform runtime](roadmap/FEATURES.md#area-25) | ![26.11%](roadmap/bars/area-25.svg) | 0 / 9 | 212.8–532 h | Unscheduled |

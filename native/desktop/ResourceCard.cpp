@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-ux (OpenAI / GPT-6 Astra Pro)
 // See docs/ai/changes/2026-09-22-native-ux.json.
@@ -62,7 +63,10 @@ void paintResourceCard(QPainter &p, const QRectF &rect, const QJsonObject &node,
     p.drawRoundedRect(QRectF(box.left() + 16, box.top() + 16, badgeW, 23), 6, 6);
     p.setPen(accent);
     p.drawText(QRectF(box.left() + 16, box.top() + 16, badgeW, 23), Qt::AlignCenter, badge);
-    p.setPen(ui::Muted);
+    p.setPen(status == "RUNNING"    ? QColor("#61d7b4")
+             : status == "FAILED"   ? QColor("#ff91aa")
+             : status == "STARTING" ? QColor("#f1c581")
+                                    : ui::Muted);
     p.setFont(font(10));
     p.drawText(QRectF(box.right() - 114, box.top() + 16, 96, 23), Qt::AlignRight | Qt::AlignVCenter,
                status.toUpper());
@@ -126,7 +130,16 @@ QJsonObject ResourceCard::node() const {
     return n;
 }
 void ResourceCard::paint(QPainter *p, const QStyleOptionGraphicsItem *, QWidget *) {
-    paintResourceCard(*p, boundingRect(), node_, isSelected(), hovered_);
+    auto display = node_;
+    if (!data(1).toString().isEmpty())
+        display["status"] = data(1).toString();
+    paintResourceCard(*p, boundingRect(), display, isSelected(), hovered_);
+}
+void ResourceCard::setRuntimeStatus(const QString &status) {
+    if (data(1).toString() == status)
+        return;
+    setData(1, status);
+    update();
 }
 void ResourceCard::hoverEnterEvent(QGraphicsSceneHoverEvent *e) {
     hovered_ = true;

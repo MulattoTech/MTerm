@@ -34,3 +34,13 @@ unsigned developer preview, not a public release. Hosted workflow installation c
 additional authorized GitHub workflow-write access; this barrier was not bypassed.
 
 The original AstraCommander folder and active legacy databases remain untouched.
+
+## Terminal-resource candidate changes
+
+Named terminal commands use immutable workspace/resource/run tokens; stale run writes/stops/ACKs
+are rejected. The default legacy terminal API retains its local compatibility fallback; new and
+remote adapters must require explicit tokens. Approval is workspace-session scoped, not an OS
+sandbox. Shell cwd is canonical/workspace-relative, but the approved OS user retains OS access.
+UI flow-control acknowledgements occur only after parsing bytes. Stops/revoke/workspace switches
+remain explicit and owned. Metadata deliberately excludes terminal content/environment. Native
+ConPTY teardown timing on older Windows and untrusted adapters still require additional hardening.

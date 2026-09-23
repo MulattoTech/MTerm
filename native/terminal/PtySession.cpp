@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-terminal-candidate; see docs/ai/changes/2026-09-23-terminal-candidate.json
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (OpenAI / GPT-6 Astra Pro)
 // Provenance: docs/ai/changes/2026-09-22-native-foundation.json
@@ -266,6 +267,12 @@ bool PtySession::resize(int columns, int rows) {
 }
 bool PtySession::running() const {
     return impl_ && impl_->active;
+}
+void PtySession::setOutputPaused(bool paused) {
+    if (paused)
+        drain_.stop();
+    else if (running() && !drain_.isActive())
+        drain_.start();
 }
 void PtySession::stop() {
     finish(-1);
