@@ -1,0 +1,5473 @@
+{
+  "assessed_at": "2026-09-23T07:49:49.734658+00:00",
+  "overall": {
+    "percent": 17.36,
+    "weight": 19220.0,
+    "included": 472,
+    "excluded": 24,
+    "complete": 20,
+    "remaining_hours": [
+      8987.6,
+      22778.6
+    ],
+    "blocked": 3
+  },
+  "items": [
+    {
+      "id": "REQ-7736EA1A65E5",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-11A276A149AF",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-1F61CADB630E",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-A4D43433DAFB",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-A2A47C680221",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-5187DB624BEE",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-823DE29F1EB8",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-C0A8A08690E6",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-7AFCEDF9A204",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-BDA65FD4F6B1",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-C3D08C1AFEB0",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-DB086B0AE7CB",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-CB0ED1647811",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-0D0BBDAD55D1",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-72E4904282DD",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-B3B7190FB9DA",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-2B0D6E30CBE8",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-895ABB370CD2",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-FFB4578FC3E0",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-9A963E0B149F",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-EB7F1A7EBA21",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-528961E5E2B2",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-D1A371A69662",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-C8700EB79A96",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-B849F10E5845",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-CFEFCDB28C13",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-54479C1822DB",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-810C3C407F7D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-F69A806A9EEA",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-FBFBF9E64F0C",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-5818E39B8F39",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-7DBCC6B2E687",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-F3C924B2493C",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-C1252F67B2AD",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-6B715FC8A009",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-91316E41AECD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-47647446A868",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-7B6C6B39B60E",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-9037949E19E9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-EB6495B9A365",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-3CAA00A0D9D7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-E262C8D1EAE2",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-2B8CEDF735FD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-DEA3D6D505F5",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-6A912418CE16",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-958A76D91208",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-C5C996800007",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-9B077088B20A",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-6D1EE9A05864",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-8403C94DDD03",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-409DFBC54A40",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-6B6644DD5BB5",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-DA0FE595626F",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-8B636E3D2F2C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-B34FDF67AE71",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-7DBCF885D8D0",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-380655214C4C",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-572729338C4F",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-D79B443A4626",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-76934A22CE2A",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-5F6F885EC8BD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-6997E0271924",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-60E844252C5A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-5973A249AD4B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-AB1EDA199A0C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-37352EB8C6A9",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-CC6D3D23B051",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-83C04AB77645",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-3885EBC8D201",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-1DB8EBCE6B35",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-7510C6E26878",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-E9FCF91DAB21",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-8E5497E9839F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-13065070DC1B",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-207487FF559A",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-4E4B6F71E6F3",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-B9F8889480EB",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-6D244A74A4A2",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-DB8D24FF98D6",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-6C4307F13E7A",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-92148578A0D2",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-03F796A3CFAB",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-BE46AD127401",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-A1A5AA5D7A24",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-72456F20423B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-55E560CE4982",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-EB68F8BA0A63",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-30AF0FDA294D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-B7FCC510CC26",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-74CC8F38E824",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-AD430B022239",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-F817252EA462",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-30F5A496C4FC",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-36EE38F9F2E3",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-61801B2E7D4D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-9F3E4B2AD503",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-CB4713EEC73A",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-E3BB283FDD7B",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-586EBBF2BE54",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-D1FBF0190D57",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-E790EC37661E",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-0A01B820C2A2",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-9E6DCCA98EB7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-721D878A4545",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-2AE825D7043A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-F34BD29C4A2C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-C331AAC21A1D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-EC4A7B87AC63",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-E2C2D829EAE6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-5FC0E4FF6108",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-643E09706ED5",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-D873E511E86D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-D05E282B6459",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-64507D2E8F0A",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-22A4333ED361",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-8B88769B8510",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-9BCBF125B3F1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-9E79E1AED708",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-A46C96D34A78",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-872791577AD8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-60E20DE1BB5E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-C73B7A185791",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-E89CCD9411E5",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-09E6494500ED",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-CC55136F4360",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-EA99C5129E91",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-082EA08D3BDD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-369F81988C93",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-C8348AC3FE45",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-6A419B91C029",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-1FB0D91323D6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-4018B4AD8636",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-711725CE3B1E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-841ED1016F3D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        80.0,
+        200.0
+      ]
+    },
+    {
+      "id": "REQ-F67F9C134629",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-00A505C28EFC",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        80.0,
+        200.0
+      ]
+    },
+    {
+      "id": "REQ-FF47B9829076",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-FC843CB008E1",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-9903720A303C",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-28EFB1ECF471",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-5BA0285BBB69",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-45C397E438A6",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-52A5D9626C35",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-5551078AC73E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-1E3244061C44",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-66E6DA042ED3",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-CFC9328ECAF6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-B4A45D0FD30A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-C5FB6A999419",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-AD4B71544AAD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-D95AA0BEB512",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-3B3AF78139A2",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-5EFE5E5604A7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-7970A51F9D16",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-908B2AC0EFC1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-5336DC2074E8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-9BF314C2534E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-A3F658FC7562",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-EBDCE534795F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-8681672415DA",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-8DD62F71E8FC",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-305FE2C206A1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-C8381E97A2F3",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-CCC68F6670DC",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-6B483A9A07A4",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-E42D0FBFDFC3",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-DAD6A79DCE61",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-690CAD66A9E6",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-78DE56551B13",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-F050FE3CABA9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-0929BB7E1740",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-5A02DE75BEC1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-BFA4A3A64394",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-E4F30C2FD25E",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-46999351A71A",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-330E2A51E7AC",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-EAA11E8ED383",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-859D6D193CB7",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        4.2,
+        11.2
+      ]
+    },
+    {
+      "id": "REQ-887A94A6416F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-BA7034BA5676",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-644158241162",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-7ED30D716205",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-EE203E7303CA",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-C384A4ABBA9F",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-F5ACA5E21B39",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-16D9B21D764B",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-3EBF60D933CA",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-61CB5E7667FE",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-FE3B9048301E",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-F2F74A3F8EB5",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-642380D21FF4",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-3E16C07FFC7B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-A4EEC56722D3",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-603F29AFDFF1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-65E47D9D02BF",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-A9BD7E70BF32",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-8D5F64DF2381",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-B0742B9B0CA7",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        10.8,
+        28.8
+      ]
+    },
+    {
+      "id": "REQ-F9D531C1CBFB",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        72.0,
+        180.0
+      ]
+    },
+    {
+      "id": "REQ-A6198405CC1F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-29BD3392A309",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-6A962DE8DD2F",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        10.8,
+        28.8
+      ]
+    },
+    {
+      "id": "REQ-D573D4239E6E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-4ED1EEAED520",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        48.0,
+        120.0
+      ]
+    },
+    {
+      "id": "REQ-8C6B40682759",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-60C2851BA675",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-A7A1BF26940E",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-78ABD49CADB3",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-806997C04AFD",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-263BCE4B44DC",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-F45D95F1E4CE",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-7F0F05B172E7",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-FC67EBEBF43E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-27F864C6FF63",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": true,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-B2560F63A03D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-77DD9168E925",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-C4CC873945E0",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-733FA77799A4",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-1F13CB993C96",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-097BC2108576",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-2F6E96AFF322",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-CD7D85DEAD06",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-2C09174DE1AF",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-49AA20521F5F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-D50185692251",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7DA8D9A50B96",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        80.0,
+        200.0
+      ]
+    },
+    {
+      "id": "REQ-5856FC48C011",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7711B93CC79C",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-161FF0CB3DD6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        80.0,
+        200.0
+      ]
+    },
+    {
+      "id": "REQ-9837A786F20D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4062D53009BD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FC6EA65DB66A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        80.0,
+        200.0
+      ]
+    },
+    {
+      "id": "REQ-069B7E982D6B",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-CEC813DC6BA4",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-66DBA0C946F1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-12890A603B18",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-1189259E777A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7A3F0DB3232B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4EDB7E4BC7A4",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4E6DE8A368D7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-F11CC186B06A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-76F1A6B50BB8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-8D096D90194B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-265DD4A26C18",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7E21257DC694",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-BEA5FF79BA9F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7FDDEDBCE431",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-3E6958836684",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-00232ACC0EAF",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4FA886F7B4B8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-90009644E553",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-057C8DE462AD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FDFB0CF66201",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-8709E48D0B06",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-774171DF9F48",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-2B5521587B81",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-24911D4DBAAD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4C49521528D9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-99EF219C60AE",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-86E2476BFF73",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-5DBD81CA99C1",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-57021BBC428C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-DF86815ADC7D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4686999FFB10",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7D4869162010",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-1FB6465699AE",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-AF02E1A5F44B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-696F1CF907E9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-87A0566A1CA8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-79CA39C57E54",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-0C686E46F5F5",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-9E959CEA9064",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-9B1B5852EF70",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-0393EAF29EE2",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-6F73042A3105",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-3896E1973DD2",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-D8DC46E5B51F",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-118C59F91098",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-BE5A9FA7316D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-026B702203DD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-60CA99D14F09",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-117096B15733",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-5589AC0D2B28",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-86BD3CF3ECE9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-EA1572D27281",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-67EB0C7EC254",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-BC69FAC2A36D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7D0A09BF0387",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-E52C985A9BC9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4D95A768B76A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-C5966E292277",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-3EDEC65DB327",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-89119C52F508",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-35E483188D3B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-F1FC949958B9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-51BF500B4FC9",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-1E4EEFB90867",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-0EEB198A68E9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-47FC1ED2A858",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-19A9AAA63A75",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-03049B269275",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-73FE4D0C3DB6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-A67435399029",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-F0CE385AFA41",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-04B741171A9A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-CA4D6FA08735",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-AD98099BB265",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-54F4FC28959A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-18FA65D8BA31",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7763BB580EC2",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7B4DCA578A77",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-A2549BBF7355",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.6,
+        1.8
+      ]
+    },
+    {
+      "id": "REQ-D90A2D8DC59B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-2C10533FC50A",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-0976C7B0333C",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-35D0732030DC",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-C5440E5E883B",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-052D3CF413DA",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-35FC8A560F4D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-1BC0864BB111",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-A6F45418BBB6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-2F5AFB119A20",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-BBF344D9AED0",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-902D545AF782",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-4E7C330809AB",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-986C687A2EE2",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-C688A830B83F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-9254346D0F0B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-EE0F1C752289",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-24DA3CB616CF",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-B80BBA954791",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-21260EA600A7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-1736DEB93C33",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-D8EED626387E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-25FF5E375FCA",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-2B8B9A9F7F24",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-0DA77B5D2A8F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-9DB6223BC40C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-E3C1466D0735",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-2E9957ACE2E4",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-CC83ADB62F7C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-42992C0EAAC0",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-25E6D32ECEC6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-547806C480C2",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4AE476CE5EB3",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-C35D7F5F7E7E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-30B13A053DA6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-01EF3A68379C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-0F7E2AB05D83",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-5903E85DBB7C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-1FE87524938D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-24DD9AA97166",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4A78682D368D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-7265B1768FE8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-A7E603AC9FA5",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-739677FE7159",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-F297CFEB7979",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-5ED5E5FAECBB",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-9C2F08644047",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-0B79C4B549DE",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-CB8CE0884D49",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-10928E54F27D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-74FEAE9CF2D9",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-C7939A175789",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-69BF5ADF5D41",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-034B2246508A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-3B0D136462E2",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FD1A91057ACD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-231A2501CAB3",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-F0175ACF4935",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-79FD5FC049B8",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-868D4ABCBA81",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FBC4BC0ED326",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-508B6078D47E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-4A0790169C06",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-C6928631D878",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-551F67A4DD21",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-90C434BA9191",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-C4767079EDFE",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-59D4FFC1BFD6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-BA602D564FBD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-277D2452B9E7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-F9F2B5BD0C06",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-72A3E236BB2F",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        72.0,
+        180.0
+      ]
+    },
+    {
+      "id": "REQ-2DE029A77F99",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-84B2C285B819",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-94FB45F33018",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-BAC8F4BAFF34",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-3EECADDC7C2C",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-39DB093431E6",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-18CA84B8E887",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-98D4D67F210B",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-FA5F31E0E392",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-1A09FC991D3C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-49FE3F05B723",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-5F7575D99ACD",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-0DD0E71E38FB",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-AF5D049B95DB",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-36800FE5F35E",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-3D08DCE6D85B",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-0D3CF7E9A585",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-A87C93D0F3E7",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-404EC403FE48",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-6F4033F666B6",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-232B120544FA",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-E97627D6D740",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FC7C1BE39F10",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-00C7C69E6A2C",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-8CD128670E8A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-EDF16961FC6F",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-8BF792C3E924",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-BCEBA65A269C",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-337746E9F48F",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-5761B7AD2134",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-01EA2ACE6F0A",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-3A42F0CD1A59",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 8.0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-0C392B0E2F56",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-6764296677F4",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-718817CB617C",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-9F1DBF699465",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-DC420FFC5076",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-53ED117F0B6E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-CF121261BADC",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-8CE398A0F944",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        1.8,
+        4.8
+      ]
+    },
+    {
+      "id": "REQ-A1E40E134146",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-6C1678DD291C",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-EE86B43B4783",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-FA3BE94409E9",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-51536E7FA51D",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-F70EEB6A205E",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-0C8CE11996F5",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-24F7A3F59AC1",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-D871994FCE8B",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-14707F699933",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-696620E99689",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-190B7BFDAF99",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-F6A13187400E",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-353FC3006C0A",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 22.0,
+      "remaining_hours": [
+        12.0,
+        32.0
+      ]
+    },
+    {
+      "id": "REQ-46E5E5C7027B",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": true,
+      "weight": 22.0,
+      "remaining_hours": [
+        7.2,
+        19.2
+      ]
+    },
+    {
+      "id": "REQ-239C80C74F95",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        48.0,
+        120.0
+      ]
+    },
+    {
+      "id": "REQ-9C5910A422B1",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-432C1F9EBE8E",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-9EB9389661CB",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-B8705395C1FB",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-98A9CAEBE253",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FF602A6D5DBF",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-47369CECFE0D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-2C6C6C3EB8ED",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-3D2224AE1951",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-CF756A6A22E4",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-D184E5B49177",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-EFD068F96ACF",
+      "percent": 85,
+      "stage": "validated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        4.8,
+        12.0
+      ]
+    },
+    {
+      "id": "REQ-715F48E3279E",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-D1C9D14AE71D",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-EAF0FAD20CFF",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-0E85FB80AA00",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 140.0,
+      "remaining_hours": [
+        80.0,
+        200.0
+      ]
+    },
+    {
+      "id": "REQ-7588A51C9C94",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-E9C2C58FF493",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-A931295BDF76",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-026FE9E1AEA3",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-7825C75BAC57",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "REQ-43BFAA3E95A3",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-2C27A3F28DCD",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-1F1D8A55E012",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-FA4991248659",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": true,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "REQ-61EF18FE88EA",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-D22DDF580399",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-093B06EEC634",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-4903D53A2E2C",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-8D2CDD600262",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-3EA39023D505",
+      "percent": null,
+      "stage": "excluded",
+      "blocked": false,
+      "weight": 0,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "REQ-563C9558FA3E",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-9916E70FB0A0",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-6DBD5997E2AC",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-1C3819A2F3F7",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-77D22F588A32",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-77EDA8F5C4C9",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-BAF4F8651818",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-A46712169970",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-E9B453F14E34",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-866A7053B00A",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-B9A4B6031069",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-9A34072E7494",
+      "percent": 0,
+      "stage": "not_started",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        32.0,
+        80.0
+      ]
+    },
+    {
+      "id": "REQ-3B17CBFEA5DC",
+      "percent": 65,
+      "stage": "integrated",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        11.2,
+        28.0
+      ]
+    },
+    {
+      "id": "REQ-FB123C2349C3",
+      "percent": 40,
+      "stage": "implementation",
+      "blocked": false,
+      "weight": 56.0,
+      "remaining_hours": [
+        19.2,
+        48.0
+      ]
+    },
+    {
+      "id": "DF-01",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-02",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-03",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-04",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-05",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-06",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-07",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "DF-08",
+      "percent": 10,
+      "stage": "planned",
+      "blocked": false,
+      "weight": 56,
+      "remaining_hours": [
+        28.8,
+        72.0
+      ]
+    },
+    {
+      "id": "GOV-01",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "GOV-02",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "GOV-03",
+      "percent": 100,
+      "stage": "complete",
+      "blocked": false,
+      "weight": 22,
+      "remaining_hours": [
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

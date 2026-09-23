@@ -18,7 +18,10 @@
     "test:e2e": "playwright test",
     "test:mcp": "node scripts/validate-mcp.mjs",
     "mcp": "node apps/desktop/dist/mcp.cjs",
-    "format": "prettier --write \"{apps,packages,tests,scripts}/**/*.{ts,tsx,mjs,css}\""
+    "format": "prettier --write \"{apps,packages,tests,scripts}/**/*.{ts,tsx,mjs,css}\"",
+    "roadmap:check": "python -X utf8 scripts/roadmap/roadmap.py --check",
+    "roadmap:test": "python -X utf8 scripts/roadmap/test_roadmap.py",
+    "roadmap:render": "python -X utf8 scripts/roadmap/roadmap.py --write"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.0.0",

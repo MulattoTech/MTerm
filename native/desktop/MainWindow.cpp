@@ -1,9 +1,11 @@
+// Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (original implementation)
 // Modified: 2026-09-22-native-ux; docs/ai/changes/2026-09-22-native-ux.json
 #include "MainWindow.h"
 #include "CanvasView.h"
 #include "CommandPalette.h"
+#include "EditorDeck.h"
 #include "JobPane.h"
 #include "ProjectView.h"
 #include "TerminalPane.h"
@@ -14,16 +16,20 @@
 #include <QCloseEvent>
 #include <QDialog>
 #include <QDialogButtonBox>
+#include <QDir>
 #include <QElapsedTimer>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QPushButton>
+#include <QSettings>
 #include <QShortcut>
 #include <QSignalBlocker>
+#include <QSplitter>
 #include <QStatusBar>
 #include <QTabWidget>
 #include <QTextBrowser>
@@ -31,7 +37,8 @@
 #include <QVBoxLayout>
 namespace mterm {
 MainWindow::MainWindow(QString databaseFile, QWidget *parent)
-    : QMainWindow(parent), backend_(new Backend(std::move(databaseFile), this)) {
+    : QMainWindow(parent), backend_(new Backend(databaseFile, this)),
+      uiSettingsFile_(databaseFile + ".window.ini") {
     QElapsedTimer phase;
     phase.start();
     ui::applyTheme(*qApp);
@@ -42,6 +49,11 @@ MainWindow::MainWindow(QString databaseFile, QWidget *parent)
     phase.restart();
     createUi();
     setProperty("uiConstructionMs", phase.elapsed());
+    QSettings preferences(uiSettingsFile_, QSettings::IniFormat);
+    if (preferences.contains("window/geometry"))
+        restoreGeometry(preferences.value("window/geometry").toByteArray());
+    if (auto *split = findChild<QSplitter *>("workspace-splitter"))
+        split->restoreState(preferences.value("window/splitter").toByteArray());
     connect(backend_, &Backend::response, this, &MainWindow::onResponse);
     saveTimer_.setSingleShot(true);
     saveTimer_.setInterval(300);
@@ -56,20 +68,32 @@ void MainWindow::paintEvent(QPaintEvent *event) {
         emit firstPaint();
     }
 }
+void MainWindow::saveWindowPreferences() {
+    QDir().mkpath(QFileInfo(uiSettingsFile_).absolutePath());
+    QSettings preferences(uiSettingsFile_, QSettings::IniFormat);
+    preferences.setValue("window/geometry", saveGeometry());
+    if (auto *split = findChild<QSplitter *>("workspace-splitter"))
+        preferences.setValue("window/splitter", split->saveState());
+    preferences.sync();
+}
 void MainWindow::closeEvent(QCloseEvent *event) {
-    const int revision = editor_ ? editor_->document()->revision() : -1;
-    if (editor_ && editor_->document()->isModified() && approvedCloseRevision_ != revision) {
-        if (QMessageBox::question(
-                this, "Unsaved editor",
-                "Discard unsaved editor changes and close MTerm? Active owned processes will stop.",
-                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes) {
-            approvedCloseRevision_ = -1;
+    if (editorDeck_ && editorDeck_->hasPendingWrites()) {
+        statusBar()->showMessage("Wait for file saves to finish before closing.");
+        event->ignore();
+        return;
+    }
+    const auto signature = editorDeck_ ? editorDeck_->dirtySignature() : QByteArray{};
+    if (editorDeck_ && editorDeck_->hasUnsavedChanges() && approvedCloseSignature_ != signature) {
+        if (QMessageBox::question(this, "Unsaved editors",
+                                  "Discard unsaved changes in these buffers and close?\n" +
+                                      editorDeck_->dirtyPaths().join("\n"),
+                                  QMessageBox::Yes | QMessageBox::No,
+                                  QMessageBox::No) != QMessageBox::Yes) {
+            approvedCloseSignature_.clear();
             event->ignore();
             return;
         }
-        // Do not clear the dirty flag: a failed layout save must retain the unsaved editor.
-        // Reuse approval only for this exact revision while asynchronous layout save finishes.
-        approvedCloseRevision_ = revision;
+        approvedCloseSignature_ = signature;
     }
     if ((layoutDirty_ || pendingLayout_) && state_["profile"] == "developer") {
         closeAfterSave_ = true;
@@ -77,6 +101,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
         event->ignore();
         return;
     }
+    saveWindowPreferences();
     QMainWindow::closeEvent(event);
 }
 
@@ -87,9 +112,15 @@ quint64 MainWindow::send(const QString &method, QJsonObject args) {
     return id;
 }
 void MainWindow::openWorkspace(const QString &root) {
-    if (editor_ && editor_->document()->isModified() &&
+    if (editorDeck_ && editorDeck_->hasPendingWrites()) {
+        statusBar()->showMessage("Wait for pending file saves before switching workspaces.");
+        return;
+    }
+    if (editorDeck_ && editorDeck_->hasUnsavedChanges() &&
         QMessageBox::question(
-            this, "Unsaved file", "Discard unsaved editor changes and open another workspace?",
+            this, "Unsaved editors",
+            "Discard changes in all unsaved buffers before opening another workspace?\n" +
+                editorDeck_->dirtyPaths().join("\n"),
             QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes)
         return;
     if (layoutDirty_ || pendingLayout_) {
@@ -130,6 +161,10 @@ void MainWindow::createUi() {
             send("profile", {{"developer", value}});
     });
     connect(shell_, &WorkspaceShell::toolRequested, this, &MainWindow::selectTool);
+    connect(shell_, &WorkspaceShell::resourceFilterChanged, this, [this](const QString &text) {
+        canvas_->setFilter(text);
+        project_->setFilter(text);
+    });
     connect(shell_, &WorkspaceShell::createRequested, this, &MainWindow::createResource);
     connect(shell_, &WorkspaceShell::projectRequested, this, &MainWindow::setProjectMode);
     connect(shell_, &WorkspaceShell::saveRequested, this, &MainWindow::scheduleLayoutSave);
@@ -299,29 +334,18 @@ void MainWindow::applyState(const QJsonObject &state) {
     shell_->setWorkspace(state["root"].toString(), dev,
                          state["canvas"].toObject()["nodes"].toArray().size());
     setWindowTitle("MTerm — " + state["root"].toString());
-    for (const auto *name :
-         {"add-note", "save-note", "save-layout", "add-task", "task-done", "save-file", "new-file"})
+    for (const auto *name : {"add-note", "save-note", "save-layout", "add-task", "task-done"})
         if (auto *b = findChild<QPushButton *>(name))
             b->setEnabled(dev);
-    if (editor_)
-        editor_->setReadOnly(!dev);
+    if (editorDeck_)
+        editorDeck_->setWorkspace(state);
     if (noteBody_)
         noteBody_->setReadOnly(!dev);
     if (noteTitle_)
         noteTitle_->setReadOnly(!dev);
     if (switched) {
-        if (editor_) {
-            editor_->clear();
-            editor_->document()->setModified(false);
-        }
-        fileVersion_.clear();
-        loadedFile_.clear();
-        if (filePath_)
-            filePath_->clear();
         selectedNodeId_.clear();
-        directory_ = ".";
-        if (fileBrowser_)
-            fileBrowser_->clear();
+        approvedCloseSignature_.clear();
         layoutDirty_ = false;
         pendingLayout_ = 0;
         projectMode_ = state["canvas"].toObject()["view"] == "project";
@@ -364,7 +388,7 @@ void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject
         if (savedLayout) {
             layoutDirty_ = true;
             closeAfterSave_ = false;
-            approvedCloseRevision_ = -1;
+            approvedCloseSignature_.clear();
             shell_->setSaveStatus("Save conflict — changes retained");
         }
         if (method == "profile") {
@@ -393,30 +417,6 @@ void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject
         statusBar()->showMessage("Workspace ready · Observe mode · Ctrl+K for commands");
         refreshCurrentTab();
         emit workspaceReady();
-    } else if ((method == "read-file" || method == "write-file") && id == pendingFile_) {
-        pendingFile_ = 0;
-        loadedFile_ = result["path"].toString();
-        filePath_->setText(loadedFile_);
-        fileVersion_ = result["version"].toString();
-        const auto text = result["text"].toString();
-        if (method == "read-file") {
-            editor_->setPlainText(text);
-            editor_->document()->setModified(false);
-        } else
-            editor_->document()->setModified(editor_->toPlainText() != text);
-        statusBar()->showMessage(method == "read-file" ? "File loaded · SHA-256 version captured"
-                                 : editor_->document()->isModified()
-                                     ? "Saved · newer editor changes remain unsaved"
-                                     : "File saved atomically");
-    } else if (method == "list-files" && id == pendingDirectory_) {
-        if (fileBrowser_)
-            fileBrowser_->clear();
-        for (const auto &v : result["items"].toArray()) {
-            const auto entry = v.toObject();
-            auto *item = new QTreeWidgetItem(fileBrowser_, {entry["name"].toString()});
-            item->setIcon(0, ui::icon(entry["directory"].toBool() ? "folder" : "note"));
-            item->setData(0, Qt::UserRole, entry);
-        }
     } else if (method == "processes") {
         processes_->clear();
         for (const auto &v : result["items"].toArray()) {
@@ -446,21 +446,6 @@ void MainWindow::onResponse(quint64 id, const QString &method, const QJsonObject
             inspectNode(nodes.last().toObject());
     }
 }
-void MainWindow::loadFile() {
-    if (editor_->document()->isModified() &&
-        QMessageBox::question(this, "Unsaved file", "Discard unsaved changes and open this file?",
-                              QMessageBox::Yes | QMessageBox::No,
-                              QMessageBox::No) != QMessageBox::Yes)
-        return;
-    pendingFile_ = send("read-file", {{"path", filePath_->text()}});
-}
-void MainWindow::listDirectory(const QString &path) {
-    if (workspaceId().isEmpty())
-        return;
-    directory_ = path;
-    directoryLabel_->setText(path);
-    pendingDirectory_ = send("list-files", {{"path", path}});
-}
 void MainWindow::refreshCurrentTab() {
     if (workspaceId().isEmpty())
         return;
@@ -468,8 +453,8 @@ void MainWindow::refreshCurrentTab() {
         send("processes");
     else if (tabs_->currentWidget() == audit_)
         send("audit");
-    else if (tabs_->currentWidget()->objectName() == "editor-panel")
-        listDirectory(directory_);
+    else if (tabs_->currentWidget()->objectName() == "editor-panel" && editorDeck_)
+        editorDeck_->refreshDirectory();
 }
 void MainWindow::showSources() {
     auto *dialog = new QDialog(this);

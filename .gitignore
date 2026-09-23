@@ -19,3 +19,7 @@ artifacts/
 *.user
 CMakeUserPresets.json
 __pycache__/
+
+# Development-only Python caches; never runtime or provenance artifacts.
+__pycache__/
+*.pyc

@@ -41,7 +41,7 @@ endif()
 if(MTERM_BUILD_DESKTOP)
  find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Widgets)
  set(CMAKE_AUTORCC ON)
- add_library(mterm_desktop STATIC desktop/MainWindow.cpp desktop/MainWindowPanels.cpp desktop/CanvasView.cpp
+ add_library(mterm_desktop STATIC desktop/MainWindow.cpp desktop/MainWindowPanels.cpp desktop/EditorDeck.cpp desktop/CanvasView.cpp
   desktop/ResourceCard.cpp desktop/ProjectView.cpp desktop/WorkspaceShell.cpp desktop/CommandPalette.cpp
   desktop/ui/Theme.cpp desktop/ui/resources.qrc desktop/JobPane.cpp desktop/TerminalWidget.cpp desktop/TerminalPane.cpp)
  target_link_libraries(mterm_desktop PUBLIC mterm_services Qt6::Widgets)
@@ -57,6 +57,10 @@ if(MTERM_BUILD_DESKTOP)
   target_link_libraries(mterm-ux-tests PRIVATE mterm_desktop Qt6::Test)
   add_test(NAME native-ux COMMAND mterm-ux-tests -o ux-tests.txt,txt)
   set_tests_properties(native-ux PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+  add_executable(mterm-workbench-tests tests/WorkbenchTests.cpp)
+  target_link_libraries(mterm-workbench-tests PRIVATE mterm_desktop Qt6::Test)
+  add_test(NAME native-workbench COMMAND mterm-workbench-tests -o workbench-tests.txt,txt)
+  set_tests_properties(native-workbench PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
  endif()
 endif()
 

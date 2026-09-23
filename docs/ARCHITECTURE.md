@@ -67,3 +67,15 @@ The GUI uses a 300ms debounced layout save with expected revisions, preserves ne
 during an outstanding save, and shows conflict status. Late scoped responses are filtered. Per-node
 independent live resources remain separate future work; cards currently route to retained inspectors.
 Source-project matrix, full REQ index and proposed DevFleet contracts define future extensions.
+
+## Workbench document ownership and metrics
+
+EditorDeck owns a bounded vector of per-file QTextDocuments with QPlainTextDocumentLayout and
+independent undo/cursor/scroll/version. A single QPlainTextEdit presents the selected document.
+Backend responses correlate request ID, workspace generation and buffer key; reloads also validate
+UI revision, and user selection takes priority over earlier I/O. MainWindow delegates file UI and
+checks the deck's aggregate dirty/pending state. Preferences are isolated beside the data location.
+
+Roadmap Python/HTML is offline development tooling only. Native startup neither executes Python
+nor loads the catalog. Evidence-backed progress.json renders Markdown/SVG/HTML/JSON; source/catalog
+review fingerprints enforce contributor updates through normal build/package scripts.

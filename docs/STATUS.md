@@ -1,3 +1,19 @@
+# Current native workbench / metrics update — 2026-09-23
+
+The generated [ROADMAP](ROADMAP.md) and [all-feature table](roadmap/FEATURES.md) report current
+per-item and aggregate stage assessments. Read METRICS.md for weights, exclusions and ETA limits.
+
+Implemented this pass: safe12-file editor deck with retained text/undo/cursors, tab shortcuts,
+per-buffer async versions and close protection; saved window/splitter geometry; shared Canvas/Project
+resource filtering; complete offline color-coded roadmap and mandatory metric-maintenance gates.
+
+Not claimed: all editor acceptance completed across platforms, unsaved-buffer crash recovery,
+new native Git/MCP/provider parity, live DevFleet integration, real-model tests, hosted CI or release
+certification. The overall bar is a planning assessment across the entire large scope, not a quality
+score for the current slice. The preserved table below describes the previous checkpoint.
+
+---
+
 # MTerm status — native UX restoration
 
 Active root: `C:\Tools\Dev\MTerm`. Branch: `feat/native-ux-20260922`.

@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (original implementation)
 // Modified: 2026-09-22-native-ux; docs/ai/changes/2026-09-22-native-ux.json
@@ -17,6 +18,7 @@ class CanvasView final : public QGraphicsView {
     QJsonObject canvas() const;
     void zoomBy(qreal multiplier);
     void fitResources();
+    void setFilter(const QString &text);
     void arrangeResources();
   signals:
     void layoutEdited();
@@ -33,6 +35,7 @@ class CanvasView final : public QGraphicsView {
 
   private:
     QGraphicsScene scene_;
+    QString filter_;
     QJsonObject canvas_;
     QHash<QString, ResourceCard *> cards_;
     bool editable_ = false, panning_ = false;

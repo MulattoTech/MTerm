@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-ux (OpenAI / GPT-6 Astra Pro)
 // See docs/ai/changes/2026-09-22-native-ux.json.
@@ -178,6 +179,15 @@ WorkspaceShell::WorkspaceShell(QWidget *parent) : QWidget(parent) {
     barRow->addWidget(title);
     count_ = label("0 resources", "muted", bar);
     barRow->addWidget(count_);
+    auto *resourceSearch = new QLineEdit(bar);
+    resourceSearch->setObjectName("workspace-resource-search");
+    resourceSearch->setPlaceholderText("Find resources…");
+    resourceSearch->setClearButtonEnabled(true);
+    resourceSearch->setMaximumWidth(200);
+    resourceSearch->setMinimumWidth(95);
+    resourceSearch->setAccessibleName("Find workspace resources");
+    barRow->addWidget(resourceSearch);
+    connect(resourceSearch, &QLineEdit::textChanged, this, &WorkspaceShell::resourceFilterChanged);
     barRow->addStretch();
     saveState_ = label("Local workspace", "muted", bar);
     barRow->addWidget(saveState_);

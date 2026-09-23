@@ -1,3 +1,33 @@
+# Current continuation — workbench and mandatory roadmap (2026-09-23)
+
+Active root `C:\Tools\Dev\MTerm`, branch `feat/native-workbench-roadmap-20260923`, based on6344e94.
+The prior handoff below is retained as history; this section and current STATUS/ROADMAP take precedence.
+
+**Read docs/roadmap/METRICS.md before modifying anything.** All496 rows are retained:485 inherited,
+8 DevFleet,3 governance.24 legend/dated-reference rows are visibly excluded;472 requirements are
+scored. Do not treat inherited checkmarks or phase percentages as native release readiness.
+Every change must review affected IDs, evidence, stage, estimate and blocker, update its AI record,
+run `--refresh --change-id ... --items ... --review-note ...` and pass `--check`. Normal builds and
+packaging reject stale source/catalog fingerprints; local -SkipRoadmapCheck is not a release gate.
+
+Native file ownership is now EditorDeck, not MainWindow's single-file fields. Up to12 retained
+QTextDocuments, each with undo/cursor/scroll/version and pending operations keyed by buffer identity,
+workspace generation and explicit user selection. Late reloads must match the document revision;
+late saves update only their target. Closing and switching workspace inspect background dirty tabs.
+Window geometry/splitter use a sidecar INI at `<database>.window.ini`. Unsaved text is not persisted
+across application restart; do not claim crash recovery of editor contents.
+
+New workbench suite tests tab identity/undo, late-save and late-reload races, user-selected tab priority,
+background close cancel, capacity/keyboard close, geometry and no-delete filtering. Real Windows
+screenshots are opt-in; no models are called. Run all native, reference and roadmap checks before
+publishing. The roadmap itself is offline documentation/tooling, not a new product browser runtime.
+
+Next: full per-resource native sessions, richer task/evidence and Git/provider/MCP parity; editor
+save-all/find/syntax/LSP/recovery; realistic perf/security/cross-platform gates. Source-project matrix
+and proposed DevFleet contract remain unchanged. Hosted CI workflow permission is still blocked.
+
+---
+
 # MTerm active handoff — native UX restoration, 2026-09-22
 
 ## Active location and branch

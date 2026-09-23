@@ -1,34 +1,60 @@
-# MTerm native roadmap
+# MTerm roadmap and delivery dashboard
 
-The inherited MASTER_TODO_100_PERCENT.md preserves the broad vision. Its reference checkmarks
-are not native parity. This roadmap and STATUS.md govern current native work.
+**Assessed 2026-09-23T07:49:49.734658+00:00 · 17.36% weighted delivery maturity**
 
-| Priority / issue | Workstream | Immediate acceptance gate |
-|---|---|---|
-| P0 #2 | File/process/workspace safety | Handle-anchored path races; pre-execution QProcess ownership; late callbacks; transactional switching |
-| P0 #7 | CI and release foundations | Authorized workflow installation, actual Windows/Linux hosted results, dependency/license review |
-| P1 #3 | Terminal parity and continuity | Scrollback/selection/IME, bounded shutdown, Unicode bursts, multiple IDs, Unix PTY, GUI-independent supervisor |
-| P1 #4 | Resource graph and native UI | Stable shared IDs across Canvas/Project; files, tasks, evidence; groups/edges/undo/search |
-| P1 #5 | Providers and MCP | Native conformance fixtures, scoped tools, actual opt-in provider proofs, cancellation/resume/usage |
-| P1 #6 | File/Git/evidence parity | File tree/ranges/search/patching; native diff/stage/worktree lifecycle with explicit approval |
-| P1 #8 | Performance | Equivalent external readiness/input/frame/dispatch benchmarks; long histories and multi-surface budgets |
-| P2 #9 | Optional integrations | On-demand browser/tunnels/plugins/skills/memory/Docker; no default background bloat |
+![Overall completion](roadmap/bars/overall.svg)
 
-## Completed baseline, not complete parity
+**472 scored entries · 20 complete · 3 blocked · 24 explicitly excluded historical/legend entries.**
 
-Native core, database migrations/scoping, captured job supervision, Windows inventory, Qt desktop,
-real Windows PTY, fixture-tested Codex fresh/resume, and local standalone packaging exist and pass
-the documented Windows checks. Continue from those implementations instead of generating stubs.
+This is a reviewed planning model, **not release readiness, code coverage, probability of completion, or the percent of every upstream app implemented**. Native features require native evidence; inherited Electron checkmarks do not confer credit.
 
-## Next implementer contract
+Calendar ETA: **Unscheduled** until capacity, dependencies and a maintained schedule exist. Every feature lists an approximate **remaining engineer-hour range**, not elapsed AI runtime. Estimates are low-confidence scope assumptions, not promises.
 
-Choose one bounded issue acceptance item, record a change ID/provider/model/date, write and observe
-failing tests, implement, run the full relevant gate, update STATUS/HANDOFF/evidence, then publish a
-reviewable commit. Preserve old author headers and state unknown identity honestly.
-Never infer a feature is complete because a data structure, button or process-exit-zero exists.
+Naive additive remaining effort: **8,988–22,779 engineer-hours**. Shared implementation/overlap may reduce it; risk/rework may increase it. Do not convert this into a delivery date using invented staffing.
 
-## Release remains separate
+[Every feature, percentage, evidence and effort](roadmap/FEATURES.md) · [Offline searchable dashboard](roadmap/index.html) · [Metric rules](roadmap/METRICS.md) · [Source projects](SOURCE_PROJECT_FEATURE_MATRIX.md)
 
-No current 0.2.0 preview is a signed production release. Complete dependency notices, update integrity,
-rollback, backup/import safety, installer/uninstaller behavior, accessibility and clean-machine tests.
-Retain the reference until native security and functional parity tests justify dropping its runtime.
+## Status key
+
+⬜ 0% not started · 🟪 10% planned · 🟦 40% implementation · 🟦 65% integrated · 🟨 85% validated with acceptance gaps · 🟩 100% complete · 🟥 blocked (keeps earned percentage).
+
+## Areas
+
+| Area | Progress | Complete / scope | Remaining effort* | ETA |
+|---|---|---:|---:|---|
+| [Meaning of “100%”](roadmap/FEATURES.md#area-00) | ![0%](roadmap/bars/area-00.svg) | 0 / 0 | 0–0 h | Unscheduled |
+| [0. Establish a trustworthy new baseline](roadmap/FEATURES.md#area-01) | ![63.75%](roadmap/bars/area-01.svg) | 0 / 4 | 17.4–46.4 h | Unscheduled |
+| [1. Desktop shell and application lifecycle](roadmap/FEATURES.md#area-02) | ![17.28%](roadmap/bars/area-02.svg) | 1 / 15 | 136.2–363.4 h | Unscheduled |
+| [2. Workspace runtime](roadmap/FEATURES.md#area-03) | ![40.42%](roadmap/bars/area-03.svg) | 2 / 12 | 85.8–228.8 h | Unscheduled |
+| [3. Infinite canvas — domain and interaction completeness](roadmap/FEATURES.md#area-04) | ![35.21%](roadmap/bars/area-04.svg) | 2 / 31 | 231–616.4 h | Unscheduled |
+| [4. Project Mode completeness](roadmap/FEATURES.md#area-05) | ![28.5%](roadmap/bars/area-05.svg) | 1 / 20 | 171.6–457.6 h | Unscheduled |
+| [5. Filesystem and editor surface](roadmap/FEATURES.md#area-06) | ![20.75%](roadmap/bars/area-06.svg) | 5 / 25 | 219.6–585.6 h | Unscheduled |
+| [6. Terminal/runtime sessions](roadmap/FEATURES.md#area-07) | ![19.64%](roadmap/bars/area-07.svg) | 0 / 16 | 265–680 h | Unscheduled |
+| [7. Git and worktree orchestration](roadmap/FEATURES.md#area-08) | ![9.29%](roadmap/bars/area-08.svg) | 0 / 25 | 244.2–652 h | Unscheduled |
+| [8. Process and system runtime](roadmap/FEATURES.md#area-09) | ![35.18%](roadmap/bars/area-09.svg) | 0 / 18 | 135–360.2 h | Unscheduled |
+| [9. Tasks, agency, evidence, and local memory](roadmap/FEATURES.md#area-10) | ![16.72%](roadmap/bars/area-10.svg) | 2 / 22 | 264–692 h | Unscheduled |
+| [10. Agent provider abstraction and multi-agent runtime](roadmap/FEATURES.md#area-11) | ![23.19%](roadmap/bars/area-11.svg) | 0 / 30 | 884.8–2212 h | Unscheduled |
+| [11. MCP service — complete tool surface](roadmap/FEATURES.md#area-12) | ![0%](roadmap/bars/area-12.svg) | 0 / 40 | 1280–3200 h | Unscheduled |
+| [12. Permission/security system to full specification](roadmap/FEATURES.md#area-13) | ![22.96%](roadmap/bars/area-13.svg) | 0 / 27 | 665.6–1664 h | Unscheduled |
+| [13. Secret management](roadmap/FEATURES.md#area-14) | ![1%](roadmap/bars/area-14.svg) | 0 / 10 | 316.8–792 h | Unscheduled |
+| [14. Audit and observability](roadmap/FEATURES.md#area-15) | ![29.39%](roadmap/bars/area-15.svg) | 0 / 17 | 138.6–369.8 h | Unscheduled |
+| [15. Remote MCP](roadmap/FEATURES.md#area-16) | ![2%](roadmap/bars/area-16.svg) | 0 / 15 | 470.4–1176 h | Unscheduled |
+| [16. Browser node and browser automation](roadmap/FEATURES.md#area-17) | ![0%](roadmap/bars/area-17.svg) | 0 / 13 | 416–1040 h | Unscheduled |
+| [17. Optional ChatGPT Web/browser harness](roadmap/FEATURES.md#area-18) | ![2.5%](roadmap/bars/area-18.svg) | 0 / 8 | 249.6–624 h | Unscheduled |
+| [18. Optional computer-use / GUI automation](roadmap/FEATURES.md#area-19) | ![0%](roadmap/bars/area-19.svg) | 0 / 10 | 320–800 h | Unscheduled |
+| [19. Package managers and Docker](roadmap/FEATURES.md#area-20) | ![0%](roadmap/bars/area-20.svg) | 0 / 10 | 320–800 h | Unscheduled |
+| [20. Plugin architecture](roadmap/FEATURES.md#area-21) | ![7.58%](roadmap/bars/area-21.svg) | 0 / 15 | 488–1220 h | Unscheduled |
+| [21. Session continuity and recovery](roadmap/FEATURES.md#area-22) | ![32.69%](roadmap/bars/area-22.svg) | 0 / 13 | 280–700 h | Unscheduled |
+| [22. Persistence/data model](roadmap/FEATURES.md#area-23) | ![46.43%](roadmap/bars/area-23.svg) | 4 / 13 | 67.2–179.2 h | Unscheduled |
+| [23. Performance and lean-runtime definition](roadmap/FEATURES.md#area-24) | ![28.48%](roadmap/bars/area-24.svg) | 0 / 12 | 151.2–395.2 h | Unscheduled |
+| [24. Cross-platform runtime](roadmap/FEATURES.md#area-25) | ![26.11%](roadmap/bars/area-25.svg) | 0 / 9 | 212.8–532 h | Unscheduled |
+| [25. Release engineering](roadmap/FEATURES.md#area-26) | ![20.29%](roadmap/bars/area-26.svg) | 0 / 16 | 446.4–1116 h | Unscheduled |
+| [26. Test/security/reliability completion gate](roadmap/FEATURES.md#area-27) | ![41.67%](roadmap/bars/area-27.svg) | 0 / 15 | 280–700 h | Unscheduled |
+| [27. DevFleet integration (proposed)](roadmap/FEATURES.md#area-28) | ![10%](roadmap/bars/area-28.svg) | 0 / 8 | 230.4–576 h | Unscheduled |
+| [28. Roadmap governance](roadmap/FEATURES.md#area-29) | ![100%](roadmap/bars/area-29.svg) | 3 / 3 | 0–0 h | Unscheduled |
+
+## Required maintenance
+
+Every human/AI change must review affected IDs, stages, evidence and estimates, including explicit no-change reviews. Run tooling tests, refresh with a change ID/note/affected IDs, then `--check`. The native build and package gates reject stale source-review fingerprints and outputs. [Instructions](roadmap/METRICS.md).
+
+*Effort is not ETA. Stage, scope and weight changes are versioned and must be disclosed.*

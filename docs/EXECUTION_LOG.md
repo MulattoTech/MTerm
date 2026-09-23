@@ -71,3 +71,17 @@ Pre-flight: desktop and MCP share WorkspaceRuntime and Store schemas. Process ow
   future DevFleet integration contract without modifying/connecting DevFleet.
 - Native Release/Debug 6 suites pass; relocated reference full gate passes; real Windows screenshots
   reviewed. CI workflow-write permission remains the earlier unresolved publication barrier.
+
+## Native workbench and mandatory complete roadmap — 2026-09-23
+
+- Preserved pre-work Git bundle/source snapshot; new branch starts at6344e94.
+- Implemented12-document native editor deck and tested retained undo/text/cursor state, late-save
+  and late-reload/focus races, dirty background close protection, bounded tabs and shortcuts.
+- Added per-data-location window/splitter preferences and shared no-delete resource filtering.
+- Rendered all496 roadmap rows with per-item stage/evidence/effort/ETA, weighted overall/area SVGs,
+  complete GitHub Markdown and offline search/filter dashboard.24 explicitly excluded entries retain IDs.
+- Installed no global hooks; contributor/vendor entrypoints and native build/package gates require
+  explicit metric review. Controlled source/catalog changes were rejected; restored review passed.
+- Native default Release/Debug7suites pass;23roadmap tests pass;reference59unit/2E2E full gate passes;
+  native screenshot fixture and standalone5-run smoke pass. Details in the dated validation report.
+- Current native runtime still has no Electron/Chromium/Node dependency. No live model/DevFleet call.

@@ -26,7 +26,10 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate provenance
-        run: python scripts/native/verify-provenance.py
+        run: |
+          python scripts/native/verify-provenance.py
+          python -X utf8 scripts/roadmap/test_roadmap.py
+          python -X utf8 scripts/roadmap/roadmap.py --check
       - name: Install project-local Qt and compiler
         shell: pwsh
         run: ./scripts/native/Bootstrap-Windows.ps1
@@ -70,6 +73,8 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/native/verify-provenance.py
+          python -X utf8 scripts/roadmap/test_roadmap.py
+          python -X utf8 scripts/roadmap/roadmap.py --check
           preset="native-${configuration,,}"
           qt="$PWD/.tools/Qt/6.8.3/gcc_64"
           export LD_LIBRARY_PATH="$qt/lib:${LD_LIBRARY_PATH:-}"

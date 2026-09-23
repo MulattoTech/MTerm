@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-foundation (original implementation)
 // Modified: 2026-09-22-native-ux; docs/ai/changes/2026-09-22-native-ux.json
@@ -142,6 +143,7 @@ void CanvasView::setCanvas(const QJsonObject &canvas, bool editable) {
     centerOn((viewport()->width() / 2.0 - v["x"].toDouble()) / zoom,
              (viewport()->height() / 2.0 - v["y"].toDouble()) / zoom);
     changedViewport();
+    setFilter(filter_);
 }
 QJsonObject CanvasView::canvas() const {
     auto result = canvas_;
@@ -154,6 +156,17 @@ QJsonObject CanvasView::canvas() const {
     const auto z = transform().m11();
     result["viewport"] = QJsonObject{{"x", -origin.x() * z}, {"y", -origin.y() * z}, {"zoom", z}};
     return result;
+}
+void CanvasView::setFilter(const QString &text) {
+    filter_ = text.trimmed();
+    for (auto *card : cards_) {
+        const auto n = card->node();
+        const auto haystack =
+            n["title"].toString() + " " + n["kind"].toString() + " " + n["content"].toString();
+        card->setVisible(filter_.isEmpty() || haystack.contains(filter_, Qt::CaseInsensitive));
+    }
+    viewport()->update();
+    mini_->update();
 }
 void CanvasView::changedViewport() {
     zoomLabel_->setText(QString::number(qRound(transform().m11() * 100)) + "%");
@@ -279,7 +292,7 @@ void CanvasView::drawBackground(QPainter *p, const QRectF &rect) {
         const auto edge = v.toObject();
         auto *a = cards_.value(edge["source"].toString(), nullptr),
              *b = cards_.value(edge["target"].toString(), nullptr);
-        if (!a || !b)
+        if (!a || !b || !a->isVisible() || !b->isVisible())
             continue;
         const auto from = a->mapToScene(
                        QPointF(a->boundingRect().right(), a->boundingRect().center().y())),

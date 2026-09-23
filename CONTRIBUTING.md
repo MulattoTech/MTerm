@@ -31,3 +31,11 @@ Human authors may use AI-Provider: none. Keep the configured human Git identity;
 C++20, RAII, explicit ownership, small services and dependency injection at OS/process boundaries. No raw owning pointers unless an OS/Qt interface requires them. No shell interpolation for structured commands. Prefer Qt's existing components to hand-built frameworks. Prove a performance bottleneck before introducing an alternative library. Build both Debug and Release for validation; never rely on assert() alone in release tests.
 
 Review checklist: correctness, cancellation, bounds, concurrency, scope isolation, secret redaction, recovery, accessibility, licensing, upgrade compatibility and measured performance. Public release requires native parity and signing/compliance review; an experimental build is not a release certification.
+
+## Mandatory delivery metrics after every change
+Read docs/roadmap/METRICS.md. Every AI/human task must review affected REQ/DF/GOV IDs, update
+docs/roadmap/progress.json with evidence-backed stage/estimates/blockers (or explicitly explain
+no stage change), record roadmap_updates in its change record, regenerate with --refresh and
+run `python -X utf8 scripts/roadmap/roadmap.py --check`. Commit generated views/review log too.
+Never fake completion, infer it from inherited checkmarks, invent calendar ETAs, or alter baseline
+weights just to raise the overall number. Default builds/packages reject stale source/catalog review.

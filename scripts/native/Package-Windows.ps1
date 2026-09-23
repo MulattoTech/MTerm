@@ -1,3 +1,4 @@
+# Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 # SPDX-License-Identifier: MIT
 # AI-Change: 2026-09-22-resume-native (OpenAI / GPT-6 Astra Pro)
 # Creates a new local development staging folder; never overwrites a prior package.
@@ -5,6 +6,10 @@
 param([string]$QtPrefix, [string]$OutputRoot)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+$roadmapPython = Join-Path $root '.tools\bootstrap\Scripts\python.exe'
+if (!(Test-Path $roadmapPython)) { $roadmapPython = 'python' }
+& $roadmapPython -X utf8 (Join-Path $root 'scripts\roadmap\roadmap.py') --check
+if ($LASTEXITCODE) { throw 'Packaging refused: roadmap metrics/review must match this source.' }
 if (!$QtPrefix) { $QtPrefix = Join-Path $root '.tools\Qt\6.8.3\mingw_64' }
 if (!$OutputRoot) { $OutputRoot = Join-Path $root 'release-local' }
 $exe = Join-Path $root 'out\native-release\native\mterm.exe'

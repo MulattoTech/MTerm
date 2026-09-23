@@ -66,3 +66,15 @@ QT_QPA_PLATFORM=windows, then run mterm-ux-tests responsiveWorkspaceAndOptionalV
 Unset capture env before offscreen CTest to avoid overwriting reviewed images with fontless output.
 Theme diagnostics in --smoke-dir JSON expose construction phases; they are internal, not external
 process launch timings. See validation/2026-09-22-native-ux.md and the feature/UI parity template.
+
+## Native workbench and roadmap gate
+
+New native-workbench executable tests multiple documents, undo/dirty state, late read/write races,
+explicit tab selection, all-buffer close cancellation,12-buffer cap, shortcuts, geometry within
+screen bounds and resource filtering. Its screenshot fixture is opt-in via
+MTERM_WORKBENCH_CAPTURE_DIR with QT_QPA_PLATFORM=windows; ordinary offscreen run records a skip.
+
+Run `python -X utf8 scripts/roadmap/test_roadmap.py` then perform an explicit metric review/refresh
+and `--check`. Normal Build.ps1 and Package-Windows.ps1 enforce that check. Development-only
+-SkipRoadmapCheck must never be cited as a final publish gate. Dashboard browser validation is
+`scripts/roadmap/validate_dashboard.mjs`, using installed Edge and blocking HTTP requests.

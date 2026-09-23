@@ -1,7 +1,9 @@
+// Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-ux (OpenAI / GPT-6 Astra Pro)
 // See docs/ai/changes/2026-09-22-native-ux.json.
 #include "CanvasView.h"
+#include "EditorDeck.h"
 #include "JobPane.h"
 #include "MainWindow.h"
 #include "TerminalPane.h"
@@ -150,101 +152,11 @@ QWidget *MainWindow::createTasksPanel() {
     return taskPage;
 }
 QWidget *MainWindow::createEditorPanel() {
-    auto *filePage = new QWidget(tabs_);
-    filePage->setObjectName("editor-panel");
-    auto *fl = panelLayout(filePage);
-    filePath_ = new QLineEdit(filePage);
-    filePath_->setObjectName("file-path");
-    filePath_->setPlaceholderText("Workspace-relative path, for example README.md");
-    fl->addWidget(filePath_);
-    auto *fileButtons = new QHBoxLayout;
-    auto *open = button("Load", "open-file", filePage),
-         *save = button("Save", "save-file", filePage, true),
-         *create = button("New file", "new-file", filePage);
-    save->setEnabled(false);
-    create->setEnabled(false);
-    fileButtons->addWidget(open);
-    fileButtons->addWidget(save);
-    fileButtons->addWidget(create);
-    fileButtons->addStretch();
-    fl->addLayout(fileButtons);
-    auto *split = new QSplitter(Qt::Horizontal, filePage);
-    split->setChildrenCollapsible(false);
-    split->setHandleWidth(1);
-    auto *browserHost = new QWidget(split);
-    auto *bl = new QVBoxLayout(browserHost);
-    bl->setContentsMargins(0, 0, 8, 0);
-    bl->setSpacing(7);
-    auto *dirButtons = new QHBoxLayout;
-    auto *up = button("↑", "directory-up", browserHost);
-    up->setFixedWidth(33);
-    directoryLabel_ = caption(".", browserHost);
-    directoryLabel_->setToolTip("Current workspace directory");
-    auto *refresh = button("↻", "directory-refresh", browserHost);
-    refresh->setFixedWidth(33);
-    dirButtons->addWidget(up);
-    dirButtons->addWidget(directoryLabel_, 1);
-    dirButtons->addWidget(refresh);
-    bl->addLayout(dirButtons);
-    fileBrowser_ = tree({"Files"}, "file-browser", browserHost);
-    fileBrowser_->setHeaderHidden(true);
-    fileBrowser_->setMinimumWidth(95);
-    bl->addWidget(fileBrowser_, 1);
-    browserHost->setMaximumWidth(185);
-    split->addWidget(browserHost);
-    editor_ = new QPlainTextEdit(split);
-    editor_->setObjectName("file-editor");
-    editor_->setPlaceholderText(
-        "Choose a file to begin.\n\nYour editor stays open when you switch tools.");
-    editor_->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
-    editor_->setReadOnly(true);
-    split->addWidget(editor_);
-    split->setStretchFactor(0, 0);
-    split->setStretchFactor(1, 1);
-    split->setSizes({135, 345});
-    fl->addWidget(split, 1);
-    fl->addWidget(caption("UTF-8 · conflict-safe saves · native editor", filePage));
-
-    connect(open, &QPushButton::clicked, this, &MainWindow::loadFile);
-    connect(filePath_, &QLineEdit::returnPressed, this, &MainWindow::loadFile);
-    connect(save, &QPushButton::clicked, this, [this] {
-        if (filePath_->text() != loadedFile_) {
-            statusBar()->showMessage("Load the selected file, or choose New file, before saving.");
-            return;
-        }
-        pendingFile_ = send(
-            "write-file",
-            {{"path", loadedFile_}, {"text", editor_->toPlainText()}, {"version", fileVersion_}});
-    });
-    connect(create, &QPushButton::clicked, this, [this] {
-        if (filePath_->text().isEmpty())
-            return;
-        if (editor_->document()->isModified() &&
-            QMessageBox::question(this, "Unsaved file", "Discard unsaved editor changes?",
-                                  QMessageBox::Yes | QMessageBox::No,
-                                  QMessageBox::No) != QMessageBox::Yes)
-            return;
-        loadedFile_ = filePath_->text();
-        fileVersion_ = "missing";
-        editor_->clear();
-        editor_->document()->setModified(false);
-        statusBar()->showMessage("New file draft · Save refuses to replace an existing target");
-    });
-    connect(up, &QPushButton::clicked, this, [this] {
-        const auto slash = directory_.lastIndexOf('/');
-        listDirectory(slash < 0 ? "." : directory_.left(slash));
-    });
-    connect(refresh, &QPushButton::clicked, this, [this] { listDirectory(directory_); });
-    connect(fileBrowser_, &QTreeWidget::itemClicked, this, [this](QTreeWidgetItem *item, int) {
-        const auto entry = item->data(0, Qt::UserRole).toJsonObject();
-        if (entry["directory"].toBool())
-            listDirectory(entry["path"].toString());
-        else {
-            filePath_->setText(entry["path"].toString());
-            loadFile();
-        }
-    });
-    return filePage;
+    editorDeck_ = new EditorDeck(backend_, tabs_);
+    editor_ = editorDeck_->editor();
+    connect(editorDeck_, &EditorDeck::message, this,
+            [this](const QString &text) { statusBar()->showMessage(text); });
+    return editorDeck_;
 }
 QWidget *MainWindow::createNotesPanel() {
     auto *notes = new QWidget(tabs_);

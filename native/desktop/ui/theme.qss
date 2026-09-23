@@ -74,3 +74,8 @@ QListWidget#command-results::item:selected { background: #263e62; }
 QPushButton[role="primary"]:disabled { color: #607394; background: #1a2942; border-color: #293b57; }
 QPushButton[role="danger"]:disabled { color: #6e5160; background: #201924; border-color: #302532; }
 QFrame#canvas-controls { background: #101a2a; border: 1px solid #293a55; border-radius: 8px; }
+
+/* Workbench tabs are documents, not independent tool instances. */
+QTabBar#editor-buffer-tabs::tab { background: #101b2b; border: 1px solid #25354f; border-bottom: 2px solid transparent; padding: 7px 9px; min-width: 70px; }
+QTabBar#editor-buffer-tabs::tab:selected { background: #1b2e4b; color: #c8ddff; border-bottom: 2px solid #87adff; }
+QLineEdit#workspace-resource-search { padding: 5px 8px; font-size: 11px; }

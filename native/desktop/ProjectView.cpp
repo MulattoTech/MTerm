@@ -1,3 +1,4 @@
+// Modified: 2026-09-23-workbench-roadmap (OpenAI / GPT-6 Astra Pro); see docs/ai/changes/.
 // SPDX-License-Identifier: MIT
 // AI-Change: 2026-09-22-native-ux (OpenAI / GPT-6 Astra Pro)
 // See docs/ai/changes/2026-09-22-native-ux.json.
@@ -40,6 +41,16 @@ ProjectView::ProjectView(QWidget *parent) : QListWidget(parent) {
         emit nodeActivated(item->data(Qt::UserRole).toJsonObject());
     });
 }
+void ProjectView::setFilter(const QString &text) {
+    filter_ = text.trimmed();
+    for (int i = 0; i < count(); ++i) {
+        const auto n = item(i)->data(Qt::UserRole).toJsonObject();
+        item(i)->setHidden(
+            !filter_.isEmpty() &&
+            !(n["title"].toString() + " " + n["kind"].toString() + " " + n["content"].toString())
+                 .contains(filter_, Qt::CaseInsensitive));
+    }
+}
 void ProjectView::setCanvas(const QJsonObject &canvas) {
     QString selected;
     if (currentItem())
@@ -53,5 +64,6 @@ void ProjectView::setCanvas(const QJsonObject &canvas) {
         if (node["id"] == selected)
             setCurrentItem(item);
     }
+    setFilter(filter_);
 }
 } // namespace mterm
