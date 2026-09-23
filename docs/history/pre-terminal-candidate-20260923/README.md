@@ -9,20 +9,6 @@ tracked item has a stage, remaining engineer-hour range and explicit ETA status.
 unscheduled without a capacity/dependency plan. All AI/human contributors must review and regenerate
 metrics after their changes; the default native build/package gates reject stale assessments.
 
-## Integrated native candidate
-
-All published feature-branch histories are consolidated in `candidate/native-20260923` for ordinary
-merge into main. [Integration record](docs/CANDIDATE.md) · [Terminal contract](docs/NATIVE_TERMINAL_RESOURCES.md).
-This is a tested development candidate, not a completed/signed release.
-
-**Separate terminal resources now own separate native shells.** Create/select a terminal card,
-approve the workspace terminal session, choose a shell/relative cwd, then start it. Up to eight
-shells and eight retained views are supported. Switching tools or Canvas/Project keeps their identity;
-stopping one leaves its neighbors running. Shared live badges show actual run state without changing
-saved task/canvas status. Metadata survives restart as STOPPED; terminal text/process reattachment do not.
-
-![Actual native independent terminal fixture](docs/images/native-terminal-20260923/native-terminal-sessions.png)
-
 ## Latest native workbench improvements
 
 Multiple file tabs now retain independent edits, undo, cursor, scroll and save versions. A late save
@@ -77,8 +63,8 @@ palette, pan/zoom/minimap, readable Arrange, pin/collapse and existing-edge rend
 
 The core/native services remain isolated from presentation. Security grants, scoped file/version
 checks, SQLite, captured commands, read-only Git, native inventory and ConPTY/libvterm are preserved.
-Per-node independent terminal shells are implemented; detached supervisors, complete embedded live
-resources, richer task/evidence, native Git mutation and MCP/provider parity remain backlog items. This redesign does not claim every reference interaction is already native.
+Independent per-node live sessions, richer task/evidence, native Git mutation and MCP/provider parity
+remain backlog items. This redesign does not claim every reference interaction is already native.
 
 ## Contributor entry point — every AI provider and human
 
@@ -97,12 +83,13 @@ implemented or implied by this UI pass.** MTerm remains usable independently.
 
 ## Verification and limits
 
-Windows native Release/Debug now include nine CTest suites: original service/PTY/workbench regressions
-plus independent terminal-resource and native terminal-workspace acceptance checks. The Electron reference separately passes its
-relocated typecheck/lint/59-unit/build/MCP/2-E2E gate. [Current candidate evidence](docs/validation/2026-09-23-terminal-candidate.md).
+Windows native Release/Debug run six CTest suites, including original service/PTY regressions and
+new UI/continuity/500-card/lazy-inspector checks. The Electron reference separately passes its
+relocated typecheck/lint/59-unit/build/MCP/2-E2E gate. [Current evidence](docs/validation/2026-09-22-native-ux.md).
 
-Earlier native package/paint measurements are historical. The current candidate validation report
-records its own package samples and methodology; none is an equivalent external CLI comparison. CPU/frame/memory behavior under real multi-agent soak workloads remains to certify.
+The redesigned local package is about 32.5 MB. Its five-run inside-main first-paint median was
+87 ms after profiling and lazy inspector construction; this is not an external launch or CLI
+comparison. CPU/frame/memory behavior under real multi-agent soak workloads remains to certify.
 No paid model was invoked. CI activation is still blocked by the previously documented GitHub
 workflow-write permission; the non-executable recipe remains in docs/ci/.
 

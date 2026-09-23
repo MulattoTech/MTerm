@@ -1,0 +1,547 @@
+[
+  {
+    "name": "@vitejs/plugin-react",
+    "version": "6.1.1",
+    "license": "MIT",
+    "engines": {
+      "node": "^20.19.0 || >=22.12.0"
+    },
+    "exports": {
+      ".": "./dist/index.js",
+      "./preamble": "./types/preamble.d.ts"
+    },
+    "scripts": {
+      "dev": "tsdown --watch ./src --watch ../common",
+      "build": "tsdown",
+      "test-unit": "vitest run",
+      "prepublishOnly": "npm run build"
+    }
+  },
+  {
+    "name": "@xterm/addon-fit",
+    "version": "0.11.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": null,
+    "scripts": {
+      "build": "../../node_modules/.bin/tsc -p .",
+      "start": "node ../../demo/start",
+      "package": "../../node_modules/.bin/webpack",
+      "prepackage": "npm run build",
+      "prepublishOnly": "npm run package"
+    }
+  },
+  {
+    "name": "react-dom",
+    "version": "19.3.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": {
+      ".": {
+        "default": "./index.js",
+        "react-server": "./react-dom.react-server.js"
+      },
+      "./client": {
+        "default": "./client.js",
+        "react-server": "./client.react-server.js"
+      },
+      "./server": {
+        "bun": "./server.bun.js",
+        "deno": "./server.node.js",
+        "node": "./server.node.js",
+        "worker": "./server.browser.js",
+        "browser": "./server.browser.js",
+        "default": "./server.node.js",
+        "workerd": "./server.edge.js",
+        "edge-light": "./server.edge.js",
+        "react-server": "./server.react-server.js"
+      },
+      "./static": {
+        "deno": "./static.browser.js",
+        "node": "./static.node.js",
+        "worker": "./static.browser.js",
+        "browser": "./static.browser.js",
+        "default": "./static.node.js",
+        "workerd": "./static.edge.js",
+        "edge-light": "./static.edge.js",
+        "react-server": "./static.react-server.js"
+      },
+      "./profiling": {
+        "default": "./profiling.js",
+        "react-server": "./profiling.react-server.js"
+      },
+      "./server.bun": {
+        "default": "./server.bun.js",
+        "react-server": "./server.react-server.js"
+      },
+      "./test-utils": "./test-utils.js",
+      "./server.edge": {
+        "default": "./server.edge.js",
+        "react-server": "./server.react-server.js"
+      },
+      "./server.node": {
+        "default": "./server.node.js",
+        "react-server": "./server.react-server.js"
+      },
+      "./static.edge": {
+        "default": "./static.edge.js",
+        "react-server": "./static.react-server.js"
+      },
+      "./static.node": {
+        "default": "./static.node.js",
+        "react-server": "./static.react-server.js"
+      },
+      "./package.json": "./package.json",
+      "./server.browser": {
+        "default": "./server.browser.js",
+        "react-server": "./server.react-server.js"
+      },
+      "./static.browser": {
+        "default": "./static.browser.js",
+        "react-server": "./static.react-server.js"
+      }
+    },
+    "scripts": {
+      "start": "node server.js"
+    }
+  },
+  {
+    "name": "react-markdown",
+    "version": "10.1.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": "./index.js",
+    "scripts": {
+      "test": "npm run build && npm run format && npm run test-coverage",
+      "build": "tsc --build --clean && tsc --build && type-coverage",
+      "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+      "test-api": "node --conditions development --experimental-loader=./script/load-jsx.js --no-warnings test.jsx",
+      "test-coverage": "c8 --100 --exclude script/ --reporter lcov -- npm run test-api"
+    }
+  },
+  {
+    "name": "remark-gfm",
+    "version": "4.0.1",
+    "license": "MIT",
+    "engines": null,
+    "exports": "./index.js",
+    "scripts": {
+      "test": "npm run build && npm run format && npm run test-coverage",
+      "build": "tsc --build --clean && tsc --build && type-coverage",
+      "format": "remark . --frail --output --quiet && prettier . --log-level warn --write && xo --fix",
+      "prepack": "npm run build && npm run format",
+      "test-api": "node --conditions development test/index.js",
+      "test-coverage": "c8 --100 --reporter lcov npm run test-api"
+    }
+  },
+  {
+    "name": "@types/react",
+    "version": "19.3.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": {
+      ".": {
+        "types": {
+          "default": "./index.d.ts"
+        },
+        "types@<=5.0": {
+          "default": "./ts5.0/index.d.ts"
+        }
+      },
+      "./canary": {
+        "types": {
+          "default": "./canary.d.ts"
+        },
+        "types@<=5.0": {
+          "default": "./ts5.0/canary.d.ts"
+        }
+      },
+      "./jsx-runtime": {
+        "types": {
+          "default": "./jsx-runtime.d.ts"
+        },
+        "types@<=5.0": {
+          "default": "./ts5.0/jsx-runtime.d.ts"
+        }
+      },
+      "./experimental": {
+        "types": {
+          "default": "./experimental.d.ts"
+        },
+        "types@<=5.0": {
+          "default": "./ts5.0/experimental.d.ts"
+        }
+      },
+      "./package.json": "./package.json",
+      "./jsx-dev-runtime": {
+        "types": {
+          "default": "./jsx-dev-runtime.d.ts"
+        },
+        "types@<=5.0": {
+          "default": "./ts5.0/jsx-dev-runtime.d.ts"
+        }
+      },
+      "./compiler-runtime": {
+        "types": {
+          "default": "./compiler-runtime.d.ts"
+        }
+      }
+    },
+    "scripts": {}
+  },
+  {
+    "name": "@types/react-dom",
+    "version": "19.3.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": {
+      ".": {
+        "types": {
+          "default": "./index.d.ts"
+        }
+      },
+      "./canary": {
+        "types": {
+          "default": "./canary.d.ts"
+        }
+      },
+      "./client": {
+        "types": {
+          "default": "./client.d.ts"
+        }
+      },
+      "./server": {
+        "types": {
+          "default": "./server.d.ts"
+        }
+      },
+      "./static": {
+        "types": {
+          "default": "./static.d.ts"
+        }
+      },
+      "./server.bun": {
+        "types": {
+          "default": "./server.bun.d.ts"
+        }
+      },
+      "./test-utils": {
+        "types": {
+          "default": "./test-utils/index.d.ts"
+        }
+      },
+      "./server.edge": {
+        "types": {
+          "default": "./server.edge.d.ts"
+        }
+      },
+      "./server.node": {
+        "types": {
+          "default": "./server.node.d.ts"
+        }
+      },
+      "./static.edge": {
+        "types": {
+          "default": "./static.edge.d.ts"
+        }
+      },
+      "./static.node": {
+        "types": {
+          "default": "./static.node.d.ts"
+        }
+      },
+      "./experimental": {
+        "types": {
+          "default": "./experimental.d.ts"
+        }
+      },
+      "./package.json": "./package.json",
+      "./server.browser": {
+        "types": {
+          "default": "./server.browser.d.ts"
+        }
+      },
+      "./static.browser": {
+        "types": {
+          "default": "./static.browser.d.ts"
+        }
+      }
+    },
+    "scripts": {}
+  },
+  {
+    "name": "@types/node",
+    "version": "26.6.2",
+    "license": "MIT",
+    "engines": null,
+    "exports": null,
+    "scripts": {}
+  },
+  {
+    "name": "eslint",
+    "version": "10.11.0",
+    "license": "MIT",
+    "engines": {
+      "node": "^20.19.0 || ^22.13.0 || >=24"
+    },
+    "exports": {
+      ".": {
+        "types": "./lib/types/index.d.ts",
+        "default": "./lib/api.js"
+      },
+      "./rules": {
+        "types": "./lib/types/rules.d.ts"
+      },
+      "./config": {
+        "types": "./lib/types/config-api.d.ts",
+        "default": "./lib/config-api.js"
+      },
+      "./universal": {
+        "types": "./lib/types/universal.d.ts",
+        "default": "./lib/universal.js"
+      },
+      "./package.json": "./package.json",
+      "./use-at-your-own-risk": {
+        "types": "./lib/types/use-at-your-own-risk.d.ts",
+        "default": "./lib/unsupported-api.js"
+      }
+    },
+    "scripts": {
+      "fmt": "prettier --write .",
+      "lint": "node Makefile.js lint",
+      "test": "node Makefile.js test",
+      "lint:fix": "node Makefile.js lint -- fix",
+      "test:cli": "mocha",
+      "fmt:check": "prettier --check .",
+      "test:fuzz": "node Makefile.js fuzz",
+      "test:pnpm": "cd tests/pnpm && node check.js && pnpm install && pnpm exec tsc",
+      "build:site": "node Makefile.js gensite",
+      "lint:types": "attw --pack",
+      "test:types": "tsc -p tests/lib/types/tsconfig.json && npm run test:types --workspaces --if-present",
+      "lint:unused": "knip",
+      "test:emfile": "node tools/check-emfile-handling.js",
+      "build:readme": "node tools/update-readme.js",
+      "lint:docs:js": "node Makefile.js lintDocsJS",
+      "test:browser": "node Makefile.js cypress",
+      "build:webpack": "node Makefile.js webpack",
+      "test:ecosystem": "node tools/test-ecosystem/index.mjs",
+      "test:types:5.3": "npx -p typescript@5.3 -y -- tsc -p tsconfig.types-legacy.json",
+      "test:types:5.x": "npx -p typescript@5.x -y -- tsc -p tsconfig.types.json",
+      "test:types:7.x": "npx -p @typescript/native-preview@latest -y -- tsgo -p tsconfig.types.json",
+      "test:types:all": "npm run test:types && npm run test:types:5.3 && npm run test:types:5.x && npm run test:types:7.x",
+      "lint:rule-types": "node tools/update-rule-type-headers.js --check",
+      "release:publish": "node Makefile.js publishRelease",
+      "lint:fix:docs:js": "node Makefile.js lintDocsJS -- fix",
+      "test:performance": "node Makefile.js perf",
+      "build:rules-index": "node Makefile.js generateRuleIndexPage",
+      "release:generate:rc": "node Makefile.js generatePrerelease -- rc",
+      "release:generate:beta": "node Makefile.js generatePrerelease -- beta",
+      "test:ecosystem:update": "node tools/test-ecosystem/update.mjs",
+      "release:generate:alpha": "node Makefile.js generatePrerelease -- alpha",
+      "build:docs:update-links": "node tools/fetch-docs-links.js",
+      "lint:docs:rule-examples": "node Makefile.js checkRuleExamples",
+      "release:generate:latest": "node Makefile.js generateRelease -- latest",
+      "release:generate:maintenance": "node Makefile.js generateRelease -- maintenance"
+    }
+  },
+  {
+    "name": "typescript-eslint",
+    "version": "8.70.1",
+    "license": "MIT",
+    "engines": {
+      "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+    },
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    },
+    "scripts": {
+      "lint": "pnpm -w exec nx lint",
+      "test": "pnpm -w exec nx test",
+      "build": "pnpm exec nx build",
+      "clean": "rimraf dist/ coverage/",
+      "format": "pnpm -w run format",
+      "typecheck": "pnpm -w exec nx typecheck",
+      "attw-check": "pnpm -w exec nx attw-check",
+      "typecheck:tsgo": "pnpm -w exec nx typecheck:tsgo"
+    }
+  },
+  {
+    "name": "@eslint/js",
+    "version": "10.0.1",
+    "license": "MIT",
+    "engines": {
+      "node": "^20.19.0 || ^22.13.0 || >=24"
+    },
+    "exports": null,
+    "scripts": {
+      "test:types": "tsc -p tests/types/tsconfig.json"
+    }
+  },
+  {
+    "name": "esbuild",
+    "version": "0.28.2",
+    "license": "MIT",
+    "engines": {
+      "node": ">=18"
+    },
+    "exports": null,
+    "scripts": {
+      "postinstall": "node install.js"
+    }
+  },
+  {
+    "name": "prettier",
+    "version": "3.9.8",
+    "license": "MIT",
+    "engines": {
+      "node": ">=14"
+    },
+    "exports": {
+      ".": {
+        "types": "./index.d.ts",
+        "browser": {
+          "import": "./standalone.mjs",
+          "default": "./standalone.js"
+        },
+        "default": "./index.mjs",
+        "require": "./index.cjs"
+      },
+      "./*": "./*",
+      "./doc": {
+        "types": "./doc.d.ts",
+        "default": "./doc.mjs",
+        "require": "./doc.js"
+      },
+      "./standalone": {
+        "types": "./standalone.d.ts",
+        "default": "./standalone.mjs",
+        "require": "./standalone.js"
+      },
+      "./parser-flow": "./plugins/flow.js",
+      "./parser-html": "./plugins/html.js",
+      "./parser-yaml": "./plugins/yaml.js",
+      "./parser-babel": "./plugins/babel.js",
+      "./plugins/flow": {
+        "types": "./plugins/flow.d.ts",
+        "default": "./plugins/flow.mjs",
+        "require": "./plugins/flow.js"
+      },
+      "./plugins/html": {
+        "types": "./plugins/html.d.ts",
+        "default": "./plugins/html.mjs",
+        "require": "./plugins/html.js"
+      },
+      "./plugins/yaml": {
+        "types": "./plugins/yaml.d.ts",
+        "default": "./plugins/yaml.mjs",
+        "require": "./plugins/yaml.js"
+      },
+      "./parser-espree": "./plugins/acorn.js",
+      "./plugins/acorn": {
+        "types": "./plugins/acorn.d.ts",
+        "default": "./plugins/acorn.mjs",
+        "require": "./plugins/acorn.js"
+      },
+      "./plugins/babel": {
+        "types": "./plugins/babel.d.ts",
+        "default": "./plugins/babel.mjs",
+        "require": "./plugins/babel.js"
+      },
+      "./parser-angular": "./plugins/angular.js",
+      "./parser-flow.js": "./plugins/flow.js",
+      "./parser-glimmer": "./plugins/glimmer.js",
+      "./parser-graphql": "./plugins/graphql.js",
+      "./parser-html.js": "./plugins/html.js",
+      "./parser-meriyah": "./plugins/meriyah.js",
+      "./parser-postcss": "./plugins/postcss.js",
+      "./parser-yaml.js": "./plugins/yaml.js",
+      "./plugins/estree": {
+        "types": "./plugins/estree.d.ts",
+        "default": "./plugins/estree.mjs",
+        "require": "./plugins/estree.js"
+      },
+      "./parser-babel.js": "./plugins/babel.js",
+      "./parser-markdown": "./plugins/markdown.js",
+      "./plugins/angular": {
+        "types": "./plugins/angular.d.ts",
+        "default": "./plugins/angular.mjs",
+        "require": "./plugins/angular.js"
+      },
+      "./plugins/glimmer": {
+        "types": "./plugins/glimmer.d.ts",
+        "default": "./plugins/glimmer.mjs",
+        "require": "./plugins/glimmer.js"
+      },
+      "./plugins/graphql": {
+        "types": "./plugins/graphql.d.ts",
+        "default": "./plugins/graphql.mjs",
+        "require": "./plugins/graphql.js"
+      },
+      "./plugins/meriyah": {
+        "types": "./plugins/meriyah.d.ts",
+        "default": "./plugins/meriyah.mjs",
+        "require": "./plugins/meriyah.js"
+      },
+      "./plugins/postcss": {
+        "types": "./plugins/postcss.d.ts",
+        "default": "./plugins/postcss.mjs",
+        "require": "./plugins/postcss.js"
+      },
+      "./parser-espree.js": "./plugins/acorn.js",
+      "./plugins/markdown": {
+        "types": "./plugins/markdown.d.ts",
+        "default": "./plugins/markdown.mjs",
+        "require": "./plugins/markdown.js"
+      },
+      "./parser-angular.js": "./plugins/angular.js",
+      "./parser-glimmer.js": "./plugins/glimmer.js",
+      "./parser-graphql.js": "./plugins/graphql.js",
+      "./parser-meriyah.js": "./plugins/meriyah.js",
+      "./parser-postcss.js": "./plugins/postcss.js",
+      "./parser-typescript": "./plugins/typescript.js",
+      "./esm/standalone.mjs": "./standalone.mjs",
+      "./parser-markdown.js": "./plugins/markdown.js",
+      "./plugins/typescript": {
+        "types": "./plugins/typescript.d.ts",
+        "default": "./plugins/typescript.mjs",
+        "require": "./plugins/typescript.js"
+      },
+      "./esm/parser-flow.mjs": "./plugins/flow.mjs",
+      "./esm/parser-html.mjs": "./plugins/html.mjs",
+      "./esm/parser-yaml.mjs": "./plugins/yaml.mjs",
+      "./esm/parser-babel.mjs": "./plugins/babel.mjs",
+      "./parser-typescript.js": "./plugins/typescript.js",
+      "./esm/parser-espree.mjs": "./plugins/acorn.mjs",
+      "./esm/parser-angular.mjs": "./plugins/angular.mjs",
+      "./esm/parser-glimmer.mjs": "./plugins/glimmer.mjs",
+      "./esm/parser-graphql.mjs": "./plugins/graphql.mjs",
+      "./esm/parser-meriyah.mjs": "./plugins/meriyah.mjs",
+      "./esm/parser-postcss.mjs": "./plugins/postcss.mjs",
+      "./esm/parser-markdown.mjs": "./plugins/markdown.mjs",
+      "./esm/parser-typescript.mjs": "./plugins/typescript.mjs"
+    },
+    "scripts": null
+  },
+  {
+    "name": "lucide-react",
+    "version": "1.47.0",
+    "license": "ISC",
+    "engines": null,
+    "exports": null,
+    "scripts": {
+      "test": "pnpm build:icons && vitest run",
+      "build": "pnpm clean && pnpm copy:license && pnpm build:icons && pnpm typecheck && pnpm build:bundles",
+      "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -f dynamic.{d.ts,d.mts,mts,mjs,mjs.map} && rm -f dynamicIconImports.d.ts",
+      "typecheck": "tsc",
+      "test:watch": "vitest watch",
+      "build:icons": "build-icons --output=./src --templateSrc=./scripts/exportTemplate.mts --renderUniqueKey --withAliases --withDynamicImports --separateAliasesFile --separateAliasesFileIgnore=fingerprint --aliasesFileExtension=.ts --iconFileExtension=.ts --exportFileName=index.ts",
+      "copy:license": "cp ../../LICENSE ./LICENSE",
+      "build:bundles": "rollup -c ./rollup.config.mjs",
+      "typecheck:watch": "tsc -w"
+    }
+  }
+]

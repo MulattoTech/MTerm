@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Reviewed native/install hooks for the preserved Electron reference.
+allowBuilds:
+  electron: true
+  node-pty: true
+  esbuild: true

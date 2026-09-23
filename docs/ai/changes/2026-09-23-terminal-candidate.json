@@ -1,0 +1,245 @@
+{
+  "change_id": "2026-09-23-terminal-candidate",
+  "started_at_utc": "2026-09-23T17:21:49.128134+00:00",
+  "provider": "OpenAI",
+  "model": "GPT-6 Astra Pro",
+  "identity_basis": "session-declared; self-reported",
+  "base_commit": "6203c7a21ad5cbe2cdddde1056ae8ab05f775524",
+  "human_request": "Advance MTerm locally and consolidate all GitHub branches into a current candidate",
+  "checkpoint": "C:\\Tools\\Dev\\MTerm\\artifacts\\checkpoints\\candidate-before-20260923T172148Z",
+  "published_branches_at_start": [
+    {
+      "branch": "feat/native-core-20260922",
+      "sha": "e82fc49f64958700489c6ffb6c9daf56d78da623"
+    },
+    {
+      "branch": "feat/native-resume-20260922",
+      "sha": "f132bb6f24893b3557a8f727c4b238a6d0589caf"
+    },
+    {
+      "branch": "feat/native-ux-20260922",
+      "sha": "6344e948baafd6886f54ba9bb815aae7314feb75"
+    },
+    {
+      "branch": "feat/native-workbench-roadmap-20260923",
+      "sha": "6203c7a21ad5cbe2cdddde1056ae8ab05f775524"
+    },
+    {
+      "branch": "main",
+      "sha": "f653e6c70950b65d07c24b0c7f149d0a33d0f37a"
+    }
+  ],
+  "plan": [
+    "Consolidate all published branches while preserving local CI archive",
+    "Implement independent native resource-owned terminal sessions with bounded capacity",
+    "Validate state isolation, stale run rejection, metadata recovery, per-terminal cwd and UI switching",
+    "Refresh metrics and native/reference/package gates",
+    "Publish and merge verified candidate into main with expected-head protection if repository allows"
+  ],
+  "tests": [
+    {
+      "command": "RDC PowerShell write + rename + read-back",
+      "result": "PASS; unique proof file kept in artifacts/access-check-20260923T184417Z"
+    },
+    {
+      "command": "Recovered resource/backend/UI red-green logs",
+      "result": "Inspected terminal-resources-red.txt, terminal-ui-red.txt, terminal-safety-red.txt, terminal-name-red.txt and final old 9-suite green log"
+    },
+    {
+      "command": "Build.ps1 -Configuration Release -SkipRoadmapCheck (iteration)",
+      "result": "PASS9/9; new same-root epoch, cross-workspace and natural-exit lifecycle regressions"
+    },
+    {
+      "command": "liveBadgesAreSharedButNotWrittenIntoCanvas before implementation",
+      "result": "FAIL as expected: live card status empty instead of RUNNING"
+    },
+    {
+      "command": "Build.ps1 -Configuration Release -SkipRoadmapCheck after badge implementation",
+      "result": "PASS9/9; transient shared runtime badges preserve persisted canvas status"
+    },
+    {
+      "command": "Formatted Release and Debug (iteration)",
+      "result": "PASS9/9 suites each;138 passing QtTest outcomes and1 deliberate screenshot skip, including lifecycle/data rows"
+    },
+    {
+      "command": "Actual Windows multi-terminal visual fixture",
+      "result": "PASS; screenshot reviewed and copied to docs/images/native-terminal-20260923/"
+    },
+    {
+      "command": "Final default native Release/Debug",
+      "result": "PASS 9/9 suites each; 138 pass / 1 intentional visual skip including lifecycle/data rows"
+    },
+    {
+      "command": "Roadmap/provenance/reference/offline dashboard",
+      "result": "PASS: roadmap25; reference59 units/2E2E; typecheck/lint/build/MCP; browser check"
+    },
+    {
+      "command": "Standalone native preview with development Qt removed from PATH",
+      "result": "PASS5 launches and hashes; 17 files / 32766695 bytes; first-paint capture metric not used as performance proof"
+    }
+  ],
+  "roadmap_updates": [
+    {
+      "id": "REQ-082EA08D3BDD",
+      "before": "not_started",
+      "after": "validated",
+      "rationale": "Per-resource native cwd selection is integrated and tested in a real Windows shell; only canonical existing workspace-relative directories are accepted. Starting directory is not an OS sandbox; Unix and complete profile UI remain separate."
+    },
+    {
+      "id": "REQ-1FB0D91323D6",
+      "before": "not_started",
+      "after": "validated",
+      "rationale": "Up to8 named resource-owned real shells and8 retained views; unique labels, independent state/stop, stale-run rejection and persisted metadata tested. Full naming/editor UX and ancient metadata lookup beyond latest100 still limited."
+    },
+    {
+      "id": "REQ-711725CE3B1E",
+      "before": "not_started",
+      "after": "validated",
+      "rationale": "Shell/cwd/resource/run/status metadata survives restart; no terminal text/environment persisted. Reopen honestly reports STOPPED. UI currently loads latest100 records; no live reattachment."
+    },
+    {
+      "id": "REQ-4018B4AD8636",
+      "before": "implementation",
+      "after": "validated",
+      "rationale": "Selector and native Canvas/Project badges track current run state; tested RUNNING/STOPPED without persisting it as canvas/task status. Historical/unmounted badges and broader session telemetry remain limited."
+    },
+    {
+      "id": "REQ-404EC403FE48",
+      "before": "validated",
+      "after": "complete",
+      "rationale": "Exact native requirement satisfied: all active persisted agent records for the opened workspace reconcile STOPPED, including records beyond a200-row page; DONE and other-workspace state are preserved. This is metadata reconciliation, not live process resumption."
+    },
+    {
+      "id": "REQ-EA99C5129E91",
+      "before": "implementation",
+      "after": "integrated",
+      "rationale": "Native shell presets and per-resource shell/cwd metadata retained. Custom saved shell profiles and full profile-management UI remain incomplete."
+    },
+    {
+      "id": "REQ-6A419B91C029",
+      "before": "implementation",
+      "after": "implementation",
+      "rationale": "UI ACK backpressure and bounded transport/view pools tested, including intentional consumer stall/resume. User scrollback/search and complete retention budgets remain unimplemented; no completion credit added."
+    },
+    {
+      "id": "REQ-F67F9C134629",
+      "before": "validated",
+      "after": "validated",
+      "rationale": "Real Windows ConPTY now supports independently owned bounded resource slots and per-run supervision; existing native input/output/resize/stop plus new isolation tests pass. Full older-Windows teardown/soak certification remains."
+    },
+    {
+      "id": "REQ-DEA3D6D505F5",
+      "before": "validated",
+      "after": "validated",
+      "rationale": "Scoped database/request tests extended with live shells across different roots, same-root epochs, and invalid-root preservation. Broader hostile path races, OS sandboxing and transactional failure recovery are not claimed."
+    },
+    {
+      "id": "REQ-FC843CB008E1",
+      "before": "integrated",
+      "after": "integrated",
+      "rationale": "Actual live shells remain independent across tool/view changes and output bursts; bounded process fixture timeout/cancel behavior retained. Long-duration soak and detached supervisor tests still pending."
+    },
+    {
+      "id": "REQ-FF47B9829076",
+      "before": "not_started",
+      "after": "not_started",
+      "rationale": "This pass tests orderly restart, stale run rejection and seeded interrupted metadata, not actual crash-injection/transport reconnection. Exact crash/reconnect acceptance remains open."
+    },
+    {
+      "id": "REQ-13065070DC1B",
+      "before": "integrated",
+      "after": "integrated",
+      "rationale": "Retained native terminal views are bounded to8 and transport applies consumer backpressure; hidden screens still parse output. Full offscreen surface suspension and multi-agent frame-time performance remain open."
+    },
+    {
+      "id": "REQ-9B077088B20A",
+      "before": "implementation",
+      "after": "implementation",
+      "rationale": "Terminal cards now select independent native resource screens; surfaces remain inspector-hosted, not fully embedded inside each canvas card. Agent/editor per-card live parity remains open."
+    },
+    {
+      "id": "REQ-3EDEC65DB327",
+      "before": "implementation",
+      "after": "implementation",
+      "rationale": "Run-token and workspace validation improved; execution grant still workspace-session-wide, not arbitrary per-agent/per-resource persisted permission scopes."
+    }
+  ],
+  "limitations": [
+    "No PTY survival across app exit, no Unix PTY or native MCP claim",
+    "No paid models or DevFleet mutation",
+    "Existing workflow-write authorization barrier is not bypassed",
+    "Inherited first-paint recorder can include capture-triggered paint; pre-capture/external measurements remain to validate",
+    "Raw smoke samples became unreadable with EPERM; printed output retained, permissions unchanged",
+    "Terminal metadata UI currently reads latest100 records; per-resource history lookup remains"
+  ],
+  "resumed_at_utc": "2026-09-23T18:47:45.174660+00:00",
+  "resume_write_proof": "artifacts/access-check-20260923T184417Z/write-test-verified.txt",
+  "resume_checkpoint": "artifacts/checkpoints/terminal-resume-20260923T184521Z",
+  "resume_ruling": "Recovered existing candidate merge and tested-but-uncommitted multi-terminal implementation; complete and revalidate without repeating or deleting prior work. User explicitly authorizes branch consolidation and candidate merge.",
+  "updated_at_utc": "2026-09-23T19:11:53.069480+00:00",
+  "files_modified": [
+    "README.md",
+    "docs/ARCHITECTURE.md",
+    "docs/EXECUTION_LOG.md",
+    "docs/HANDOFF.md",
+    "docs/ROADMAP.md",
+    "docs/SECURITY_MODEL.md",
+    "docs/STATUS.md",
+    "docs/TESTING.md",
+    "docs/roadmap/FEATURES.md",
+    "docs/roadmap/bars/area-07.svg",
+    "docs/roadmap/bars/area-22.svg",
+    "docs/roadmap/bars/overall.svg",
+    "docs/roadmap/index.html",
+    "docs/roadmap/progress.json",
+    "docs/roadmap/review.json",
+    "docs/roadmap/reviews.jsonl",
+    "docs/roadmap/summary.json",
+    "native/CMakeLists.txt",
+    "native/core/Store.cpp",
+    "native/core/Store.h",
+    "native/desktop/CanvasView.cpp",
+    "native/desktop/CanvasView.h",
+    "native/desktop/MainWindow.cpp",
+    "native/desktop/MainWindow.h",
+    "native/desktop/MainWindowPanels.cpp",
+    "native/desktop/ProjectView.cpp",
+    "native/desktop/ProjectView.h",
+    "native/desktop/ResourceCard.cpp",
+    "native/desktop/ResourceCard.h",
+    "native/desktop/TerminalPane.cpp",
+    "native/desktop/TerminalPane.h",
+    "native/services/Backend.cpp",
+    "native/services/Backend.h",
+    "native/services/TerminalService.cpp",
+    "native/services/TerminalService.h",
+    "native/services/WorkspaceSession.cpp",
+    "native/services/WorkspaceSession.h",
+    "native/terminal/PtySession.cpp",
+    "native/terminal/PtySession.h"
+  ],
+  "files_created": [
+    "docs/CANDIDATE.md",
+    "docs/NATIVE_TERMINAL_RESOURCES.md",
+    "docs/ai/changes/2026-09-23-terminal-candidate.json",
+    "docs/history/pre-terminal-candidate-20260923/README.md",
+    "docs/history/pre-terminal-candidate-20260923/docs--ARCHITECTURE.md",
+    "docs/history/pre-terminal-candidate-20260923/docs--HANDOFF.md",
+    "docs/history/pre-terminal-candidate-20260923/docs--STATUS.md",
+    "docs/history/pre-terminal-candidate-20260923/docs--TESTING.md",
+    "docs/images/native-terminal-20260923/README.md",
+    "docs/images/native-terminal-20260923/native-terminal-sessions.png",
+    "docs/plans/2026-09-23-terminal-candidate.md",
+    "docs/validation/2026-09-23-terminal-candidate.md",
+    "native/tests/TerminalResourceTests.cpp",
+    "native/tests/TerminalWorkspaceTests.cpp"
+  ],
+  "next_steps": [
+    "Refresh documentation and explicit roadmap review without inflating scope",
+    "Run no-bypass Release/Debug, roadmap/browser/reference/package gates",
+    "Publish candidate and merge expected head into main; verify every published branch ancestry"
+  ],
+  "local_unpublished_temporaries": [
+    "native/desktop/MainWindow.cpp.tmp0"
+  ]
+}
