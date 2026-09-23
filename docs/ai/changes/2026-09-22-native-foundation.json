@@ -1,0 +1,66 @@
+{
+  "change_id": "2026-09-22-native-foundation",
+  "started_at_utc": "2026-09-22T19:57:10.778912+00:00",
+  "provider": "OpenAI",
+  "model": "GPT-6 Astra Pro",
+  "identity_basis": "session-declared; self-reported provenance",
+  "human_request": "Rename AstraCommander to MTerm; begin modular C++/Qt migration; publish source and all contributor context to MulattoTech/MTerm",
+  "imported_baseline": {
+    "provider": "ChatGPT/OpenAI per supplied history",
+    "model": "unknown",
+    "source": "local AstraCommander checkout; kept unchanged"
+  },
+  "files_created": [
+    "native/CMakeLists.txt",
+    "native/core/BoundedBuffer.h",
+    "native/core/Canvas.cpp",
+    "native/core/Canvas.h",
+    "native/core/FileService.cpp",
+    "native/core/FileService.h",
+    "native/core/Policy.cpp",
+    "native/core/Policy.h",
+    "native/core/Store.cpp",
+    "native/core/Store.h",
+    "native/runtime/JsonLines.cpp",
+    "native/runtime/JsonLines.h",
+    "native/runtime/ProcessInventory.cpp",
+    "native/runtime/ProcessInventory.h",
+    "native/runtime/ProcessRunner.cpp",
+    "native/runtime/ProcessRunner.h",
+    "native/services/Backend.cpp",
+    "native/services/Backend.h",
+    "native/services/JobService.cpp",
+    "native/services/JobService.h",
+    "native/services/WorkspaceSession.cpp",
+    "native/services/WorkspaceSession.h",
+    "native/tests/BackendTests.cpp",
+    "native/tests/CoreTests.cpp",
+    "native/tests/RuntimeTests.cpp",
+    "native/tests/TestChild.cpp"
+  ],
+  "files_modified": [],
+  "tests": [
+    {
+      "command": "mterm-core-tests",
+      "result": "34 passed; 0 failed; Release Windows Qt 6.8.3"
+    },
+    {
+      "command": "mterm-runtime-tests",
+      "result": "15 passed; 0 failed"
+    },
+    {
+      "command": "mterm-backend-tests",
+      "result": "8 passed; 0 failed"
+    }
+  ],
+  "limitations": [
+    "Native implementation in progress; no parity claim"
+  ],
+  "next_steps": [
+    "Native desktop vertical slice",
+    "Additional security/migration tests",
+    "Equivalent-endpoint benchmarks",
+    "CI and issue handoff"
+  ],
+  "checkpoint_at_utc": "2026-09-22T20:14:02.958124+00:00"
+}

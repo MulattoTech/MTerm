@@ -1,25 +1,5 @@
 # MTerm
 
-[![Weighted roadmap completion](docs/roadmap/bars/overall.svg)](docs/ROADMAP.md)
-
-**[Complete color-coded roadmap](docs/ROADMAP.md) · [Every feature, percentage and remaining effort](docs/roadmap/FEATURES.md) · [How metrics are calculated](docs/roadmap/METRICS.md)**
-
-The bar is evidence-reviewed, effort-weighted **delivery maturity**, not release readiness. Every
-tracked item has a stage, remaining engineer-hour range and explicit ETA status. Calendar dates stay
-unscheduled without a capacity/dependency plan. All AI/human contributors must review and regenerate
-metrics after their changes; the default native build/package gates reject stale assessments.
-
-## Latest native workbench improvements
-
-Multiple file tabs now retain independent edits, undo, cursor, scroll and save versions. A late save
-or reload cannot silently replace another active file or newer text. Unsaved background tabs are
-included in close/workspace-switch protection; native shortcuts cycle/close tabs. The deck is capped
-at12 open files and remains lazy. Canvas and Project share a resource filter without deleting state.
-Window geometry and splitter preferences persist beside the chosen data file, not in global settings.
-
-![Actual native multi-buffer editor in an isolated fixture](docs/images/native-workbench-20260923/native-workbench.png)
-
-
 A native-first AI workspace with a familiar spatial workbench: canvas, project view, persistent
 inspectors, keyboard-first commands, and a real native terminal. Formerly AstraCommander.
 

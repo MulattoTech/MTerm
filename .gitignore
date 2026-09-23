@@ -1,0 +1,25 @@
+node_modules/
+dist/
+artifacts/
+.data/
+.pnpm-store/
+.superpowers/
+*.log
+.env*
+!.env.example
+playwright-report/
+test-results/
+
+# MTerm native development and private artifacts
+.tools/
+out/
+build/
+release-local/
+artifacts/
+*.user
+CMakeUserPresets.json
+__pycache__/
+
+# Development-only Python caches; never runtime or provenance artifacts.
+__pycache__/
+*.pyc

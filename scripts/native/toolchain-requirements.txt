@@ -1,0 +1,5 @@
+# Development-only; never bundled with the native runtime.
+aqtinstall==3.3.0
+cmake==4.4.3
+ninja==1.13.2
+clang-format==20.1.8

@@ -1,0 +1,211 @@
+{
+  "change_id": "2026-09-23-workbench-roadmap",
+  "started_at_utc": "2026-09-23T07:01:59.157602+00:00",
+  "provider": "OpenAI",
+  "model": "GPT-6 Astra Pro",
+  "identity_basis": "session-declared self-reported",
+  "base_commit": "6344e948baafd6886f54ba9bb815aae7314feb75",
+  "human_request": "Advance seamless native Electron-like UX and publish complete color-coded roadmap with per-item/overall percent, ETA/remaining-effort and mandatory AI metric updates",
+  "rulings": [
+    "Existing native UX contract remains binding; no browser engine or unrelated DevFleet mutation",
+    "Delivery percentages use explicit stage rubric and baseline effort weights, not inherited checkmarks or line counts",
+    "Four indexed legend rows are not features; preserve them explicitly excluded from completion totals",
+    "All active dates/ETAs are unknown without staffing and schedule; show estimated remaining engineer-hours with low-confidence assumptions",
+    "GitHub workflow access barrier persists; no credential or workflow authorization bypass"
+  ],
+  "checkpoint": "artifacts/checkpoints/workbench-before-20260923T070158Z",
+  "tests": [
+    {
+      "command": "Native default Build.ps1 Release and Debug (no roadmap skip)",
+      "result": "PASS7/7 suites each;119 QtTest passes/1 intentional visual skip per configuration including lifecycle/data rows"
+    },
+    {
+      "command": "Actual Windows workbench screenshot fixture",
+      "result": "PASS; real native dirty multi-tab fixture, generic workspace label, no model calls"
+    },
+    {
+      "command": "Roadmap pure-Python suite",
+      "result": "PASS25/25; multiple red failures observed before implementation/fixes"
+    },
+    {
+      "command": "Roadmap negative review probes",
+      "result": "Changed source rejected; regenerated but unreviewed catalog rejected; originals restored and positive gate passed"
+    },
+    {
+      "command": "Offline dashboard browser validation",
+      "result": "PASS496 total rows,472 active, ID/status filters and HTTP blocking"
+    },
+    {
+      "command": "Reference typecheck/lint/units/build/MCP/E2E",
+      "result": "PASS59unit/2E2E plus all static/build/integration gates"
+    },
+    {
+      "command": "Standalone clean-PATH native package smoke",
+      "result": "PASS5/5 with hashes; internal paint50ms/ready65ms medians; not CLI comparison"
+    },
+    {
+      "command": "ETA complete/excluded regression red-green",
+      "result": "Two intended failures observed; labels corrected to Complete/Not applicable; 25-test suite rerun below"
+    }
+  ],
+  "files_created": [
+    ".github/copilot-instructions.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "docs/ai/changes/2026-09-23-workbench-roadmap.json",
+    "docs/history/pre-roadmap-20260923/ROADMAP.md",
+    "docs/history/pre-workbench-20260923/README.md",
+    "docs/history/pre-workbench-20260923/docs--HANDOFF.md",
+    "docs/history/pre-workbench-20260923/docs--STATUS.md",
+    "docs/images/native-workbench-20260923/README.md",
+    "docs/images/native-workbench-20260923/native-workbench.png",
+    "docs/images/roadmap-20260923/README.md",
+    "docs/images/roadmap-20260923/roadmap-editor-filter.png",
+    "docs/images/roadmap-20260923/roadmap-overview.png",
+    "docs/plans/2026-09-23-workbench-roadmap.md",
+    "docs/roadmap/FEATURES.md",
+    "docs/roadmap/METRICS.md",
+    "docs/roadmap/bars/area-00.svg",
+    "docs/roadmap/bars/area-01.svg",
+    "docs/roadmap/bars/area-02.svg",
+    "docs/roadmap/bars/area-03.svg",
+    "docs/roadmap/bars/area-04.svg",
+    "docs/roadmap/bars/area-05.svg",
+    "docs/roadmap/bars/area-06.svg",
+    "docs/roadmap/bars/area-07.svg",
+    "docs/roadmap/bars/area-08.svg",
+    "docs/roadmap/bars/area-09.svg",
+    "docs/roadmap/bars/area-10.svg",
+    "docs/roadmap/bars/area-11.svg",
+    "docs/roadmap/bars/area-12.svg",
+    "docs/roadmap/bars/area-13.svg",
+    "docs/roadmap/bars/area-14.svg",
+    "docs/roadmap/bars/area-15.svg",
+    "docs/roadmap/bars/area-16.svg",
+    "docs/roadmap/bars/area-17.svg",
+    "docs/roadmap/bars/area-18.svg",
+    "docs/roadmap/bars/area-19.svg",
+    "docs/roadmap/bars/area-20.svg",
+    "docs/roadmap/bars/area-21.svg",
+    "docs/roadmap/bars/area-22.svg",
+    "docs/roadmap/bars/area-23.svg",
+    "docs/roadmap/bars/area-24.svg",
+    "docs/roadmap/bars/area-25.svg",
+    "docs/roadmap/bars/area-26.svg",
+    "docs/roadmap/bars/area-27.svg",
+    "docs/roadmap/bars/area-28.svg",
+    "docs/roadmap/bars/area-29.svg",
+    "docs/roadmap/bars/blocked-complete.svg",
+    "docs/roadmap/bars/blocked-implementation.svg",
+    "docs/roadmap/bars/blocked-integrated.svg",
+    "docs/roadmap/bars/blocked-not_started.svg",
+    "docs/roadmap/bars/blocked-planned.svg",
+    "docs/roadmap/bars/blocked-validated.svg",
+    "docs/roadmap/bars/complete.svg",
+    "docs/roadmap/bars/implementation.svg",
+    "docs/roadmap/bars/integrated.svg",
+    "docs/roadmap/bars/not_started.svg",
+    "docs/roadmap/bars/overall.svg",
+    "docs/roadmap/bars/planned.svg",
+    "docs/roadmap/bars/validated.svg",
+    "docs/roadmap/index.html",
+    "docs/roadmap/progress.json",
+    "docs/roadmap/review.json",
+    "docs/roadmap/reviews.jsonl",
+    "docs/roadmap/summary.json",
+    "docs/validation/2026-09-23-workbench-roadmap.md",
+    "native/desktop/EditorDeck.cpp",
+    "native/desktop/EditorDeck.h",
+    "native/tests/WorkbenchTests.cpp",
+    "scripts/roadmap/render_roadmap.py",
+    "scripts/roadmap/roadmap.py",
+    "scripts/roadmap/test_roadmap.py",
+    "scripts/roadmap/validate_dashboard.mjs"
+  ],
+  "files_modified": [
+    ".github/pull_request_template.md",
+    ".gitignore",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "README.md",
+    "docs/ARCHITECTURE.md",
+    "docs/EXECUTION_LOG.md",
+    "docs/HANDOFF.md",
+    "docs/ROADMAP.md",
+    "docs/STATUS.md",
+    "docs/TESTING.md",
+    "docs/ci/native.workflow.yml",
+    "docs/templates/FEATURE_UI_PARITY_TEMPLATE.md",
+    "native/CMakeLists.txt",
+    "native/desktop/CanvasView.cpp",
+    "native/desktop/CanvasView.h",
+    "native/desktop/MainWindow.cpp",
+    "native/desktop/MainWindow.h",
+    "native/desktop/MainWindowPanels.cpp",
+    "native/desktop/ProjectView.cpp",
+    "native/desktop/ProjectView.h",
+    "native/desktop/WorkspaceShell.cpp",
+    "native/desktop/WorkspaceShell.h",
+    "native/desktop/ui/theme.qss",
+    "package.json",
+    "scripts/native/Build.ps1",
+    "scripts/native/Package-Windows.ps1"
+  ],
+  "roadmap_updates": [
+    {
+      "id": "REQ-D05E282B6459",
+      "before": "not_started",
+      "after": "complete",
+      "rationale": "Native multi-buffer tabs,12-file bound, per-file QTextDocument/undo/cursor/version, reorder and scoped keyboard close/switch validated. Restart recovery of unsaved buffers is a separate open requirement."
+    },
+    {
+      "id": "REQ-64507D2E8F0A",
+      "before": "integrated",
+      "after": "validated",
+      "rationale": "Dirty/saving indicators, background dirty close guards, late-save/reload and tab-selection races tested. Comprehensive save-all/recovery/conflict UX remains."
+    },
+    {
+      "id": "REQ-9A963E0B149F",
+      "before": "not_started",
+      "after": "validated",
+      "rationale": "Native geometry and splitter state persisted beside the chosen data location; geometry restore tested within screen bounds. Multi-monitor/maximized-state changes still need broader platform validation."
+    },
+    {
+      "id": "REQ-572729338C4F",
+      "before": "not_started",
+      "after": "integrated",
+      "rationale": "Native Canvas/Project title/kind/content filtering retains stored resource IDs; tested no-delete filtering. Full keyboard jump-to-resource/search result UX remains."
+    },
+    {
+      "id": "GOV-01",
+      "before": "implementation",
+      "after": "complete",
+      "rationale": "Completed25-test, all-row browser, negative+positive metric gates and default native build/package integration. Hosted CI remains separate blocked scope."
+    },
+    {
+      "id": "GOV-02",
+      "before": "implementation",
+      "after": "complete",
+      "rationale": "Completed25-test, all-row browser, negative+positive metric gates and default native build/package integration. Hosted CI remains separate blocked scope."
+    },
+    {
+      "id": "GOV-03",
+      "before": "implementation",
+      "after": "complete",
+      "rationale": "25 deterministic tests validate weighting/coverage/stale output and review fingerprints, finite inputs, evidence scope, ETA basis, stage-rubric consistency and safe complete-row rendering."
+    }
+  ],
+  "next_steps": [
+    "Review roadmap estimates/stages as explicit planning assumptions and refine per task",
+    "Implement remaining editor save-all/find/LSP/recovery and multi-resource sessions",
+    "Continue native Git/provider/MCP/DevFleet parity and security/performance gates; no fabricated ETAs",
+    "Always update progress.json, provenance roadmap_updates and generated views before publication"
+  ],
+  "updated_at_utc": "2026-09-23T07:50:57.031280+00:00",
+  "unpublished_temporary_files": [
+    {
+      "path": "native/desktop/MainWindow.cpp.tmp0",
+      "reason": "Formatter/cache artifact left untouched and excluded from publishing"
+    }
+  ]
+}

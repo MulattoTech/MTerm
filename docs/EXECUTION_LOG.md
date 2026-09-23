@@ -1,0 +1,87 @@
+# Continuation execution ledger — 2026-09-22
+
+Plan: docs/BUILD_PLAN.md. Specification: user-supplied autonomous build mission.
+Workspace: existing build/first-vertical-slice branch; no commits exist.
+Baseline: 43/43 security tests fail with NOT IMPLEMENTED. No desktop/runtime exists.
+Original files will be preserved under artifacts/recovery-20260922-continuation.
+
+Ruling: continue in the dedicated repository; no worktree on an unborn branch without a commit.
+Ruling: keep installed pinned dependencies and SDK v2; original implementation only.
+Ruling: no public listeners, billable calls, global installations, or DevFleet changes.
+Ruling: npm scripts work without globally installed pnpm; validate the lockfile with pinned pnpm.
+Ruling: shell access is OS-user execution, not sandboxed by file-tool rooting.
+
+- [ ] Security: canonical paths, profiles, actor/session grants, redaction, regression tests.
+- [ ] Runtime: strict schemas, SQLite, bounded file I/O, optimistic saves, real PTY, audit.
+- [ ] MCP: SDK stdio server/client subprocess integration tests; no network socket.
+- [ ] Desktop: validated IPC and native approvals; React/XYFlow/xterm/Monaco; real Electron tests.
+- [ ] Continuity: workspace/layout restart and honest ended terminal state.
+- [ ] Extensions: shared Project view, assisted agent prompt, tasks, read-only Git where validated.
+- [ ] Quality: install, typecheck, lint, tests, build, launch, evidence, docs and handoff.
+
+Pre-flight: desktop and MCP share WorkspaceRuntime and Store schemas. Process ownership is runtime-instance-local. Canvas format is domain-owned. Privileged file and process operations stay outside the renderer.
+
+## Continuation resumed — 2026-09-22 17:27Z onward
+
+- Created additive interruption-safe checkpoint: `artifacts/checkpoints/checkpoint-20260922T172722Z`.
+- Reconciled attached prior-chat context against the live repository instead of trusting stale handoff text.
+- Verified full pre-change gate: typecheck, lint, 53 tests, build, MCP integration and Electron E2E all passed.
+- Verified installed Codex CLI `0.157.0-alpha.2` with a real read-only smoke; artifact `artifacts/codex-provider-smoke-20260922T1731Z.jsonl`.
+- Added interrupted-agent startup reconciliation; persisted active states become STOPPED if their process did not survive the app.
+- Added task-bound PASS/FAIL ValidationEvidence for Codex completion and surfaced linked evidence in Tasks.
+- Added task binding/provenance in Agent inspector and Ctrl+K / Ctrl+Shift+P command palette.
+- Added manual real-model app-level provider validator `scripts/validate-agent.mjs`; it passed and wrote `artifacts/agent-provider-app-smoke-1790098800178-37940.json`.
+- Updated README/status/architecture/security/testing/roadmap/handoff to match validated reality.
+- Final routine gate: typecheck PASS, lint PASS, 54/54 unit PASS, build PASS, MCP PASS, Electron E2E PASS.
+- Final gate log: `artifacts/final-quality-gate-20260922T174437Z.log`.
+
+## Feature-completion / native-performance assessment — 2026-09-22
+
+- Reconciled the live source against the older handoff before constructing the backlog.
+- Confirmed newer migration, Git mutation/worktree, Process, spatial live-surface, Codex-resume and Claude-provider code.
+- Captured Electron startup/memory baseline and Codex CLI local startup lower-bound under `artifacts/`.
+- Added `docs/MASTER_TODO_100_PERCENT.md`.
+- Added `docs/NATIVE_PERFORMANCE_REFACTOR_REPORT.md`.
+- Re-ran current routine gates: typecheck PASS, lint PASS, 59/59 unit PASS, build PASS, MCP PASS, 2/2 Electron E2E PASS.
+
+## Native resume — 2026-09-22
+
+- Recovered native checkout and archived uncommitted source, excluding one unreadable temp file.
+- Published recovery commit e82fc49 on feat/native-core-20260922.
+- Added eight failing malformed-request cases, fixed conversion/validation, and passed all native suites.
+- Windows Release/Debug each pass 5 CTest suites / 95 QtTest outcomes including lifecycle/data rows.
+- Repaired preserved reference typecheck and lazy editor race; reference full gate including repeated E2E passes.
+- Added SHA-256 standalone preview staging and repeatable clean-PATH smoke; lean 32.2 MB payload verified.
+- Preserved CI source, but workflow publication was refused by missing workflow permission.
+- Source-only publishing uses separate feat/native-resume-20260922 worktree; no credentials changed, no authorization bypass.
+- Replaced stale native handoff/status/architecture/testing docs; original versions archived in docs/history/.
+- No paid model calls, original AstraCommander edits, public listener, force push, or removal of user source.
+
+## Relocation and native UX restoration — 2026-09-22
+
+- Canonical development moved to C:\Tools\Dev\MTerm; prior checkouts and all Git refs preserved.
+- Restored Electron-style shell, navigation, persistent inspector, Canvas/Project and keyboard workflow.
+- Implemented native painted resource cards, minimap/Arrange, native file browser and note persistence.
+- Preserved original terminal/file regressions; added real tool/view-switch continuity coverage.
+- Observed and fixed UX regressions, including scrolled overlays, Observe controls, lazy inspector
+  startup and duplicate close confirmation.
+- Profiled eager UI startup then reduced internal median first paint 269ms to87ms using retained lazy
+  panels. Memory tradeoff and non-comparable CLI endpoints remain explicit.
+- Indexed all485 inherited requirements; added six-source matrix, reusable review template and
+  future DevFleet integration contract without modifying/connecting DevFleet.
+- Native Release/Debug 6 suites pass; relocated reference full gate passes; real Windows screenshots
+  reviewed. CI workflow-write permission remains the earlier unresolved publication barrier.
+
+## Native workbench and mandatory complete roadmap — 2026-09-23
+
+- Preserved pre-work Git bundle/source snapshot; new branch starts at6344e94.
+- Implemented12-document native editor deck and tested retained undo/text/cursor state, late-save
+  and late-reload/focus races, dirty background close protection, bounded tabs and shortcuts.
+- Added per-data-location window/splitter preferences and shared no-delete resource filtering.
+- Rendered all496 roadmap rows with per-item stage/evidence/effort/ETA, weighted overall/area SVGs,
+  complete GitHub Markdown and offline search/filter dashboard.24 explicitly excluded entries retain IDs.
+- Installed no global hooks; contributor/vendor entrypoints and native build/package gates require
+  explicit metric review. Controlled source/catalog changes were rejected; restored review passed.
+- Native default Release/Debug7suites pass;23roadmap tests pass;reference59unit/2E2E full gate passes;
+  native screenshot fixture and standalone5-run smoke pass. Details in the dated validation report.
+- Current native runtime still has no Electron/Chromium/Node dependency. No live model/DevFleet call.

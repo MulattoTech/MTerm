@@ -1,0 +1,661 @@
+[
+  {
+    "name": "electron",
+    "version": "44.4.3",
+    "license": "MIT",
+    "engines": {
+      "node": ">= 22.12.0"
+    },
+    "exports": null,
+    "scripts": null
+  },
+  {
+    "name": "node-pty",
+    "version": "1.1.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": null,
+    "scripts": {
+      "lint": "eslint -c .eslintrc.js --ext .ts src/",
+      "test": "cross-env NODE_ENV=test mocha -R spec --exit lib/*.test.js",
+      "build": "tsc -b ./src/tsconfig.json",
+      "watch": "tsc -b -w ./src/tsconfig.json",
+      "install": "node scripts/prebuild.js || node-gyp rebuild",
+      "prepare": "npm run build",
+      "posttest": "npm run lint",
+      "postinstall": "node scripts/post-install.js",
+      "prepublishOnly": "npm run build",
+      "compileCommands": "node scripts/gen-compile-commands.js"
+    }
+  },
+  {
+    "name": "@modelcontextprotocol/server",
+    "version": "2.0.0",
+    "license": "MIT",
+    "engines": {
+      "node": ">=20"
+    },
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.mts",
+          "default": "./dist/index.mjs"
+        },
+        "require": {
+          "types": "./dist/index.d.cts",
+          "default": "./dist/index.cjs"
+        }
+      },
+      "./stdio": {
+        "import": {
+          "types": "./dist/stdio.d.mts",
+          "default": "./dist/stdio.mjs"
+        },
+        "require": {
+          "types": "./dist/stdio.d.cts",
+          "default": "./dist/stdio.cjs"
+        }
+      },
+      "./_shims": {
+        "node": {
+          "import": {
+            "types": "./dist/shimsNode.d.mts",
+            "default": "./dist/shimsNode.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsNode.d.cts",
+            "default": "./dist/shimsNode.cjs"
+          }
+        },
+        "browser": {
+          "import": {
+            "types": "./dist/shimsBrowser.d.mts",
+            "default": "./dist/shimsBrowser.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsBrowser.d.cts",
+            "default": "./dist/shimsBrowser.cjs"
+          }
+        },
+        "default": {
+          "import": {
+            "types": "./dist/shimsNode.d.mts",
+            "default": "./dist/shimsNode.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsNode.d.cts",
+            "default": "./dist/shimsNode.cjs"
+          }
+        },
+        "workerd": {
+          "import": {
+            "types": "./dist/shimsWorkerd.d.mts",
+            "default": "./dist/shimsWorkerd.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsWorkerd.d.cts",
+            "default": "./dist/shimsWorkerd.cjs"
+          }
+        }
+      },
+      "./validators/ajv": {
+        "import": {
+          "types": "./dist/validators/ajv.d.mts",
+          "default": "./dist/validators/ajv.mjs"
+        },
+        "require": {
+          "types": "./dist/validators/ajv.d.cts",
+          "default": "./dist/validators/ajv.cjs"
+        }
+      },
+      "./validators/cf-worker": {
+        "import": {
+          "types": "./dist/validators/cfWorker.d.mts",
+          "default": "./dist/validators/cfWorker.mjs"
+        },
+        "require": {
+          "types": "./dist/validators/cfWorker.d.cts",
+          "default": "./dist/validators/cfWorker.cjs"
+        }
+      }
+    },
+    "scripts": {
+      "lint": "eslint src/ && prettier --ignore-path ../../.prettierignore --check .",
+      "test": "vitest run",
+      "build": "tsdown",
+      "check": "pnpm run typecheck && pnpm run lint",
+      "lint:fix": "eslint src/ --fix && prettier --ignore-path ../../.prettierignore --write .",
+      "typecheck": "tsgo -p tsconfig.json --noEmit",
+      "test:watch": "vitest",
+      "build:watch": "tsdown --watch"
+    }
+  },
+  {
+    "name": "@modelcontextprotocol/client",
+    "version": "2.0.0",
+    "license": "MIT",
+    "engines": {
+      "node": ">=20"
+    },
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.mts",
+          "default": "./dist/index.mjs"
+        },
+        "require": {
+          "types": "./dist/index.d.cts",
+          "default": "./dist/index.cjs"
+        }
+      },
+      "./stdio": {
+        "import": {
+          "types": "./dist/stdio.d.mts",
+          "default": "./dist/stdio.mjs"
+        },
+        "require": {
+          "types": "./dist/stdio.d.cts",
+          "default": "./dist/stdio.cjs"
+        }
+      },
+      "./_shims": {
+        "node": {
+          "import": {
+            "types": "./dist/shimsNode.d.mts",
+            "default": "./dist/shimsNode.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsNode.d.cts",
+            "default": "./dist/shimsNode.cjs"
+          }
+        },
+        "browser": {
+          "import": {
+            "types": "./dist/shimsBrowser.d.mts",
+            "default": "./dist/shimsBrowser.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsBrowser.d.cts",
+            "default": "./dist/shimsBrowser.cjs"
+          }
+        },
+        "default": {
+          "import": {
+            "types": "./dist/shimsNode.d.mts",
+            "default": "./dist/shimsNode.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsNode.d.cts",
+            "default": "./dist/shimsNode.cjs"
+          }
+        },
+        "workerd": {
+          "import": {
+            "types": "./dist/shimsWorkerd.d.mts",
+            "default": "./dist/shimsWorkerd.mjs"
+          },
+          "require": {
+            "types": "./dist/shimsWorkerd.d.cts",
+            "default": "./dist/shimsWorkerd.cjs"
+          }
+        }
+      },
+      "./validators/ajv": {
+        "import": {
+          "types": "./dist/validators/ajv.d.mts",
+          "default": "./dist/validators/ajv.mjs"
+        },
+        "require": {
+          "types": "./dist/validators/ajv.d.cts",
+          "default": "./dist/validators/ajv.cjs"
+        }
+      },
+      "./validators/cf-worker": {
+        "import": {
+          "types": "./dist/validators/cfWorker.d.mts",
+          "default": "./dist/validators/cfWorker.mjs"
+        },
+        "require": {
+          "types": "./dist/validators/cfWorker.d.cts",
+          "default": "./dist/validators/cfWorker.cjs"
+        }
+      }
+    },
+    "scripts": {
+      "lint": "eslint src/ && prettier --ignore-path ../../.prettierignore --check .",
+      "test": "vitest run",
+      "build": "tsdown",
+      "check": "pnpm run typecheck && pnpm run lint",
+      "lint:fix": "eslint src/ --fix && prettier --ignore-path ../../.prettierignore --write .",
+      "typecheck": "tsgo -p tsconfig.json --noEmit",
+      "test:watch": "vitest",
+      "build:watch": "tsdown --watch"
+    }
+  },
+  {
+    "name": "@modelcontextprotocol/node",
+    "version": "2.0.0",
+    "license": "MIT",
+    "engines": {
+      "node": ">=20"
+    },
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.mts",
+          "default": "./dist/index.mjs"
+        },
+        "require": {
+          "types": "./dist/index.d.cts",
+          "default": "./dist/index.cjs"
+        }
+      }
+    },
+    "scripts": {
+      "lint": "eslint src/ && prettier --ignore-path ../../../.prettierignore --check .",
+      "test": "vitest run",
+      "build": "tsdown",
+      "check": "pnpm run typecheck && pnpm run lint",
+      "lint:fix": "eslint src/ --fix && prettier --ignore-path ../../../.prettierignore --write .",
+      "typecheck": "tsgo -p tsconfig.json --noEmit",
+      "test:watch": "vitest",
+      "build:watch": "tsdown --watch"
+    }
+  },
+  {
+    "name": "pnpm",
+    "version": "12.5.1",
+    "license": "MIT",
+    "engines": {
+      "node": ">=18.*"
+    },
+    "exports": null,
+    "scripts": {
+      "preinstall": "node install.js",
+      "postinstall": "node install.js",
+      "bundle-node-gyp": "node scripts/bundle-node-gyp.mjs"
+    }
+  },
+  {
+    "name": "vite",
+    "version": "8.3.0",
+    "license": "MIT",
+    "engines": {
+      "node": "^20.19.0 || >=22.12.0"
+    },
+    "exports": {
+      ".": "./dist/node/index.js",
+      "./client": {
+        "types": "./client.d.ts"
+      },
+      "./types/*": {
+        "types": "./types/*"
+      },
+      "./internal": "./dist/node/internal.js",
+      "./package.json": "./package.json",
+      "./dist/client/*": "./dist/client/*",
+      "./module-runner": "./dist/node/module-runner.js",
+      "./types/internal/*": null
+    },
+    "scripts": {
+      "dev": "premove dist && pnpm build-bundle -w",
+      "lint": "eslint --cache --ext .ts src/**",
+      "build": "premove dist && pnpm build-bundle && pnpm build-types",
+      "format": "oxfmt",
+      "typecheck": "tsc && tsc -p src/node && tsc -p src/client && tsc -p src/module-runner && tsc -p src/shared && tsc -p src/node/__tests_dts__ && tsc -p src/module-runner/__tests_dts__",
+      "build-types": "pnpm build-types-roll && pnpm build-types-check",
+      "build-bundle": "rolldown --config rolldown.config.ts",
+      "generate-target": "tsx scripts/generateTarget.ts",
+      "build-types-roll": "rolldown --config rolldown.dts.config.ts",
+      "build-types-check": "tsc --project tsconfig.check.json"
+    }
+  },
+  {
+    "name": "vitest",
+    "version": "5.0.1",
+    "license": "MIT",
+    "engines": {
+      "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+    },
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        },
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        }
+      },
+      "./node": {
+        "types": "./dist/node.d.ts",
+        "default": "./dist/node.js"
+      },
+      "./jsdom": {
+        "types": "./jsdom.d.ts"
+      },
+      "./config": {
+        "types": "./config.d.ts",
+        "default": "./dist/config.js",
+        "require": "./dist/config.cjs"
+      },
+      "./worker": {
+        "types": "./worker.d.ts",
+        "default": "./dist/worker.js"
+      },
+      "./browser": {
+        "types": "./browser/context.d.ts",
+        "default": "./browser/context.js"
+      },
+      "./globals": {
+        "types": "./globals.d.ts"
+      },
+      "./runtime": {
+        "types": "./dist/runtime.d.ts",
+        "default": "./dist/runtime.js"
+      },
+      "./importMeta": {
+        "types": "./importMeta.d.ts"
+      },
+      "./import-meta": {
+        "types": "./import-meta.d.ts"
+      },
+      "./package.json": "./package.json",
+      "./internal/traces": {
+        "default": "./dist/traces.js",
+        "__vitest_source__": "./src/utils/traces.ts"
+      },
+      "./internal/browser": {
+        "types": "./dist/browser.d.ts",
+        "default": "./dist/browser.js",
+        "__vitest_source__": "./src/public/browser.ts"
+      },
+      "./optional-types.js": {
+        "types": "./optional-types.d.ts"
+      },
+      "./optional-runtime-types.js": {
+        "types": "./optional-runtime-types.d.ts"
+      }
+    },
+    "scripts": {
+      "dev": "NODE_OPTIONS=\"--max-old-space-size=8192\" rollup -c --watch -m inline",
+      "build": "premove dist && rollup -c"
+    }
+  },
+  {
+    "name": "typescript",
+    "version": "7.0.2",
+    "license": "Apache-2.0",
+    "engines": {
+      "node": ">=16.20.0"
+    },
+    "exports": {
+      ".": "./lib/version.cjs",
+      "./unstable/fs": "./dist/api/fs.js",
+      "./package.json": "./package.json",
+      "./unstable/ast": "./dist/ast/index.js",
+      "./unstable/sync": "./dist/api/sync/api.js",
+      "./unstable/async": "./dist/api/async/api.js",
+      "./unstable/proto": "./dist/api/proto.js",
+      "./unstable/ast/is": "./dist/ast/is.js",
+      "./unstable/ast/clone": "./dist/ast/clone.js",
+      "./unstable/ast/utils": "./dist/ast/utils.js",
+      "./unstable/ast/factory": "./dist/ast/factory.generated.js",
+      "./unstable/ast/scanner": "./dist/ast/scanner.js",
+      "./unstable/ast/visitor": "./dist/ast/visitor.js"
+    },
+    "scripts": null
+  },
+  {
+    "name": "react",
+    "version": "19.3.0",
+    "license": "MIT",
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "exports": {
+      ".": {
+        "default": "./index.js",
+        "react-server": "./react.react-server.js"
+      },
+      "./jsx-runtime": {
+        "default": "./jsx-runtime.js",
+        "react-server": "./jsx-runtime.react-server.js"
+      },
+      "./package.json": "./package.json",
+      "./jsx-dev-runtime": {
+        "default": "./jsx-dev-runtime.js",
+        "react-server": "./jsx-dev-runtime.react-server.js"
+      },
+      "./compiler-runtime": {
+        "default": "./compiler-runtime.js",
+        "react-server": "./compiler-runtime.js"
+      }
+    },
+    "scripts": null
+  },
+  {
+    "name": "@xyflow/react",
+    "version": "12.11.6",
+    "license": "MIT",
+    "engines": null,
+    "exports": {
+      ".": {
+        "node": {
+          "types": "./dist/esm/index.d.ts",
+          "import": "./dist/esm/index.mjs",
+          "module": "./dist/esm/index.js",
+          "require": "./dist/umd/index.js"
+        },
+        "browser": {
+          "import": "./dist/esm/index.js",
+          "require": "./dist/umd/index.js"
+        },
+        "default": "./dist/esm/index.js"
+      },
+      "./package.json": "./package.json",
+      "./dist/base.css": "./dist/base.css",
+      "./dist/style.css": "./dist/style.css"
+    },
+    "scripts": {
+      "css": "postcss src/styles/{base,style}.css --config ./../../tooling/postcss-config/ --dir dist ",
+      "dev": "concurrently \"rollup --config node:@xyflow/rollup-config --watch\" pnpm:css-watch",
+      "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+      "build": "rollup --config node:@xyflow/rollup-config --environment NODE_ENV:production && npm run css",
+      "css-watch": "pnpm css --watch",
+      "typecheck": "tsc --noEmit"
+    }
+  },
+  {
+    "name": "@xterm/xterm",
+    "version": "6.0.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": null,
+    "scripts": {
+      "tsc": "tsc -b ./tsconfig.all.json",
+      "lint": "eslint -c .eslintrc.json --max-warnings 0 --ext .ts src/ addons/",
+      "test": "npm run test-unit",
+      "build": "npm run tsc",
+      "clean": "rm -rf lib out addons/*/lib addons/*/out",
+      "setup": "npm run build",
+      "start": "node demo/start",
+      "watch": "npm run tsc-watch",
+      "esbuild": "node bin/esbuild_all.mjs",
+      "package": "webpack",
+      "lint-api": "eslint --no-eslintrc -c .eslintrc.json.typings --max-warnings 0 --no-ignore --ext .d.ts typings/",
+      "lint-fix": "eslint -c .eslintrc.json --fix --ext .ts src/ addons/",
+      "posttest": "npm run lint",
+      "benchmark": "NODE_PATH=./out xterm-benchmark -r 5 -c test/benchmark/benchmark.json",
+      "test-unit": "node ./bin/test_unit.js",
+      "tsc-watch": "tsc -b -w ./tsconfig.all.json --preserveWatchOutput",
+      "prepackage": "npm run build",
+      "vtfeatures": "node bin/extract_vtfeatures.js src/**/*.ts src/*.ts",
+      "postpackage": "npm run esbuild-package",
+      "esbuild-demo": "node bin/esbuild.mjs --demo-client",
+      "esbuild-watch": "node bin/esbuild_all.mjs --watch",
+      "test-unit-dev": "cross-env NODE_PATH='./out' mocha",
+      "benchmark-eval": "NODE_PATH=./out xterm-benchmark -r 5 -c test/benchmark/benchmark.json --eval out-test/benchmark/*benchmark.js",
+      "prepublishOnly": "npm run package",
+      "esbuild-package": "node bin/esbuild_all.mjs --prod",
+      "package-headless": "webpack --config ./webpack.config.headless.js",
+      "test-integration": "node ./bin/test_integration.js --workers=75%",
+      "benchmark-baseline": "NODE_PATH=./out xterm-benchmark -r 5 -c test/benchmark/benchmark.json --baseline out-test/benchmark/*benchmark.js",
+      "esbuild-demo-watch": "node bin/esbuild.mjs --demo-client --watch",
+      "test-unit-coverage": "node ./bin/test_unit.js --coverage",
+      "prepackage-headless": "npm run esbuild-package-headless-only",
+      "postpackage-headless": "node ./bin/package_headless.js",
+      "esbuild-package-watch": "node bin/esbuild_all.mjs --prod --watch",
+      "test-integration-debug": "node ./bin/test_integration.js  --workers=1 --headed --timeout=30000",
+      "test-integration-webkit": "node ./bin/test_integration.js --workers=75% \"--project=WebKit\"",
+      "test-integration-firefox": "node ./bin/test_integration.js --workers=75% \"--project=FirefoxStable\"",
+      "test-integration-chromium": "node ./bin/test_integration.js --workers=75% \"--project=ChromeStable\"",
+      "esbuild-package-headless-only": "node bin/esbuild.mjs --prod --headless"
+    }
+  },
+  {
+    "name": "monaco-editor",
+    "version": "0.56.0",
+    "license": "MIT",
+    "engines": null,
+    "exports": {
+      ".": {
+        "types": "./esm/vs/index.d.ts",
+        "import": "./esm/vs/index.js",
+        "require": "./min/vs/index.js"
+      },
+      "./*": "./esm/vs/*.js",
+      "./*.js": "./esm/vs/*.js"
+    },
+    "scripts": {
+      "test": "ts-node ./build/check-samples && npm run test:grammars",
+      "build": "npm run build-lsp && npm run build-monaco-editor",
+      "watch": "tsc -w -p ./src",
+      "prettier": "prettier --write .",
+      "build-all": "npm run build-lsp && npm run build-monaco-editor && npm run package-for-smoketest",
+      "build-lsp": "cd monaco-lsp-client && npm install && npm run build",
+      "smoketest": "playwright test --config=test/smoke/playwright.config.ts",
+      "pretty-quick": "pretty-quick --staged",
+      "simpleserver": "ts-node ./build/simpleserver",
+      "smoketest-ui": "playwright test --config=test/smoke/playwright.config.ts --ui",
+      "test:grammars": "node --import tsx --import ./test/test-setup.mjs --test \"src/languages/definitions/*/*.test.ts\"",
+      "prettier-check": "prettier --check .",
+      "update-actions": "pin-github-action ./.github/workflows/website.yml",
+      "deps-all-remove": "ts-node ./build/npm/removeAll",
+      "smoketest-debug": "playwright test --config=test/smoke/playwright.config.ts --debug",
+      "deps-all-install": "ts-node ./build/npm/installAll",
+      "smoketest-headed": "playwright test --config=test/smoke/playwright.config.ts --headed",
+      "import-typescript": "ts-node ./build/importTypescript",
+      "build-monaco-editor": "ts-node ./build/build-monaco-editor",
+      "package-for-smoketest": "npm run package-for-smoketest-webpack && npm run package-for-smoketest-esbuild && npm run package-for-smoketest-vite",
+      "package-for-smoketest-vite": "ts-node ./test/smoke/package-vite",
+      "package-for-smoketest-esbuild": "ts-node ./test/smoke/package-esbuild",
+      "package-for-smoketest-webpack": "ts-node ./test/smoke/package-webpack",
+      "package-for-smoketest-webpack-cross-origin": "ts-node ./test/smoke/package-webpack --cross-origin"
+    }
+  },
+  {
+    "name": "zod",
+    "version": "4.6.5",
+    "license": "MIT",
+    "engines": null,
+    "exports": {
+      ".": {
+        "types": "./index.d.cts",
+        "import": "./index.js",
+        "require": "./index.cjs",
+        "@zod/source": "./src/index.ts"
+      },
+      "./v3": {
+        "types": "./v3/index.d.cts",
+        "import": "./v3/index.js",
+        "require": "./v3/index.cjs",
+        "@zod/source": "./src/v3/index.ts"
+      },
+      "./v4": {
+        "types": "./v4/index.d.cts",
+        "import": "./v4/index.js",
+        "require": "./v4/index.cjs",
+        "@zod/source": "./src/v4/index.ts"
+      },
+      "./mini": {
+        "types": "./mini/index.d.cts",
+        "import": "./mini/index.js",
+        "require": "./mini/index.cjs",
+        "@zod/source": "./src/mini/index.ts"
+      },
+      "./compile": {
+        "types": "./compile.d.cts",
+        "import": "./compile.js",
+        "require": "./compile.cjs",
+        "@zod/source": "./src/compile.ts"
+      },
+      "./locales": {
+        "types": "./locales/index.d.cts",
+        "import": "./locales/index.js",
+        "require": "./locales/index.cjs",
+        "@zod/source": "./src/locales/index.ts"
+      },
+      "./v4-mini": {
+        "types": "./v4-mini/index.d.cts",
+        "import": "./v4-mini/index.js",
+        "require": "./v4-mini/index.cjs",
+        "@zod/source": "./src/v4-mini/index.ts"
+      },
+      "./v4/core": {
+        "types": "./v4/core/index.d.cts",
+        "import": "./v4/core/index.js",
+        "require": "./v4/core/index.cjs",
+        "@zod/source": "./src/v4/core/index.ts"
+      },
+      "./v4/mini": {
+        "types": "./v4/mini/index.d.cts",
+        "import": "./v4/mini/index.js",
+        "require": "./v4/mini/index.cjs",
+        "@zod/source": "./src/v4/mini/index.ts"
+      },
+      "./v4/locales": {
+        "types": "./v4/locales/index.d.cts",
+        "import": "./v4/locales/index.js",
+        "require": "./v4/locales/index.cjs",
+        "@zod/source": "./src/v4/locales/index.ts"
+      },
+      "./package.json": "./package.json",
+      "./v4/locales/*": {
+        "types": "./v4/locales/*",
+        "import": "./v4/locales/*",
+        "require": "./v4/locales/*",
+        "@zod/source": "./src/v4/locales/*"
+      }
+    },
+    "scripts": {
+      "test": "nub exec --node vitest run",
+      "build": "nub exec --node zshy --project tsconfig.build.json",
+      "clean": "git clean -xdf . -e node_modules",
+      "postbuild": "nub ../../scripts/write-stub-package-jsons.ts && nub exec --node biome check --write .",
+      "test:watch": "nub exec --node vitest",
+      "prepublishOnly": "nub ../../scripts/check-versions.ts"
+    }
+  },
+  {
+    "name": "@playwright/test",
+    "version": "1.63.0",
+    "license": "Apache-2.0",
+    "engines": {
+      "node": ">=20"
+    },
+    "exports": {
+      ".": {
+        "types": "./index.d.ts",
+        "import": "./index.mjs",
+        "default": "./index.js",
+        "require": "./index.js"
+      },
+      "./cli": "./cli.js",
+      "./reporter": "./reporter.js",
+      "./package.json": "./package.json"
+    },
+    "scripts": {}
+  }
+]
