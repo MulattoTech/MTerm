@@ -1,0 +1,12 @@
+# Isolated permission test only; do not merge as a product workflow.
+name: Manual MTerm access probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Permission probe only; this job is disabled."
